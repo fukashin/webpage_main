@@ -1,24 +1,32 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>アプリ名</title>
+    <title>あなたのサイト名</title>
     <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script defer src="script.js"></script>
 </head>
 <body>
     <header>
-        <h1>アプリ名</h1>
+        <div class="logo">
+            <a href="index.html"><img src="image/ロゴ3.png" alt="ホーム"></a>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="app_dev.html">アプリ開発</a></li>
+                <li><a href="about.html">作成者概要</a></li>
+                <li><a href="knowledge.html">ナレッジメモ</a></li>
+            </ul>
+        </nav>
     </header>
-    <main>
-        <section>
-            <h2>アプリの概要</h2>
-            <p>ここにアプリの説明を記載します。</p>
-        </section>
-        <section>
-            <h2>スクリーンショット</h2>
-            <img src="screenshot.jpg" alt="アプリのスクリーンショット">
-        </section>
+    
+    <main id="main-content">
+        <!-- 非同期でコンテンツをここに読み込む -->
     </main>
+
+    <footer>
+        <!-- フッターの内容 -->
+    </footer>
 </body>
 </html>

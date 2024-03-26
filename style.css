@@ -1,29 +1,89 @@
+/* レスポンシブデザインの基本設定 */
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 header {
-    background-color: #007bff;
-    color: white;
+    display: flex;
+    justify-content: space-between; /* ロゴとナビゲーションリンクを両端に寄せる */
+    align-items: center; /* ロゴとナビゲーションリンクを垂直方向の中央に配置 */
+    background-color: #ffffff; /* ヘッダーの背景色 */
+    padding-right: 50px;
+}
+
+header nav {
+    /* ナビゲーションバーのスタイル指定がここに入ります */
+}
+
+header nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+}
+
+header nav ul li {
     padding: 20px;
-    text-align: center;
 }
 
-main {
-    padding: 20px;
+/* ナビゲーションリンクのスタイル */
+header nav ul li a {
+    display: flex; /* テキストとアイコンを横に並べる */
+    align-items: center; /* 中央揃え */
+    text-decoration: none;
+    color: rgb(52, 0, 65);
+    transition: color 0.3s ease; /* カラー変更時のアニメーション */
 }
 
-h2 {
-    color: #333;
+header nav ul li a:hover {
+    color: #ff6347; /* ホバー時の色 */
 }
 
-section {
-    margin-bottom: 20px;
+/* アイコンのスタイル */
+.header-icon {
+    margin-right: 8px; /* アイコンとテキストの間隔 */
+    width: 24px; /* アイコンのサイズ */
+    height: 24px; /* アイコンのサイズ */
+    transition: transform 0.3s ease; /* 回転エフェクト時のアニメーション */
 }
 
-img {
-    width: 100%;
-    max-width: 400px;
-    display: block;
-    margin: 0 auto;
+header nav ul li a:hover .header-icon {
+    transform: rotate(360deg); /* ホバー時にアイコンを回転させる */
+}
+
+/* 画像ロゴ */
+header .logo {
+    padding-left: 20px; /* ロゴ周辺のスペース調整 */
+    padding-top: 20px;
+}
+
+header .logo img {
+    width: 300px; /* ロゴのサイズ調整 */
+    height: auto;
+}
+
+/* レスポンシブナビゲーション */
+@media (max-width: 768px) {
+    header {
+        flex-direction: column; /* モバイルビューではヘッダーのアイテムを縦に並べる */
+    }
+
+    header .logo,
+    header nav ul {
+        width: 100%; /* ロゴとナビゲーションバーの幅を画面いっぱいに広げる */
+        text-align: center;
+    }
+
+    header nav ul {
+        flex-direction: column;
+    }
+    
+    header nav ul li {
+        width: 100%; /* ナビゲーションリンクの幅を調整 */
+    }
 }
