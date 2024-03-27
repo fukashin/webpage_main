@@ -16,9 +16,9 @@ header {
     padding-right: 50px;
 }
 
-header nav {
+/* header nav {}
     /* ナビゲーションバーのスタイル指定がここに入ります */
-}
+
 
 header nav ul {
     list-style: none;
@@ -87,3 +87,21 @@ header .logo img {
         width: 100%; /* ナビゲーションリンクの幅を調整 */
     }
 }
+
+
+.content-container {
+    display: flex; /* Flexboxを有効化 */
+    justify-content: center; /* 中央揃え */
+    align-items: flex-start; /* 子要素を上端に揃える */
+  }
+  
+  #main-content {
+    flex-grow: 2; /* メインコンテンツが多くのスペースを占めるように */
+    margin-right: 20px; /* サイドバーとの間隔 */
+  }
+  
+  .sidebar {
+    flex-grow: 1; /* サイドバーはメインコンテンツより小さく */
+    width: 200px; /* サイドバーの幅を指定 */
+  }
+  
