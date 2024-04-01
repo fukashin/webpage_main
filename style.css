@@ -1,3 +1,5 @@
+
+/*＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃ 全体設定 ＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃*/
 /* レスポンシブデザインの基本設定 */
 body {
     font-family: 'Arial', sans-serif;
@@ -8,12 +10,20 @@ body {
     min-height: 100vh;
 }
 
+
+/* ＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃ここからヘッダー＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃ */
 header {
     display: flex;
     justify-content: space-between; /* ロゴとナビゲーションリンクを両端に寄せる */
     align-items: center; /* ロゴとナビゲーションリンクを垂直方向の中央に配置 */
     background-color: #ffffff; /* ヘッダーの背景色 */
-    padding-right: 50px;
+    position: relative;
+    width: 100%;
+    max-width: 1200px;
+    margin-right: auto;
+    margin-left: auto;
+    padding-right: 0px;
+
 }
 
 /* header nav {}
@@ -25,6 +35,7 @@ header nav ul {
     padding: 0;
     margin: 0;
     display: flex;
+    justify-content: flex-end;
 }
 
 header nav ul li {
@@ -58,13 +69,16 @@ header nav ul li a:hover .header-icon {
 
 /* 画像ロゴ */
 header .logo {
-    padding-left: 20px; /* ロゴ周辺のスペース調整 */
-    padding-top: 20px;
+    padding: 20px,10px ;
 }
 
 header .logo img {
-    width: 300px; /* ロゴのサイズ調整 */
+    width: 200px; /* ロゴのサイズ調整 */
     height: auto;
+}
+
+header nav img{
+    width: 30px;
 }
 
 /* レスポンシブナビゲーション */
@@ -88,20 +102,59 @@ header .logo img {
     }
 }
 
-
+/* ＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃ここからメイン＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃ */
+/* クラスを指定するときは「.」を付ける */
 .content-container {
     display: flex; /* Flexboxを有効化 */
     justify-content: center; /* 中央揃え */
     align-items: flex-start; /* 子要素を上端に揃える */
+    max-width: 100%;
+    width: 100%;
+    max-width: 1000px;
+    margin-right: auto;
+    margin-left: auto;
+    justify-content: space-between;
   }
-  
+  /* ＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃ここからメイン左側＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃ */
+  /*idがふられているオリジナルなもの一つに適用する「＃」での指定*/
   #main-content {
-    flex-grow: 2; /* メインコンテンツが多くのスペースを占めるように */
-    margin-right: 20px; /* サイドバーとの間隔 */
+    width: 640px;
+    margin-right: auto;
+    margin-left: auto;
+    max-width: 100%;
   }
-  
+  /* ＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃ここからサイドバー＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃＃ */
   .sidebar {
-    flex-grow: 1; /* サイドバーはメインコンテンツより小さく */
+    width: 320px;
+    padding: 40px;
+    background: #ddcdcb;
+    border-radius: 30px;
     width: 200px; /* サイドバーの幅を指定 */
+    max-width: 100%;
+    
   }
   
+
+  .sidebar img{
+    width: 30px;
+    height: 30px;
+    padding-right: 10px;
+  }
+
+  .sidebar li{
+    display: flex;
+    flex-direction: row;
+    align-items: center; /* 水平方向の中心揃え */
+    list-style-type: none; /* リストマーカーを非表示にする */
+    height: 50px; /* 必要に応じて調整 */
+    border-top: 1px dashed #ff6347;
+  }
+
+  .sidebar ul{
+    padding-inline-start: 00px;
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+}
