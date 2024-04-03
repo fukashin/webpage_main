@@ -109,6 +109,11 @@ header {
 	z-index: 300;
 }
 
+header .rogo img{
+	width: 150px;
+
+}
+
 header h1 a img {
 	display: block;
 	position: absolute;
