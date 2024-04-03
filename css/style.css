@@ -1539,7 +1539,7 @@ ul.works_list li {
 	padding-bottom: 14px;
 	padding-left: 20px;
 	line-height: 22px;
-	vertical-align: middle;
+	/* vertical-align: middle; */
 }
 #g_navi ul li a:hover {
 	color: #999;
