@@ -15,11 +15,12 @@ https://www.megapx.com/contact.htmlのフォームよりお問い合わせくだ
 -->
 
 <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0">
-<title>最新レスポンシブHTMLテンプレート no.002</title>
+<title>お問合わせ　最新レスポンシブHTMLテンプレート no.002</title>
 <meta name="Keywords" content="レスポンシブ,HTMLテンプレート,ホームページ制作" />
-<meta name="Description" content="最新レスポンシブHTMLテンプレート no.002。このサイトの説明文を入れてください。" />
+<meta name="Description" content="お問合わせ、最新レスポンシブHTMLテンプレート no.002。このサイトの説明文を入れてください。" />
 
 <link rel="stylesheet" href="css/style.css" />
+<link rel="stylesheet" href="css/mailform.css" />
 
 <link href="https://fonts.googleapis.com/earlyaccess/sawarabimincho.css" rel="stylesheet" />
 <link href="https://fonts.googleapis.com/css?family=Cormorant+Garamond" rel="stylesheet"> 
@@ -28,6 +29,7 @@ https://www.megapx.com/contact.htmlのフォームよりお問い合わせくだ
 
 </head>
 <body>
+
 
 <header>
 
@@ -86,49 +88,68 @@ https://www.megapx.com/contact.htmlのフォームよりお問い合わせくだ
 </nav>
 
 </header>
-<div id="index_top">
-  <div id="top_catch">
-  <h2>廃墟のような存在感を</h2>
-  <p>どこか遠く異次元の世界へ繋がっているような、あの独特の存在感。<br>
-私たちが忘れてしまった、遠い過去の記憶の遺産。</p></div>
-  <div class="pick_up effect">
-  <ul>
-  <li class="effect d_02"><a href="#"><span class="balloon">NEW!</span><img src="img/sample_001.jpg" alt="サンプルイメージ">
-  <span class="btn_check"><i class="fas fa-arrow-right"></i>CHECK!</span></a></li>
-  <li class="effect d_04"><a href="#"><img src="img/sample_002.jpg" alt="サンプルイメージ">
-  <span class="btn_check"><i class="fas fa-arrow-right"></i>CHECK!</span></a></li>
-  <li class="effect d_06"><a href="#"><img src="img/sample_003.jpg" alt="サンプルイメージ">
-  <span class="btn_check"><i class="fas fa-arrow-right"></i>CHECK!</span></a></li>
-  </ul>
-  <p class="sc_btm"><a href="#index_02">Scroll</a></p>
-  </div>
+
+<div id="sub_top" class="contact">
+Contact us
 </div>
 
-<div class="content" id="index_02">
-
-<h2 class="effect d_02">お知らせ<br>
-<span>News</span></h2>
-<div class="cont_wrap effect d_04">
-<ul class="ul_news">
-<li><span>2018.07.01</span><a href="#">2018年・夏のイベント情報</a>を追加いたしました。</li>
-<li><span>2018.06.01</span><a href="#">東京都○○区A様の施工事例</a>を追加いたしました。</li>
-<li><span>2018.05.01</span>ホームページをリニューアルいたしました。</li>
+<div class="pankuzu">
+<ul>
+<li><a href="index.html"><i class="fas fa-home"></i>HOME</a></li>
+<li>お問合わせ</li>
 </ul>
 </div>
 
+<div class="content">
+<h2 class="effect">お問合わせ<br>
+<span>お問合せフォームサンプルです</span></h2>
+<div class="cont_wrap">
 
-<div class="cont_wrap effect">
-<div class="box_att">
-<h2>写真素材について</h2>
-<p>このテンプレートで使用している写真は、<a href="https://www.pakutaso.com/" target="_blank">ぱくたそ</a>の写真素材を利用しています。二次配布物の受領者がこの写真を継続して利用する場合は、ぱくたそ公式サイトからご自身でダウンロードしていただくか、<a href="https://www.pakutaso.com/userpolicy.html" target="_blank">ぱくたそのご利用規約</a>に同意していただく必要があります。同意いただけない場合は写真素材のご利用はできませんのでご注意ください。</p>
-<p>スライダー使用素材：
-<a href="https://www.pakutaso.com/20171107317post-14015.html" target="_blank">廃墟01</a>、
-<a href="https://www.pakutaso.com/20170507144post-11659.html" target="_blank">廃墟02</a>、
-<a href="https://www.pakutaso.com/20170448118post-11318.html" target="_blank">廃墟03</a>
+<div class="effect d_02">
+<h3>お問合わせフォーム</h3>
+  <p>下記フォームに必要事項をご入力いただき、送信してください。<br>
+<span class="chui">※このフォームは表示サンプルになります。実際に動作させるには、別途送信プログラム等が必要になります。<br>※設置代行（有料）も行っておりますので、お気軽にご相談ください。</span>
 </p>
-</div><!--/box_att-->
-</div><!--/cont_wrap-->
+<form action="#" method="post" id="mail_form">
+		<dl>
+        <dt>会社名<span>Your company name</span></dt>
+			<dd><input type="text" id="name_1" name="name_1" value="" /> </dd>
+			
+			<dt>お名前<span>Your Name</span></dt>
+			<dd class="required"><input type="text" id="name_2" name="name_2" value="" /></dd>
 
+			<dt>メールアドレス<span>Mail Address</span></dt>
+			<dd class="required"><input type="text" id="mail_address" name="mail_address" value="" /></dd>
+			
+			<dt>メールアドレス(確認)<span>Mail Address Confirm</span></dt>
+			<dd class="required"><input type="text" id="mail_address_confirm" name="mail_address_confirm" value="" /></dd>
+			
+			<dt>お問い合わせ種類<span>Inquiry Kind</span></dt>
+			<dd class="required">
+            <select id="kind" name="kind">
+					<option value="">選択してください</option>
+					<option value="ご依頼・ご相談">ご依頼・ご相談</option>
+                    <option value="廃墟について">廃墟について</option>
+                    <option value="ご意見・クレーム">ご意見・クレーム</option>
+					<option value="その他お問い合わせ">その他お問い合わせ</option>
+				</select>
+			</dd>
+			
+			<dt>電話番号<span>Phone Number</span></dt>
+			<dd><input type="text" id="phone" name="phone" value="" /></dd>
+			
+			<dt>お問い合わせ内容<span>Mail Contents</span></dt>
+			<dd class="required"><textarea id="mail_contents" name="mail_contents" cols="40" rows="5"></textarea></dd>
+			
+			<dt>送信する<span>Send</span></dt>
+			<dd class="required"><input type="submit" id="mail_submit_button" name="mail_submit_button" value="送信する" /></dd>
+		</dl>
+	</form>
+
+</div>
+
+
+</div>
 </div>
 
 
@@ -155,10 +176,11 @@ https://www.megapx.com/contact.htmlのフォームよりお問い合わせくだ
 
 <div class="to_top"><a href="#"><img src="img/i_top.png" alt="ページトップへ戻る" ></a></div>
 
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-<script src="js/jquery.sublimeSlideshow.js"></script>
 <script src="js/jquery.inview.min.js"></script>
-<script src="js/script.js"></script>
+<script src="js/script_sub.js"></script>
+<script src="js/mailform.js"></script>
 
 </body>
 </html>
