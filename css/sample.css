@@ -5,3 +5,9 @@
   width: 500px;
   height: auto;
 }
+
+h5 {
+    font-size: 24px;
+    font-weight: bold;
+    font-family: "游ゴシック", "Yu Gothic", YuGothic, "ヒラギノ角ゴ ProN W3", "Hiragino Kaku Gothic ProN", "メイリオ", Meiryo, Osaka, "ＭＳ ゴシック", "MS Gothic", sans-serif;
+}
