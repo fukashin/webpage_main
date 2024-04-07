@@ -15,11 +15,12 @@ https://www.megapx.com/contact.htmlのフォームよりお問い合わせくだ
 -->
 
 <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0">
-<title>会社概要サンプル　最新レスポンシブHTMLテンプレート no.002</title>
+<title>お問合わせ　最新レスポンシブHTMLテンプレート no.002</title>
 <meta name="Keywords" content="レスポンシブ,HTMLテンプレート,ホームページ制作" />
-<meta name="Description" content="会社概要サンプル、最新レスポンシブHTMLテンプレート no.002。このサイトの説明文を入れてください。" />
+<meta name="Description" content="お問合わせ、最新レスポンシブHTMLテンプレート no.002。このサイトの説明文を入れてください。" />
 
 <link rel="stylesheet" href="css/style.css" />
+<link rel="stylesheet" href="css/mailform.css" />
 
 <link href="https://fonts.googleapis.com/earlyaccess/sawarabimincho.css" rel="stylesheet" />
 <link href="https://fonts.googleapis.com/css?family=Cormorant+Garamond" rel="stylesheet"> 
@@ -63,7 +64,7 @@ https://www.megapx.com/contact.htmlのフォームよりお問い合わせくだ
         <div class="ac_list">
         <ul>
         <li><a href="works.html">マッチングアプリ（モバイル）</a></li>
-        <li><a href="works.html">プロジェクト管理（webアプリ）</a></li>
+        <li><a href="works.html">プロジェクト管理（webアプリ）</a></li>　
         <li><a href="works.html">掲示板（webアプリ）</a></li>
         <li><a href="works.html">LINEボット（モバイル）</a></li>
         <li><a href="works.html">マッチングアプリ（モバイル）</a></li>
@@ -84,80 +85,60 @@ https://www.megapx.com/contact.htmlのフォームよりお問い合わせくだ
   
   <!----------------------------------- ここまでヘッダーは共通部品 ---------------------------------------------->
 
-<div id="sub_top" class="company">
-Company Profile
+<div id="sub_top" class="contact">
+Contact us
 </div>
 
 <div class="pankuzu">
 <ul>
 <li><a href="index.html"><i class="fas fa-home"></i>HOME</a></li>
-<li>会社概要</li>
+<li>お問合わせ</li>
 </ul>
 </div>
 
 <div class="content">
-<h2 class="effect">会社概要<br>
-<span>会社概要のサンプルになります</span></h2>
+<h2 class="effect">お問合わせ<br>
+<span>お問合せフォームサンプルです</span></h2>
 <div class="cont_wrap">
 
-<div class="effect">
-<h3>代表あいさつ</h3>
-<img src="img/自分のアイコン.png" alt="代表サンプル" class="img_right">
-  <p>フカセと申します<br>
-  アプリの開発やら、webページの作成やら、いろいろやっております。<br>
-
-  
-  </p>
-</div>
-
 <div class="effect d_02">
-<h3>会社概要</h3>
+<h3>お問合わせフォーム</h3>
+  <p>下記フォームに必要事項をご入力いただき、送信してください。<br>
+</p>
+<form action="#" method="post" id="mail_form">
+		<dl>
+        <dt>会社名<span>Your company name</span></dt>
+			<dd><input type="text" id="name_1" name="name_1" value="" /> </dd>
+			
+			<dt>お名前<span>Your Name</span></dt>
+			<dd class="required"><input type="text" id="name_2" name="name_2" value="" /></dd>
 
-<table class="table_01">
-  <tr>
-    <th>社　名</th>
-    <td>シヴィルドット制作室</td>
-  </tr>
-  <tr>
-    <th>設　立</th>
-    <td>2024年　4月　7日</td>
-  </tr>
-  <tr>
-    <th>本　社</th>
-    <td><br />
-千葉寄りの東京<br />
-TEL.080-6842-6878</td>
-  </tr>
-  <tr>
-    <th>本人　氏名</th>
-    <td>フカセ</td>
-  </tr>
-  <tr>
-    <th>使用言語</th>
-    <td>HTML,CSS,javascript,python,Flutter(Dart),java</td>
-  </tr>
-  <tr>
-    <th>使用フレームワーク</th>
-    <td>django,React,BootStrap</td>
-  </tr>
-
-  </tr>
-</table>
-
-</div>
-
-
-<div class="effect">
-
-<a id="access"></a>
-<h3>近場の名所</h3>
-
-<div class="g_map_base">
-<div class="g_map">
-<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3239.6567846113244!2d139.80851171642976!3d35.71006268018737!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188ed0d12f9adf%3A0x7d1d4fb31f43f72a!2z5p2x5Lqs44K544Kr44Kk44OE44Oq44O8!5e0!3m2!1sja!2sjp!4v1532558203332" frameborder="0" style="border:0" allowfullscreen></iframe>
-</div>
-</div>
-
+			<dt>メールアドレス<span>Mail Address</span></dt>
+			<dd class="required"><input type="text" id="mail_address" name="mail_address" value="" /></dd>
+			
+			<dt>メールアドレス(確認)<span>Mail Address Confirm</span></dt>
+			<dd class="required"><input type="text" id="mail_address_confirm" name="mail_address_confirm" value="" /></dd>
+			
+			<dt>お問い合わせ種類<span>Inquiry Kind</span></dt>
+			<dd class="required">
+            <select id="kind" name="kind">
+					<option value="">選択してください</option>
+					<option value="ご依頼・ご相談">ご依頼・ご相談</option>
+                    <option value="ご意見・クレーム">ご意見・クレーム</option>
+					<option value="その他お問い合わせ">その他お問い合わせ</option>
+				</select>
+			</dd>
+			
+			<dt>電話番号<span>Phone Number</span></dt>
+			<dd><input type="text" id="phone" name="phone" value="" /></dd>
+			
+			<dt>お問い合わせ内容<span>Mail Contents</span></dt>
+			<dd class="required"><textarea id="mail_contents" name="mail_contents" cols="40" rows="5"></textarea></dd>
+			
+			<dt>送信する<span>Send</span></dt>
+			<dd class="required"><input type="submit" id="mail_submit_button" name="mail_submit_button" value="送信する" /></dd>
+		</dl>
+	</form>
 
 </div>
 
@@ -167,25 +148,25 @@ TEL.080-6842-6878</td>
 
 
 <footer>
-  <div class="cont_wrap">
-  <ul class="f_bn">
-        <!-- <li><a href="#"><i class="fas fa-book"></i>Blog</a></li> -->
-        <li><a href="https://twitter.com/SivildJ97098" target="_blank"><i class="fab fa-twitter"></i>Twitter</a></li>
-        <!-- <li><a href="#"><i class="fab fa-facebook-square"></i>Facebook</a></li> -->
-  </ul>
-    <address>
-    Copyright (C) MegaPx. All Rights Reserved.
-    </address>
-    
-    <!--　削除禁止【ＰＲ枠】ここから　--> 
-  <!--prno.180216ver2.01set018--> 
-  <div class="box_pr"><ul>
-  <li>Design by <a href="https://www.megapx.com/" title="ホームページ制作・ロゴデザイン：メガピクス" target="_blank">Megapx</a></li>
-  <li>Template by <a href="http://www.s-hoshino.com/" title="HTMLテンプレート配布元：フリー素材屋Hoshino" target="_blank">s-hoshino.com</a></li>
-  </ul></div>
-  <!--　/削除禁止【ＰＲ枠】ここまで　--> 
-    </div>
-  </footer>
+<div class="cont_wrap">
+<ul class="f_bn">
+      <li><a href="#"><i class="fas fa-book"></i>Blog</a></li>
+      <li><a href="#"><i class="fab fa-twitter"></i>Twitter</a></li>
+      <li><a href="#"><i class="fab fa-facebook-square"></i>Facebook</a></li>
+</ul>
+  <address>
+  Copyright (C) MegaPx. All Rights Reserved.
+  </address>
+  
+  <!--　削除禁止【ＰＲ枠】ここから　--> 
+<!--prno.180216ver2.01set018--> 
+<div class="box_pr"><ul>
+<li>Design by <a href="https://www.megapx.com/" title="ホームページ制作・ロゴデザイン：メガピクス" target="_blank">Megapx</a></li>
+<li>Template by <a href="http://www.s-hoshino.com/" title="HTMLテンプレート配布元：フリー素材屋Hoshino" target="_blank">s-hoshino.com</a></li>
+</ul></div>
+<!--　/削除禁止【ＰＲ枠】ここまで　--> 
+  </div>
+</footer>
 
 <div class="to_top"><a href="#"><img src="img/i_top.png" alt="ページトップへ戻る" ></a></div>
 
@@ -193,6 +174,7 @@ TEL.080-6842-6878</td>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <script src="js/jquery.inview.min.js"></script>
 <script src="js/script_sub.js"></script>
+<script src="js/mailform.js"></script>
 
 </body>
 </html>
