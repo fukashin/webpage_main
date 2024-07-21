@@ -1,25 +1,24 @@
 let startTime;
 let elapsedTime = 0;
 let timerInterval;
+let initialOffset = 0;
+
 
 function timeToString(time) {
-    let diffInHrs = time / 3600000;
-    let hh = Math.floor(diffInHrs);
+    let totalSeconds = time / 1000;
+    let positive = totalSeconds >= 0;
+    let absSeconds = Math.floor(Math.abs(totalSeconds));
+    let hours = Math.floor(absSeconds / 3600);
+    let minutes = Math.floor((absSeconds % 3600) / 60);
+    let seconds = Math.floor(absSeconds % 60);
+    let milliseconds = Math.abs(time % 1000);
 
-    let diffInMin = (diffInHrs - hh) * 60;
-    let mm = Math.floor(diffInMin);
+    let formattedHH = hours.toString().padStart(2, '0');
+    let formattedMM = minutes.toString().padStart(2, '0');
+    let formattedSS = seconds.toString().padStart(2, '0');
+    let formattedMS = milliseconds.toString().padStart(3, '0');
 
-    let diffInSec = (diffInMin - mm) * 60;
-    let ss = Math.floor(diffInSec);
-
-    let diffInMs = (diffInSec - ss) * 100;
-    let ms = Math.floor(diffInMs);
-
-    let formattedHH = hh.toString().padStart(2, '0');
-    let formattedMM = mm.toString().padStart(2, '0');
-    let formattedSS = ss.toString().padStart(2, '0');
-
-    return `${formattedHH}:${formattedMM}:${formattedSS}`;
+    return (positive ? "" : "-") + `${formattedHH}:${formattedMM}:${formattedSS}.${formattedMS}`;
 }
 
 function print(txt) {
@@ -29,47 +28,29 @@ function print(txt) {
 function start() {
     startTime = Date.now() - elapsedTime;
     timerInterval = setInterval(function printTime() {
-        elapsedTime = Date.now() - startTime;
+        elapsedTime = Date.now() - startTime + initialOffset;
         print(timeToString(elapsedTime));
-    }, 10);
-    showButton("PAUSE");
+    }, 100);  // 100ミリ秒ごとに更新
+    document.getElementById("startStop").textContent = "一時停止";
 }
 
 function pause() {
     clearInterval(timerInterval);
-    showButton("PLAY");
+    document.getElementById("startStop").textContent = "スタート";
 }
 
 function reset() {
     clearInterval(timerInterval);
-    print("00:00:00");
     elapsedTime = 0;
-    showButton("PLAY");
-    sessionStorage.removeItem("storedTime");  // セッションストレージから時間を削除
-}
-
-function showButton(buttonKey) {
-    const buttonToShow = buttonKey === "PLAY" ? start : pause;
-    const buttonToHide = buttonKey === "PLAY" ? pause : start;
-    buttonToShow.style.display = "block";
-    buttonToHide.style.display = "none";
-}
-
-// セッションストレージから時間を読み込む
-window.onload = function() {
-    if (sessionStorage.getItem("storedTime")) {
-        elapsedTime = parseInt(sessionStorage.getItem("storedTime"));
-        print(timeToString(elapsedTime));
-    }
-    showButton("PLAY");
+    print(timeToString(0));
+    document.getElementById("startStop").textContent = "スタート";
 }
 
 document.getElementById("startStop").addEventListener("click", function() {
-    if (timerInterval) {
-        pause();
-        sessionStorage.setItem("storedTime", elapsedTime.toString());  // セッションストレージに時間を保存
-    } else {
+    if (this.textContent === "スタート") {
         start();
+    } else {
+        pause();
     }
 });
 
