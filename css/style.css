@@ -1076,6 +1076,56 @@ ul.works_list li a:hover {
 	color: #000;
 }
 
+/* GitHubリポジトリ詳細スタイル */
+.works_detail {
+	display: block;
+	text-align: left;
+	margin-top: 20px;
+	margin-bottom: 30px;
+}
+
+.works_detail h3 {
+	font-size: 24px;
+	margin-bottom: 10px;
+	padding-left: 0;
+	text-align: left;
+}
+
+.works_detail h4 {
+	font-size: 18px;
+	margin: 10px 0;
+	text-align: left;
+	border-bottom: none;
+}
+
+.works_detail h5 {
+	font-size: 16px;
+	margin: 15px 0 5px 0;
+	font-weight: bold;
+}
+
+.works_detail p {
+	margin: 10px 0;
+	line-height: 1.6;
+	text-align: left;
+}
+
+.works_detail ul {
+	margin: 10px 0;
+	padding-left: 20px;
+}
+
+.works_detail ul li {
+	list-style-type: disc;
+	margin-bottom: 5px;
+	width: 100%;
+	text-align: left;
+}
+
+.works_detail .btn_001 {
+	margin-top: 20px;
+}
+
 
 
 @media screen and (min-width:960px){
