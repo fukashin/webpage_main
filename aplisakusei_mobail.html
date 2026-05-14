@@ -21,6 +21,7 @@ https://www.megapx.com/contact.htmlのフォームよりお問い合わせくだ
 
 <link rel="stylesheet" href="css/style.css" />
 <link rel="stylesheet" href="css/sample.css" />
+<link rel="stylesheet" href="css/works-card.css" />
 
 <link href="https://fonts.googleapis.com/earlyaccess/sawarabimincho.css" rel="stylesheet" />
 <link href="https://fonts.googleapis.com/css?family=Cormorant+Garamond" rel="stylesheet"> 
@@ -48,43 +49,84 @@ Sample page
 </div>
 
 <div class="content">
-<h2 class="effect">モバイルアプリ<br></h2>
+<h2 class="effect">モバイルアプリ<br>
+<span>作成したモバイルアプリケーション</span></h2>
 <div class="cont_wrap">
 
-<div class="effect d_02" style="overflow: hidden; margin-bottom: 40px;">
-<img src="image/モバイルアプリ画像1.png" alt="Lorenest" class="img_left" style="width: 200px; height: auto;">
-<h5>作ったもの</h5>
-<a href="" target="_blank"><p>うるさい環境で一緒に作業するポモドーロタイマー</p></a>
+<div class="works-cards">
 
-<p>使用言語<br>フロントエンド：javascript
-<br>バックエンド：python
-</p>
-</div>
+  <!-- カード1: 作業トモ -->
+  <div class="work-card" data-modal="modal-pomodoro">
+    <img src="image/モバイルアプリ画像1.png" alt="作業トモ" class="work-card-img">
+    <div class="work-card-body">
+      <div class="work-card-title">作業トモ</div>
+      <div class="work-card-desc">うるさい環境で一緒に作業する作業トモアプリ。</div>
+      <div class="work-card-tags">
+        <span class="work-card-tag">JavaScript</span>
+        <span class="work-card-tag">Python</span>
+      </div>
+    </div>
+  </div>
 
-<div class="effect d_02" style="overflow: hidden; margin-bottom: 40px;">
-
-<div class="effect d_02">
-<img src="img/準備中イラスト.png" alt="サンプルイメージ" class="img_left">
-<h5>作ったもの</h5>
-<a><p>カレンダーアプリ 　　なくなった！！多分前のSSDに入ってるかも</p></a>
-
-<p>基本的にはandloidアプリ作成です
-  <br>iphoneアプリは作成経験ありません！
-  <br>Flutterはクロスプラットフォームなのでiphoneアプリも作れはします。</p>
-
-
-<p>使用言語<br>フロントエンド：Flutter
-<br>バックエンド：python(django)
-</p>
-
-</div>
-
-<div class="btn_001"><a href="contact.html"><i class="fas fa-shopping-cart"></i>ご注文・お問い合わせはコチラ</a></div>
+  <!-- カード2: カレンダーアプリ -->
+  <div class="work-card" data-modal="modal-calendar">
+    <img src="img/準備中イラスト.png" alt="カレンダーアプリ" class="work-card-img">
+    <div class="work-card-body">
+      <div class="work-card-title">カレンダーアプリ</div>
+      <div class="work-card-desc">Flutterで作成したカレンダー管理アプリ。</div>
+      <div class="work-card-tags">
+        <span class="work-card-tag">Flutter</span>
+        <span class="work-card-tag">Django</span>
+      </div>
+    </div>
+  </div>
 
 </div>
 
-
 </div>
+</div>
+
+<!-- モーダル: 作業トモ -->
+<div class="modal-overlay" id="modal-pomodoro">
+  <div class="modal-content">
+    <button class="modal-close">&times;</button>
+    <img src="image/モバイルアプリ画像1.png" alt="作業トモ" class="modal-img">
+    <div class="modal-title">作業トモ</div>
+    <div class="modal-desc">
+      うるさい環境でも集中して作業できるポモドーロタイマーアプリです。一緒に作業している感覚を演出し、集中力を維持するための機能を搭載しています。
+    </div>
+    <div class="modal-tech">
+      <div class="modal-tech-label">使用技術</div>
+      <div class="modal-tech-list">
+        <span class="modal-tech-item">JavaScript</span>
+        <span class="modal-tech-item">Python</span>
+      </div>
+    </div>
+    <div style="margin-top: 16px; display: flex; flex-wrap: wrap; gap: 10px;">
+      <a href="#" target="_blank" class="modal-link"><i class="fab fa-google-play"></i>Google Play</a>
+      <a href="privacy-policy.html" class="modal-link" style="background: #666;"><i class="fas fa-shield-alt"></i>プライバシーポリシー</a>
+    </div>
+  </div>
+</div>
+
+<!-- モーダル: カレンダーアプリ -->
+<div class="modal-overlay" id="modal-calendar">
+  <div class="modal-content">
+    <button class="modal-close">&times;</button>
+    <img src="img/準備中イラスト.png" alt="カレンダーアプリ" class="modal-img">
+    <div class="modal-title">カレンダーアプリ</div>
+    <div class="modal-desc">
+      Flutterで作成したクロスプラットフォーム対応のカレンダーアプリです。基本的にはAndroidアプリとして作成しています。Flutterを使用しているためiOSにも対応可能です。
+    </div>
+    <div class="modal-tech">
+      <div class="modal-tech-label">使用技術</div>
+      <div class="modal-tech-list">
+        <span class="modal-tech-item">Flutter (Dart)</span>
+        <span class="modal-tech-item">Python</span>
+        <span class="modal-tech-item">Django</span>
+      </div>
+    </div>
+  </div>
 </div>
 
 
@@ -116,6 +158,7 @@ Sample page
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <script src="js/jquery.inview.min.js"></script>
 <script src="js/script_sub.js"></script>
+<script src="js/works-card.js"></script>
 
 </body>
 </html>

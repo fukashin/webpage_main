@@ -21,6 +21,7 @@ https://www.megapx.com/contact.htmlのフォームよりお問い合わせくだ
 
 <link rel="stylesheet" href="css/style.css" />
 <link rel="stylesheet" href="css/sample.css" />
+<link rel="stylesheet" href="css/works-card.css" />
 
 <link href="https://fonts.googleapis.com/earlyaccess/sawarabimincho.css" rel="stylesheet" />
 <link href="https://fonts.googleapis.com/css?family=Cormorant+Garamond" rel="stylesheet"> 
@@ -49,30 +50,84 @@ webアプリ
 
 <div class="content">
 <h2 class="effect">webアプリ<br>
-</h2>
+<span>作成したWebアプリケーション</span></h2>
 <div class="cont_wrap">
 
-<div class="effect d_02" style="overflow: hidden; margin-bottom: 40px;">
-<img src="image/ウェブアプリ画像1.png" alt="Lorenest" class="img_left">
-<h5>作ったもの</h5>
-<a href="https://aitrpglorenest.uk/" target="_blank"><p>AIがキーパーをするTRPG</p></a>
+<div class="works-cards">
 
-<p>使用言語<br>フロントエンド：javascript
-<br>バックエンド：python
-</p>
+  <!-- カード1: AI TRPG -->
+  <div class="work-card" data-modal="modal-trpg">
+    <img src="image/ウェブアプリ画像1.png" alt="AI TRPG LoreNest" class="work-card-img">
+    <div class="work-card-body">
+      <div class="work-card-title">AI TRPG LoreNest</div>
+      <div class="work-card-desc">AIがキーパーをするTRPG。</div>
+      <div class="work-card-tags">
+        <span class="work-card-tag">JavaScript</span>
+        <span class="work-card-tag">Python</span>
+        <span class="work-card-tag">AI</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- カード2: プロジェクト管理ツール -->
+  <div class="work-card" data-modal="modal-taskmanage">
+    <img src="img/準備中イラスト.png" alt="プロジェクト管理ツール" class="work-card-img">
+    <div class="work-card-body">
+      <div class="work-card-title">プロジェクト管理ツール</div>
+      <div class="work-card-desc">タスクの進捗管理やチーム連携ができるWebアプリ。</div>
+      <div class="work-card-tags">
+        <span class="work-card-tag">JavaScript</span>
+        <span class="work-card-tag">Python</span>
+      </div>
+    </div>
+  </div>
+
 </div>
 
-<div class="effect d_02" style="overflow: hidden; margin-bottom: 40px;">
-<img src="img/準備中イラスト.png" alt="サンプルイメージ" class="img_left">
-<h5>作ったもの</h5>
-<a href="https://github.com/fukashin/taskmanagementkun" target="_blank"><p>プロジェクト管理ツール的なもの</p></a>
-
-<p>使用言語<br>フロントエンド：javascript
-<br>バックエンド：python
-</p>
+</div>
 </div>
 
+<!-- モーダル: AI TRPG -->
+<div class="modal-overlay" id="modal-trpg">
+  <div class="modal-content">
+    <button class="modal-close">&times;</button>
+    <img src="image/ウェブアプリ画像1.png" alt="AI TRPG LoreNest" class="modal-img">
+    <div class="modal-title">AI TRPG LoreNest</div>
+    <div class="modal-desc">
+      AIがゲームキーパー（GM）を務めるTRPGアプリケーションです。プレイヤーはブラウザからアクセスするだけで、AIが生成するシナリオの中で冒険を楽しめます。テキストベースの対話形式で、自由度の高いロールプレイが可能です。
+    </div>
+    <div class="modal-tech">
+      <div class="modal-tech-label">使用技術</div>
+      <div class="modal-tech-list">
+        <span class="modal-tech-item">JavaScript</span>
+        <span class="modal-tech-item">Python</span>
+        <span class="modal-tech-item">OpenAI API</span>
+        <span class="modal-tech-item">WebSocket</span>
+      </div>
+    </div>
+    <a href="https://aitrpglorenest.uk/" target="_blank" class="modal-link"><i class="fas fa-external-link-alt"></i>サイトを見る</a>
+  </div>
 </div>
+
+<!-- モーダル: プロジェクト管理ツール -->
+<div class="modal-overlay" id="modal-taskmanage">
+  <div class="modal-content">
+    <button class="modal-close">&times;</button>
+    <img src="img/準備中イラスト.png" alt="プロジェクト管理ツール" class="modal-img">
+    <div class="modal-title">プロジェクト管理ツール</div>
+    <div class="modal-desc">
+      チームのタスク管理や進捗の可視化ができるWebアプリケーションです。カンバンボード形式でタスクをドラッグ＆ドロップで管理できます。
+    </div>
+    <div class="modal-tech">
+      <div class="modal-tech-label">使用技術</div>
+      <div class="modal-tech-list">
+        <span class="modal-tech-item">JavaScript</span>
+        <span class="modal-tech-item">Python</span>
+        <span class="modal-tech-item">Django</span>
+      </div>
+    </div>
+    <a href="https://github.com/fukashin/taskmanagementkun" target="_blank" class="modal-link"><i class="fab fa-github"></i>GitHubで見る</a>
+  </div>
 </div>
 <footer>
   <div class="cont_wrap">
@@ -102,6 +157,7 @@ webアプリ
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <script src="js/jquery.inview.min.js"></script>
 <script src="js/script_sub.js"></script>
+<script src="js/works-card.js"></script>
 
 </body>
 </html>
