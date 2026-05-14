@@ -1,0 +1,318 @@
+/* ===== リセット & ベース ===== */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --bg-primary: #1a1a2e;
+  --bg-secondary: #16213e;
+  --bg-card: #1f2937;
+  --bg-code: #0f1729;
+  --text-primary: #e2e8f0;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
+  --accent: #3ea8ff;
+  --accent-hover: #0f83fd;
+  --border: #334155;
+  --tag-bg: #1e3a5f;
+  --tag-text: #7dd3fc;
+  --max-width: 780px;
+}
+
+body {
+  font-family: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, sans-serif;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  line-height: 1.8;
+  font-size: 16px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--accent-hover);
+}
+
+/* ===== ヘッダー ===== */
+.blog-header {
+  background: var(--bg-secondary);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.header-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 14px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.blog-logo {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.blog-logo:hover {
+  color: var(--accent);
+}
+
+.blog-nav {
+  display: flex;
+  gap: 20px;
+}
+
+.blog-nav a {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}
+
+.blog-nav a:hover {
+  color: var(--text-primary);
+}
+
+/* ===== メイン ===== */
+.blog-main {
+  flex: 1;
+  max-width: var(--max-width);
+  width: 100%;
+  margin: 0 auto;
+  padding: 40px 24px;
+}
+
+/* ===== 記事一覧 ===== */
+.list-title {
+  font-size: 1.8rem;
+  margin-bottom: 8px;
+}
+
+.list-description {
+  color: var(--text-secondary);
+  margin-bottom: 32px;
+}
+
+.posts-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.post-card {
+  display: block;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 24px;
+  margin-bottom: 16px;
+  transition: border-color 0.2s, transform 0.2s;
+}
+
+.post-card:hover {
+  border-color: var(--accent);
+  transform: translateY(-2px);
+}
+
+.post-card-date {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.post-card-title {
+  font-size: 1.2rem;
+  color: var(--text-primary);
+  margin: 8px 0;
+  line-height: 1.5;
+}
+
+.post-card-desc {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  margin-bottom: 8px;
+}
+
+.post-card-tags {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+/* ===== タグ ===== */
+.tag {
+  background: var(--tag-bg);
+  color: var(--tag-text);
+  font-size: 0.75rem;
+  padding: 2px 10px;
+  border-radius: 20px;
+}
+
+/* ===== 記事ページ ===== */
+.post-container {
+  max-width: var(--max-width);
+}
+
+.post-meta {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.post-meta time {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.post-tags {
+  display: flex;
+  gap: 8px;
+}
+
+.post-title {
+  font-size: 2rem;
+  line-height: 1.4;
+  margin-bottom: 40px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--border);
+}
+
+/* ===== 記事本文 ===== */
+.post-body h2 {
+  font-size: 1.5rem;
+  margin: 48px 0 16px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--border);
+}
+
+.post-body h3 {
+  font-size: 1.25rem;
+  margin: 36px 0 12px;
+}
+
+.post-body h4 {
+  font-size: 1.1rem;
+  margin: 24px 0 8px;
+}
+
+.post-body p {
+  margin-bottom: 20px;
+  color: var(--text-primary);
+}
+
+.post-body ul, .post-body ol {
+  margin: 0 0 20px 24px;
+}
+
+.post-body li {
+  margin-bottom: 8px;
+}
+
+.post-body strong {
+  color: #fff;
+}
+
+.post-body blockquote {
+  border-left: 4px solid var(--accent);
+  padding: 12px 20px;
+  margin: 20px 0;
+  background: var(--bg-secondary);
+  border-radius: 0 8px 8px 0;
+  color: var(--text-secondary);
+}
+
+.post-body code {
+  font-family: 'JetBrains Mono', monospace;
+  background: var(--bg-code);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 0.9em;
+  color: var(--tag-text);
+}
+
+.post-body pre {
+  background: var(--bg-code);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 20px;
+  margin: 20px 0;
+  overflow-x: auto;
+}
+
+.post-body pre code {
+  background: none;
+  padding: 0;
+  font-size: 0.85rem;
+  line-height: 1.7;
+  color: var(--text-primary);
+}
+
+.post-body img {
+  max-width: 100%;
+  border-radius: 8px;
+  margin: 20px 0;
+}
+
+.post-body a {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.post-body a:hover {
+  color: var(--accent-hover);
+}
+
+.post-body table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+}
+
+.post-body th, .post-body td {
+  border: 1px solid var(--border);
+  padding: 10px 14px;
+  text-align: left;
+}
+
+.post-body th {
+  background: var(--bg-secondary);
+  font-weight: 700;
+}
+
+/* ===== フッター ===== */
+.blog-footer {
+  text-align: center;
+  padding: 24px;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  border-top: 1px solid var(--border);
+}
+
+/* ===== レスポンシブ ===== */
+@media (max-width: 768px) {
+  .blog-main {
+    padding: 24px 16px;
+  }
+
+  .post-title {
+    font-size: 1.5rem;
+  }
+
+  .post-body h2 {
+    font-size: 1.3rem;
+  }
+
+  .post-card {
+    padding: 16px;
+  }
+}

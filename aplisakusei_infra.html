@@ -15,9 +15,9 @@ https://www.megapx.com/contact.htmlのフォームよりお問い合わせくだ
 -->
 
 <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0">
-<title>webアプリ</title>
-<meta name="Keywords" content="レスポンシブ,HTMLテンプレート,ホームページ制作" />
-<meta name="Description" content="汎用ページ、最新レスポンシブHTMLテンプレート no.002。このサイトの説明文を入れてください。" />
+<title>インフラ構成 - シヴィルドット製作所 | 低コストで始めるアプリインフラ</title>
+<meta name="Keywords" content="インフラ,GitHub,Cloudflare,Supabase,低コスト,無料,ホスティング,BaaS,個人開発" />
+<meta name="Description" content="個人開発・小規模プロジェクト向けの低コストインフラ構成を紹介します。GitHub、Cloudflare、Supabaseなど無料枠を活用したコスパ重視の構成です。" />
 
 <link rel="stylesheet" href="css/style.css" />
 <link rel="stylesheet" href="css/sample.css" />
@@ -26,7 +26,6 @@ https://www.megapx.com/contact.htmlのフォームよりお問い合わせくだ
 <link href="https://fonts.googleapis.com/css?family=Cormorant+Garamond" rel="stylesheet"> 
 <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet"> 
 <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
-
 
 </head>
 <body>
@@ -37,53 +36,181 @@ https://www.megapx.com/contact.htmlのフォームよりお問い合わせくだ
 
 
 <div id="sub_top" class="sample">
-webアプリ
+インフラ構成
 </div>
 
 <div class="pankuzu">
 <ul>
 <li><a href="index.html"><i class="fas fa-home"></i>HOME</a></li>
-<li>webアプリ</li>
+<li>インフラ構成</li>
 </ul>
 </div>
 
 <div class="content">
-<h2 class="effect">webアプリ<br>
-<span>webアプリの作成手順について
-</span></h2>
+<h2 class="effect">低コストインフラで作る<br>
+<span>無料枠を活用したコスパ重視の構成</span></h2>
 <div class="cont_wrap">
 
 <div class="effect d_02">
-<img src="img/準備中イラスト.png" alt="サンプルイメージ" class="img_left">
-<h5>作ったもの</h5>
-<a href="https://github.com/fukashin/taskmanagementkun" target="_blank"><p>プロジェクト管理ツール的なもの</p></a>
+<h3>基本方針</h3>
+<p>個人開発や小規模プロジェクトでは、大規模なクラウドインフラは不要です。<br>
+無料プランや低価格サービスを組み合わせることで、<strong>月額0円〜数百円</strong>でアプリを公開・運用できます。</p>
+<p>「まず出す、使われたらスケールする」の精神で、最小構成からスタートします。</p>
+</div>
 
-<p>使用言語<br>フロントエンド：javascript
-<br>バックエンド：python
-</p>
+<div class="effect d_04">
+<h3><i class="fab fa-github"></i> GitHub</h3>
+<table class="table_01">
+  <tr>
+    <th>用途</th>
+    <td>ソースコード管理 / CI・CD / ホスティング（GitHub Pages）</td>
+  </tr>
+  <tr>
+    <th>費用</th>
+    <td>無料（パブリックリポジトリ無制限、プライベートも無料）</td>
+  </tr>
+  <tr>
+    <th>メリット</th>
+    <td>GitHub Actionsで自動デプロイ、GitHub Pagesで静的サイト公開が無料</td>
+  </tr>
+</table>
+</div>
 
+<div class="effect d_04">
+<h3><i class="fas fa-cloud"></i> Cloudflare</h3>
+<table class="table_01">
+  <tr>
+    <th>用途</th>
+    <td>CDN / DNS / SSL / Webホスティング（Cloudflare Pages）</td>
+  </tr>
+  <tr>
+    <th>費用</th>
+    <td>無料（Freeプランで十分な機能）</td>
+  </tr>
+  <tr>
+    <th>メリット</th>
+    <td>高速なCDN配信、無料SSL、DDoS対策、Cloudflare Pagesでフロントエンドのホスティングも無料</td>
+  </tr>
+</table>
+</div>
+
+<div class="effect d_04">
+<h3><i class="fas fa-database"></i> Supabase</h3>
+<table class="table_01">
+  <tr>
+    <th>用途</th>
+    <td>データベース（PostgreSQL） / 認証 / ストレージ / リアルタイムAPI</td>
+  </tr>
+  <tr>
+    <th>費用</th>
+    <td>無料（Freeプラン：500MB DB、1GB ストレージ、50,000 MAU）</td>
+  </tr>
+  <tr>
+    <th>メリット</th>
+    <td>Firebaseの代替としてオープンソース。PostgreSQLベースなので柔軟性が高い。認証・ストレージ・APIが一体で楽</td>
+  </tr>
+</table>
+</div>
+
+<div class="effect d_04">
+<h3><i class="fab fa-google-play"></i> Google Play Store</h3>
+<table class="table_01">
+  <tr>
+    <th>用途</th>
+    <td>Androidアプリの配信</td>
+  </tr>
+  <tr>
+    <th>費用</th>
+    <td>初回登録料 $25（約3,500円）のみ。以降は無料</td>
+  </tr>
+  <tr>
+    <th>メリット</th>
+    <td>一度払えば永久にアプリ公開可能。アップデートも無料</td>
+  </tr>
+</table>
+</div>
+
+<div class="effect d_04">
+<h3><i class="fab fa-apple"></i> Apple App Store</h3>
+<table class="table_01">
+  <tr>
+    <th>用途</th>
+    <td>iOSアプリの配信</td>
+  </tr>
+  <tr>
+    <th>費用</th>
+    <td>年額 $99（約15,000円）/ Apple Developer Program</td>
+  </tr>
+  <tr>
+    <th>メリット</th>
+    <td>iPhoneユーザーにリーチできる。TestFlightでベータ配信も可能</td>
+  </tr>
+</table>
+</div>
+
+<div class="effect d_04">
+<h3><i class="fas fa-yen-sign"></i> 構成例と月額コスト</h3>
+
+<h4>Webアプリの場合</h4>
+<table class="table_02">
+  <tr>
+    <th>フロントエンド</th>
+    <td>Cloudflare Pages<span class="price"> 0</span>円</td>
+  </tr>
+  <tr>
+    <th>バックエンド・DB</th>
+    <td>Supabase Free<span class="price"> 0</span>円</td>
+  </tr>
+  <tr>
+    <th>ソース管理・CI/CD</th>
+    <td>GitHub<span class="price"> 0</span>円</td>
+  </tr>
+  <tr>
+    <th>合計</th>
+    <td><strong><span class="price">月額 0</span>円</strong></td>
+  </tr>
+</table>
+
+<h4>モバイルアプリの場合</h4>
+<table class="table_02">
+  <tr>
+    <th>バックエンド・DB</th>
+    <td>Supabase Free<span class="price"> 0</span>円</td>
+  </tr>
+  <tr>
+    <th>Android配信</th>
+    <td>Google Play<span class="price"> 初回3,500</span>円のみ</td>
+  </tr>
+  <tr>
+    <th>iOS配信</th>
+    <td>App Store<span class="price"> 年15,000</span>円</td>
+  </tr>
+  <tr>
+    <th>合計</th>
+    <td><strong>ランニングコストほぼ0円</strong>（ストア費用除く）</td>
+  </tr>
+</table>
+</div>
+
+<div class="effect">
+<h3>まとめ</h3>
+<p>大手クラウド（AWS/Azure/GCP）を使わなくても、個人開発レベルなら無料サービスの組み合わせで十分に運用できます。</p>
+<ul>
+  <li>ユーザーが増えてきたらSupabaseのProプラン（$25/月）に上げる</li>
+  <li>アクセスが増えたらCloudflare Workersでサーバーレス処理を追加</li>
+  <li>必要になったタイミングでスケールすればOK</li>
+</ul>
+<p><strong>「最初から大きく構えない。小さく始めて、必要に応じて育てる」</strong>がコスパ最強のインフラ戦略です。</p>
+</div>
+
+</div>
 </div>
 
 
-<div class="effect">
-<h3>方針、戦略を決める</h3>
-
-<img src="img/準備中イラスト.png" alt="サンプルイメージ" class="img_right">
-<p>まずアプリを作るうえで誰にどんな価値をもたらすかを明確にします。
-</p>
-
-<ul>
-  <li><p>誰がこのアプリを利用するのか？</p></li>
-  <li><p>どんな機能が必要か？（コアとなる機能）</p></li>
-  <li><p>どのようなデザインにするか？</p></li>
-</ul>
-</p>
 <footer>
   <div class="cont_wrap">
   <ul class="f_bn">
-        <!-- <li><a href="#"><i class="fas fa-book"></i>Blog</a></li> -->
         <li><a href="https://twitter.com/SivildJ97098" target="_blank"><i class="fab fa-twitter"></i>Twitter</a></li>
-        <!-- <li><a href="#"><i class="fab fa-facebook-square"></i>Facebook</a></li> -->
   </ul>
     <address>
     Copyright (C) MegaPx. All Rights Reserved.

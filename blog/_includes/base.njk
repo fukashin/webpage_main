@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>{{ title }} - シヴィルドット製作所 Blog</title>
+  <meta name="description" content="{{ description or title }}">
+  <link rel="stylesheet" href="/blog/css/blog.css">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=JetBrains+Mono&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header class="blog-header">
+    <div class="header-inner">
+      <a href="/blog/" class="blog-logo">sivildot blog</a>
+      <nav class="blog-nav">
+        <a href="/blog/">記事一覧</a>
+        <a href="../index.html">メインサイト</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="blog-main">
+    {{ content | safe }}
+  </main>
+
+  <footer class="blog-footer">
+    <p>&copy; シヴィルドット製作所</p>
+  </footer>
+</body>
+</html>

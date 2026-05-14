@@ -1,0 +1,30 @@
+---
+layout: base.njk
+title: 記事一覧
+---
+
+<div class="posts-list">
+  <h1 class="list-title">Articles</h1>
+  <p class="list-description">開発で学んだことや技術メモを書いています</p>
+  
+  {% for post in collections.posts %}
+  <a href="{{ post.url }}" class="post-card">
+    <div class="post-card-inner">
+      <time class="post-card-date">{{ post.date | dateFormat }}</time>
+      <h2 class="post-card-title">{{ post.data.title }}</h2>
+      {% if post.data.description %}
+      <p class="post-card-desc">{{ post.data.description }}</p>
+      {% endif %}
+      {% if post.data.tags %}
+      <div class="post-card-tags">
+        {% for tag in post.data.tags %}
+          {% if tag != "posts" %}
+          <span class="tag">{{ tag }}</span>
+          {% endif %}
+        {% endfor %}
+      </div>
+      {% endif %}
+    </div>
+  </a>
+  {% endfor %}
+</div>

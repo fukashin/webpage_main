@@ -1,0 +1,13 @@
+{
+  "name": "sivildot-website",
+  "version": "1.0.0",
+  "description": "シヴィルドット製作所 ウェブサイト",
+  "scripts": {
+    "build": "npx @11ty/eleventy",
+    "serve": "npx @11ty/eleventy --serve",
+    "watch": "npx @11ty/eleventy --watch"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "^3.1.5"
+  }
+}
