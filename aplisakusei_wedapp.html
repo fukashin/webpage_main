@@ -83,7 +83,63 @@ webアプリ
     </div>
   </div>
 
-  <!-- カード3: プロジェクト管理ツール -->
+  <!-- カード3: 議事録生成AI コトロク -->
+  <div class="work-card" data-modal="modal-kotoroku">
+    <img src="image/議事録生成AI.png" alt="議事録生成AI コトロク" class="work-card-img">
+    <div class="work-card-body">
+      <div class="work-card-title">議事録生成AI コトロク</div>
+      <div class="work-card-desc">Discordの会話がそのままライブな議事録になるAI議事録ツール。</div>
+      <div class="work-card-tags">
+        <span class="work-card-tag">Node.js</span>
+        <span class="work-card-tag">AI</span>
+        <span class="work-card-tag">Cloudflare</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- カード4: 人生シミュレーター -->
+  <div class="work-card" data-modal="modal-lifesim">
+    <img src="image/人生シュミレーター.png" alt="人生シミュレーター" class="work-card-img">
+    <div class="work-card-body">
+      <div class="work-card-title">人生シミュレーター</div>
+      <div class="work-card-desc">公的統計データから「どこに住むと生涯いくら手元に残るか」を試算できるWebアプリ。</div>
+      <div class="work-card-tags">
+        <span class="work-card-tag">TypeScript</span>
+        <span class="work-card-tag">Cloudflare Workers</span>
+        <span class="work-card-tag">オープンデータ</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- カード5: 議事録分析プラットフォーム -->
+  <div class="work-card" data-modal="modal-gijiroku">
+    <img src="image/議事録分析.png" alt="議事録分析プラットフォーム" class="work-card-img">
+    <div class="work-card-body">
+      <div class="work-card-title">議事録分析プラットフォーム</div>
+      <div class="work-card-desc">政府の公開議事録をAIで論点単位に構造化し、回をまたぐ変化を可視化するWebアプリ。</div>
+      <div class="work-card-tags">
+        <span class="work-card-tag">Python</span>
+        <span class="work-card-tag">Gemini</span>
+        <span class="work-card-tag">Cloudflare Workers</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- カード6: VRウェーブディフェンス -->
+  <div class="work-card" data-modal="modal-vrgame">
+    <img src="image/VRアプリ.png" alt="VRウェーブディフェンスゲーム" class="work-card-img">
+    <div class="work-card-body">
+      <div class="work-card-title">VRウェーブディフェンスゲーム</div>
+      <div class="work-card-desc">Meta Quest向けの銃で戦う一人称VRウェーブ防衛ゲーム。</div>
+      <div class="work-card-tags">
+        <span class="work-card-tag">Unity</span>
+        <span class="work-card-tag">C#</span>
+        <span class="work-card-tag">VR</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- カード7: プロジェクト管理ツール -->
   <div class="work-card" data-modal="modal-taskmanage">
     <img src="img/準備中イラスト.png" alt="プロジェクト管理ツール" class="work-card-img">
     <div class="work-card-body">
@@ -96,7 +152,7 @@ webアプリ
     </div>
   </div>
 
-</div>
+</div>fwa
 
 </div>
 </div>
@@ -141,6 +197,100 @@ webアプリ
       </div>
     </div>
     <a href="https://d3hpfue81sdxf8.cloudfront.net/" target="_blank" class="modal-link"><i class="fas fa-external-link-alt"></i>サイトを見る</a>
+  </div>
+</div>
+
+<!-- モーダル: 議事録生成AI コトロク -->
+<div class="modal-overlay" id="modal-kotoroku">
+  <div class="modal-content">
+    <button class="modal-close">&times;</button>
+    <img src="image/議事録生成AI.png" alt="議事録生成AI コトロク" class="modal-img">
+    <div class="modal-title">議事録生成AI コトロク</div>
+    <div class="modal-desc">
+      Discordのボイスチャットを話者ごとに録音し、AIが文字起こし・誤認識補正・要約・タスク抽出まで自動で行う議事録ツールです。会議中は「今の話題」やキーワード、共有ホワイトボードを備えたライブダッシュボードをURL一つで全員に共有でき、会議が終わったときには議事録が完成しています。
+    </div>
+    <div class="modal-tech">
+      <div class="modal-tech-label">使用技術</div>
+      <div class="modal-tech-list">
+        <span class="modal-tech-item">Node.js</span>
+        <span class="modal-tech-item">discord.js</span>
+        <span class="modal-tech-item">Claude API</span>
+        <span class="modal-tech-item">ElevenLabs</span>
+        <span class="modal-tech-item">Cloudflare Workers / D1 / R2</span>
+      </div>
+    </div>
+    <a href="https://kotoroku.com/" target="_blank" class="modal-link"><i class="fas fa-external-link-alt"></i>サイトを見る</a>
+  </div>
+</div>
+
+<!-- モーダル: 人生シミュレーター -->
+<div class="modal-overlay" id="modal-lifesim">
+  <div class="modal-content">
+    <button class="modal-close">&times;</button>
+    <img src="image/人生シュミレーター.png" alt="人生シミュレーター" class="modal-img">
+    <div class="modal-title">人生シミュレーター</div>
+    <div class="modal-desc">
+      年齢・年収・移住先・結婚や住宅購入などのライフイベントを入力すると、国税庁の賃金カーブや都道府県別の家賃・物価指数といった公的統計データから、生涯の手残り額を1年ごとに積み上げてグラフで可視化するWebアプリケーションです。47都道府県の手取りランキングや、e-Statの指標を5軸で加重集計した自治体総合ランキングも備えています。
+    </div>
+    <div class="modal-tech">
+      <div class="modal-tech-label">使用技術</div>
+      <div class="modal-tech-list">
+        <span class="modal-tech-item">TypeScript</span>
+        <span class="modal-tech-item">Hono</span>
+        <span class="modal-tech-item">Cloudflare Workers / D1</span>
+        <span class="modal-tech-item">e-Stat API</span>
+        <span class="modal-tech-item">Terraform</span>
+        <span class="modal-tech-item">GitHub Actions</span>
+      </div>
+    </div>
+    <a href="https://jichitai-ranking-web.sinfuk1997.workers.dev/" target="_blank" class="modal-link"><i class="fas fa-external-link-alt"></i>サイトを見る</a>
+  </div>
+</div>
+
+<!-- モーダル: 議事録分析プラットフォーム -->
+<div class="modal-overlay" id="modal-gijiroku">
+  <div class="modal-content">
+    <button class="modal-close">&times;</button>
+    <img src="image/議事録分析.png" alt="議事録分析プラットフォーム" class="modal-img">
+    <div class="modal-title">議事録分析プラットフォーム</div>
+    <div class="modal-desc">
+      政府の有識者会議など公開議事録PDFを自動収集し、LLMで論点単位の構造化データ（テーマ・要旨・発言者・初出用語など）に分解して時系列に蓄積するプラットフォームです。会議体ごとに回をまたぐ変化（初出テーマ・新規発言者など）を検出し、必ず原本PDFへの出典リンク付きで可視化。週次の自動パイプラインで収集から反映まで自動更新されます。
+    </div>
+    <div class="modal-tech">
+      <div class="modal-tech-label">使用技術</div>
+      <div class="modal-tech-list">
+        <span class="modal-tech-item">Python</span>
+        <span class="modal-tech-item">Gemini API</span>
+        <span class="modal-tech-item">TypeScript / Hono</span>
+        <span class="modal-tech-item">Cloudflare Workers / D1 / R2</span>
+        <span class="modal-tech-item">Terraform</span>
+        <span class="modal-tech-item">GitHub Actions</span>
+      </div>
+    </div>
+    <a href="https://gijiroku-web-prod.sinfuk1997.workers.dev/" target="_blank" class="modal-link"><i class="fas fa-external-link-alt"></i>サイトを見る</a>
+  </div>
+</div>
+
+<!-- モーダル: VRウェーブディフェンス -->
+<div class="modal-overlay" id="modal-vrgame">
+  <div class="modal-content">
+    <button class="modal-close">&times;</button>
+    <img src="image/VRアプリ.png" alt="VRウェーブディフェンスゲーム" class="modal-img">
+    <div class="modal-title">VRウェーブディフェンスゲーム</div>
+    <div class="modal-desc">
+      VRヘッドセットで遊ぶ、銃を使った一人称のウェーブ防衛ゲームです。迫りくる敵を拳銃・ライフル・ショットガンで迎撃し、ウェーブ間の作戦フェーズでは強化カードやタレットを「実際に銃で撃って」選択・設置し、防衛線を強化していきます。味方AIやボス戦、無限ウェーブも実装しています。
+    </div>
+    <div class="modal-tech">
+      <div class="modal-tech-label">使用技術</div>
+      <div class="modal-tech-list">
+        <span class="modal-tech-item">Unity 6</span>
+        <span class="modal-tech-item">C#</span>
+        <span class="modal-tech-item">OpenXR</span>
+        <span class="modal-tech-item">XR Interaction Toolkit</span>
+        <span class="modal-tech-item">Meta Quest</span>
+      </div>
+    </div>
+    <a href="https://www.youtube.com/watch?v=ICCoJxfq3q8" target="_blank" class="modal-link"><i class="fab fa-youtube"></i>紹介動画を見る</a>
   </div>
 </div>
 
