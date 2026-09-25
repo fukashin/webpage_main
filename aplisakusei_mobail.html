@@ -68,7 +68,21 @@ Sample page
     </div>
   </div>
 
-  <!-- カード2: カレンダーアプリ -->
+  <!-- カード2: シヴツール -->
+  <div class="work-card" data-modal="modal-shivtool">
+    <img src="img/準備中イラスト.png" alt="シヴツール" class="work-card-img">
+    <div class="work-card-body">
+      <div class="work-card-title">シヴツール</div>
+      <div class="work-card-desc">睡眠アラーム・作業タイマー・AIの相棒。「使える知識」を道具にして貯めていくAndroidアプリ。</div>
+      <div class="work-card-tags">
+        <span class="work-card-tag">React Native (Expo)</span>
+        <span class="work-card-tag">TypeScript</span>
+        <span class="work-card-tag">AI</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- カード3: カレンダーアプリ -->
   <div class="work-card" data-modal="modal-calendar">
     <img src="img/準備中イラスト.png" alt="カレンダーアプリ" class="work-card-img">
     <div class="work-card-body">
@@ -105,6 +119,31 @@ Sample page
     <div style="margin-top: 16px; display: flex; flex-wrap: wrap; gap: 10px;">
       <a href="#" target="_blank" class="modal-link"><i class="fab fa-google-play"></i>Google Play</a>
       <a href="privacy-policy.html" class="modal-link" style="background: #666;"><i class="fas fa-shield-alt"></i>プライバシーポリシー</a>
+    </div>
+  </div>
+</div>
+
+<!-- モーダル: シヴツール -->
+<div class="modal-overlay" id="modal-shivtool">
+  <div class="modal-content">
+    <button class="modal-close">&times;</button>
+    <img src="img/準備中イラスト.png" alt="シヴツール" class="modal-img">
+    <div class="modal-title">シヴツール</div>
+    <div class="modal-desc">
+      解説動画で扱った「使える知識」を、そのまま使える道具にして貯めていくAndroidアプリです。90分の睡眠サイクルから就寝時刻を逆算する睡眠アラーム、区切りを自分で組める作業タイマー、記録の集計をもとに寄り添うAIの相棒「バディ」、習慣トラッキング、匿名掲示板「みんなの今日」を搭載。アカウント登録・広告なしで、記録は端末の中に保存されます。
+    </div>
+    <div class="modal-tech">
+      <div class="modal-tech-label">使用技術</div>
+      <div class="modal-tech-list">
+        <span class="modal-tech-item">React Native (Expo)</span>
+        <span class="modal-tech-item">TypeScript</span>
+        <span class="modal-tech-item">Cloudflare Workers</span>
+        <span class="modal-tech-item">Claude API</span>
+      </div>
+    </div>
+    <div style="margin-top: 16px; display: flex; flex-wrap: wrap; gap: 10px;">
+      <!-- 公開後にストアURLを設定: <a href="" target="_blank" class="modal-link"><i class="fab fa-google-play"></i>Google Play</a> -->
+      <a href="privacy-policy.html#shivtool" class="modal-link" style="background: #666;"><i class="fas fa-shield-alt"></i>プライバシーポリシー</a>
     </div>
   </div>
 </div>
