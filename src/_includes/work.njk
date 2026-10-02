@@ -1,0 +1,61 @@
+---
+layout: base.njk
+ogType: article
+---
+<main class="wrap work-page">
+  <p class="crumb mono"><a href="{{ '/' | url }}#works">&larr; works</a> / {{ work.title }}</p>
+
+  <div class="work-head">
+    <div>
+      <div class="mono work-meta"><span class="kind {{ work.kind }}">{{ work.kindLabel }}</span> {{ work.year }}</div>
+      <h1>{{ work.title }}</h1>
+      <p class="lead">{{ work.summary }}</p>
+    </div>
+  </div>
+
+  <div class="work-hero">
+    <img src="{{ (work.screenshot if work.screenshot else work.image) | url }}" alt="{{ work.title }}">
+  </div>
+
+  <div class="work-body">
+    <section>
+      <h2 class="mono">// about</h2>
+      {%- for p in work.description %}
+      <p>{{ p }}</p>
+      {%- endfor %}
+    </section>
+
+    <section>
+      <h2 class="mono">// stack</h2>
+      <div class="tags">
+        {%- for t in work.tech %}<span>{{ t }}</span>{% endfor %}
+      </div>
+    </section>
+
+    {%- if work.links.length %}
+    <section>
+      <h2 class="mono">// links</h2>
+      <div class="btns">
+        {%- for l in work.links %}
+        <a class="btn{% if l.icon == 'shield' %} sub{% endif %}" href="{{ l.url | url if l.internal else l.url }}"{% if not l.internal %} target="_blank" rel="noopener"{% endif %}>{{ l.label }}</a>
+        {%- endfor %}
+      </div>
+    </section>
+    {%- endif %}
+
+    {%- if work.videos.length %}
+    <section>
+      <h2 class="mono">// video</h2>
+      <div class="videos">
+        {%- for v in work.videos %}
+        <div class="video">
+          <iframe src="https://www.youtube.com/embed/{{ v }}" title="{{ work.title }} 紹介動画" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+        </div>
+        {%- endfor %}
+      </div>
+    </section>
+    {%- endif %}
+  </div>
+
+  <p class="crumb mono back"><a href="{{ '/' | url }}#works">&larr; 一覧に戻る</a></p>
+</main>

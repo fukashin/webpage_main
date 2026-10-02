@@ -1,0 +1,13 @@
+---
+pagination:
+  data: works
+  size: 1
+  alias: work
+  addAllPagesToCollections: true
+permalink: "/works/{{ work.slug }}/"
+layout: work.njk
+eleventyComputed:
+  title: "{{ work.title }} | シヴィルドット"
+  description: "{{ work.summary }}"
+  ogImage: "{{ work.image }}"
+---

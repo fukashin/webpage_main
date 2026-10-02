@@ -1,30 +1,42 @@
-module.exports = function(eleventyConfig) {
-  // ブログ用のCSSをそのまま出力先にコピー
-  eleventyConfig.addPassthroughCopy("blog/css");
-  eleventyConfig.addPassthroughCopy("blog/images");
+module.exports = function (eleventyConfig) {
+  eleventyConfig.addPassthroughCopy("src/css");
+  eleventyConfig.addPassthroughCopy("src/image");
+  eleventyConfig.addPassthroughCopy("src/img");
+  eleventyConfig.addPassthroughCopy("src/blog/css");
 
-  // 記事のコレクションを作成（日付順）
-  eleventyConfig.addCollection("posts", function(collectionApi) {
-    return collectionApi.getFilteredByGlob("blog/posts/*.md").sort(function(a, b) {
+  // ブログ記事（新しい順）
+  eleventyConfig.addCollection("posts", function (collectionApi) {
+    return collectionApi.getFilteredByGlob("src/blog/posts/*.md").sort(function (a, b) {
       return b.date - a.date;
     });
   });
 
-  // 日付フォーマット用フィルター
-  eleventyConfig.addFilter("dateFormat", function(date) {
+  eleventyConfig.addFilter("dateFormat", function (date) {
     var d = new Date(date);
-    return d.getFullYear() + '/' + 
-      String(d.getMonth() + 1).padStart(2, '0') + '/' + 
-      String(d.getDate()).padStart(2, '0');
+    return d.getFullYear() + "/" +
+      String(d.getMonth() + 1).padStart(2, "0") + "/" +
+      String(d.getDate()).padStart(2, "0");
+  });
+
+  // OGP や sitemap 用。url フィルタを通した後のパスに site.url（オリジン）を付ける
+  eleventyConfig.addFilter("absolute", function (path, origin) {
+    return String(origin).replace(/\/$/, "") + path;
+  });
+
+  eleventyConfig.addFilter("youtubeThumb", function (id) {
+    return "https://img.youtube.com/vi/" + id + "/hqdefault.jpg";
   });
 
   return {
     dir: {
-      input: "blog",
-      output: "_site/blog",
+      input: "src",
+      output: "_site",
       includes: "_includes",
       data: "_data"
     },
+    // GitHub Pages のプロジェクトサイト（/webpage_main/）で配信するときは
+    // PATH_PREFIX=/webpage_main/ を付けてビルドする。独自ドメインでは不要
+    pathPrefix: process.env.PATH_PREFIX || "/",
     markdownTemplateEngine: "njk",
     htmlTemplateEngine: "njk"
   };

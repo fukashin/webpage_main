@@ -1,0 +1,45 @@
+# Eleventy でビルドして GitHub Pages に配信する。
+# 有効にするには、リポジトリの Settings > Pages > Source を "GitHub Actions" に切り替える。
+# 独自ドメインに移したら PATH_PREFIX を外し、src/_data/site.json の url を変える。
+name: Deploy site
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      - run: npx @11ty/eleventy
+        env:
+          PATH_PREFIX: /webpage_main/
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
