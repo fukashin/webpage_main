@@ -18,6 +18,32 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="{{ site.xHandle }}">
 <link rel="icon" href="{{ '/image/ロゴ3.png' | url }}">
+{%- if site.searchConsoleToken %}
+<meta name="google-site-verification" content="{{ site.searchConsoleToken }}">
+{%- endif %}
+{%- if page.url == '/' %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "{{ site.name }}",
+  "alternateName": {{ site.altNames | dump | safe }},
+  "url": "{{ '/' | url | absolute(site.url) }}",
+  "sameAs": ["{{ site.x }}", "{{ site.youtube }}", "{{ site.github }}"],
+  "jobTitle": "個人開発者",
+  "knowsAbout": ["Webアプリ開発", "Androidアプリ開発", "VR", "生成AI"]
+}
+</script>
+{%- endif %}
+{%- if site.ga4 %}
+<script async src="https://www.googletagmanager.com/gtag/js?id={{ site.ga4 }}"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', '{{ site.ga4 }}');
+</script>
+{%- endif %}
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="{{ '/css/site.css' | url }}">

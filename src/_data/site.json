@@ -1,8 +1,11 @@
 {
   "name": "シヴィルドット",
+  "altNames": ["シビルドット", "sivildot", "シヴィルドット制作室", "シヴィルドット製作所"],
   "company": "シヴィルドット制作室",
-  "title": "シヴィルドット | 作ったものの一覧",
-  "description": "シヴィルドットの制作物ポートフォリオ。AI TRPG LoreNest、Androidアプリ シヴツール、AI議事録ツール コトロク、人生シミュレーター、VRゲームなど、個人で作ったWebアプリ・モバイルアプリ・ゲームの一覧。",
+  "title": "シヴィルドット（シビルドット）| 個人開発のアプリ・ゲーム一覧",
+  "description": "シヴィルドット（シビルドット / sivildot）の制作物ポートフォリオ。AI TRPG LoreNest、Androidアプリ シヴツール、AI議事録ツール コトロク、人生シミュレーター、VRゲームなど、個人で作ったWebアプリ・モバイルアプリ・ゲームの一覧。",
+  "ga4": "",
+  "searchConsoleToken": "",
   "url": "https://fukashin.github.io",
   "ogImage": "/image/シヴツール_サムネ.png",
   "email": "fukashe.shintaro@gmail.com",

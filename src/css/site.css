@@ -63,6 +63,7 @@ img { max-width: 100%; }
 .hero .tag { font-family: var(--mono); color: var(--magenta); font-size: 13px; margin-bottom: 14px; }
 .hero h1 { font-size: clamp(30px, 5vw, 52px); line-height: 1.25; margin: 0 0 18px; font-weight: 700; letter-spacing: -0.01em; }
 .hero h1 span { color: var(--cyan); text-shadow: 0 0 18px rgba(47,243,255,0.45); }
+.hero h1 .h1-brand { display: block; font-family: var(--mono); font-size: 15px; font-weight: 400; letter-spacing: 0.18em; color: var(--muted); text-shadow: none; margin-bottom: 10px; }
 .hero p { max-width: 640px; color: var(--muted); margin: 0 0 26px; font-size: 16px; }
 .hero .links a {
   display: inline-block; font-family: var(--mono); font-size: 13px;
