@@ -1,0 +1,70 @@
+---
+layout: base.njk
+permalink: /index.html
+---
+<section class="hero">
+  <div class="wrap">
+    <div class="tag">&gt; sivildot — 個人開発</div>
+    <h1>気軽な開発を。<br>とりあえず<span>作ってみる</span>。</h1>
+    <p>シヴィルドット。AI議事録ツール、睡眠アラームアプリ、公的データのシミュレーター、VRゲームまで。思いついたものを作って公開しています。</p>
+    <div class="links">
+      <a href="#works">▼ 作ったもの一覧</a>
+      <a href="{{ site.github }}" target="_blank" rel="noopener">GitHub</a>
+      <a href="{{ site.x }}" target="_blank" rel="noopener">X / {{ site.xHandle }}</a>
+      <a href="{{ site.youtube }}" target="_blank" rel="noopener">YouTube</a>
+    </div>
+    <div class="stats">
+      <div><b>{{ works.length }}</b>公開作品</div>
+      <div><b>3</b>Web / Mobile / VR</div>
+      <div><b>{{ site.since }}</b>活動開始</div>
+    </div>
+  </div>
+</section>
+
+<main class="wrap" id="works">
+  <div class="section-head">
+    <h2>works — 作ったもの（力を入れている順）</h2>
+    <div class="filters">
+      <button class="on" data-f="all">ALL</button>
+      <button data-f="web">WEB</button>
+      <button data-f="mobile">MOBILE</button>
+      <button data-f="vr">VR / GAME</button>
+      <button data-f="ai">AI</button>
+    </div>
+  </div>
+
+  <div class="grid">
+    {%- for w in works %}
+    <a class="card" href="{{ ('/works/' + w.slug + '/') | url }}" data-k="{{ w.filters | join(' ') }}">
+      <div class="thumb"><img src="{{ w.image | url }}" alt="{{ w.title }}" loading="lazy"><span class="kind {{ w.kind }}">{{ w.kindLabel }}</span></div>
+      <div class="body">
+        <div class="year">{{ w.year }}</div>
+        <h3>{{ w.title }}</h3>
+        <p>{{ w.summary }}</p>
+        <div class="tags">{% for t in w.tech %}{% if loop.index0 < 4 %}<span>{{ t }}</span>{% endif %}{% endfor %}</div>
+      </div>
+    </a>
+    {%- endfor %}
+  </div>
+
+  <div class="section-head" id="about">
+    <h2>about</h2>
+  </div>
+  <div class="about-box">
+    <p><span class="mono" style="color: var(--cyan);">{{ site.name }}</span> — 個人でアプリの開発やWebページの作成をしています。解説動画で扱った知識を、そのまま動くツールにしてアプリに積んでいくのが最近のテーマです。</p>
+    <p class="mono stack">stack: TypeScript / Python / C# · Cloudflare Workers / AWS · Claude / Gemini API · Unity</p>
+  </div>
+</main>
+
+<script>
+document.querySelectorAll('.filters button').forEach(function (b) {
+  b.addEventListener('click', function () {
+    document.querySelectorAll('.filters button').forEach(function (x) { x.classList.remove('on'); });
+    b.classList.add('on');
+    var f = b.dataset.f;
+    document.querySelectorAll('.card').forEach(function (c) {
+      c.style.display = (f === 'all' || c.dataset.k.split(' ').indexOf(f) !== -1) ? '' : 'none';
+    });
+  });
+});
+</script>

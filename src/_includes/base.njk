@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+{%- set pageTitle = title if title else site.title -%}
+{%- set pageDesc = description if description else site.description -%}
+{%- set ogImg = (ogImage if ogImage else site.ogImage) | url | absolute(site.url) -%}
+<title>{{ pageTitle }}</title>
+<meta name="description" content="{{ pageDesc }}">
+<link rel="canonical" href="{{ page.url | url | absolute(site.url) }}">
+<meta property="og:type" content="{{ 'article' if ogType == 'article' else 'website' }}">
+<meta property="og:site_name" content="{{ site.name }}">
+<meta property="og:title" content="{{ pageTitle }}">
+<meta property="og:description" content="{{ pageDesc }}">
+<meta property="og:url" content="{{ page.url | url | absolute(site.url) }}">
+<meta property="og:image" content="{{ ogImg }}">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="{{ site.xHandle }}">
+<link rel="icon" href="{{ '/image/ロゴ3.png' | url }}">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{ '/css/site.css' | url }}">
+</head>
+<body class="{{ bodyClass }}">
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="{{ '/' | url }}">sivildot<b>@portfolio</b><span class="cmd">:~$ ls works</span><span class="cursor"></span></a>
+    <nav>
+      <a href="{{ '/' | url }}#works">WORKS</a>
+      <a href="{{ '/' | url }}#about">ABOUT</a>
+      <a href="{{ '/blog/' | url }}">BLOG</a>
+      <a href="{{ site.youtube }}" target="_blank" rel="noopener">YOUTUBE</a>
+      <a href="{{ site.x }}" target="_blank" rel="noopener">X</a>
+    </nav>
+  </div>
+</header>
+
+{{ content | safe }}
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div>© 2024–2026 {{ site.company }}</div>
+    <div>
+      <a href="{{ '/privacy-policy.html' | url }}">プライバシーポリシー</a>
+      <a href="{{ '/tokushoho.html' | url }}">特定商取引法に基づく表記</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,28 @@
+---
+pagination:
+  data: redirects
+  size: 1
+  alias: r
+permalink: "/{{ r.from }}"
+eleventyExcludeFromCollections: true
+redirects:
+  - { from: "aplisakusei_wedapp.html", to: "/#works" }
+  - { from: "aplisakusei_mobail.html", to: "/#works" }
+  - { from: "aplisakusei_infra.html", to: "/#works" }
+  - { from: "company.html", to: "/#about" }
+  - { from: "faq.html", to: "/" }
+  - { from: "contact.html", to: "/#about" }
+---
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex">
+<link rel="canonical" href="{{ r.to | url | absolute(site.url) }}">
+<meta http-equiv="refresh" content="0; url={{ r.to | url }}">
+<title>移動しました</title>
+</head>
+<body>
+<p>ページは移動しました。<a href="{{ r.to | url }}">新しいページへ</a></p>
+</body>
+</html>

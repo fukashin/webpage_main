@@ -1,9 +1,10 @@
 {
   "name": "sivildot-website",
-  "version": "1.0.0",
-  "description": "シヴィルドット製作所 ウェブサイト",
+  "version": "2.0.0",
+  "description": "シヴィルドット ポートフォリオサイト",
   "scripts": {
     "build": "npx @11ty/eleventy",
+    "build:ghpages": "npx @11ty/eleventy --pathprefix=/webpage_main/",
     "serve": "npx @11ty/eleventy --serve",
     "watch": "npx @11ty/eleventy --watch"
   },
