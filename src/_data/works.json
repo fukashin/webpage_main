@@ -4,7 +4,10 @@
     "title": "AI TRPG LoreNest",
     "kind": "web",
     "kindLabel": "WEB",
-    "filters": ["web", "ai"],
+    "filters": [
+      "web",
+      "ai"
+    ],
     "year": "2025",
     "image": "/image/ウェブアプリ画像1.png",
     "summary": "AIがゲームキーパーを務めるTRPG。ブラウザからアクセスするだけで、AIが生成するシナリオの中で冒険できる。",
@@ -12,18 +15,32 @@
       "AIがゲームキーパー（GM）を務めるTRPGアプリケーションです。プレイヤーはブラウザからアクセスするだけで、AIが生成するシナリオの中で冒険を楽しめます。",
       "テキストベースの対話形式で、選択肢に縛られない自由度の高いロールプレイができます。"
     ],
-    "tech": ["JavaScript", "Python", "OpenAI API", "WebSocket"],
-    "links": [
-      { "label": "サイトを見る", "url": "https://aitrpglorenest.uk/", "icon": "link" }
+    "tech": [
+      "JavaScript",
+      "Python",
+      "OpenAI API",
+      "WebSocket"
     ],
-    "videos": ["aq4a5eZgXtE"]
+    "links": [
+      {
+        "label": "サイトを見る",
+        "url": "https://aitrpglorenest.uk/",
+        "icon": "link"
+      }
+    ],
+    "videos": [
+      "aq4a5eZgXtE"
+    ]
   },
   {
     "slug": "shivtool",
     "title": "シヴツール",
     "kind": "mobile",
     "kindLabel": "ANDROID",
-    "filters": ["mobile", "ai"],
+    "filters": [
+      "mobile",
+      "ai"
+    ],
     "year": "2026",
     "image": "/image/シヴツール_サムネ.png",
     "screenshot": "/image/シヴツール.png",
@@ -33,18 +50,39 @@
       "90分の睡眠サイクルから就寝時刻を逆算する睡眠アラーム、区切りを自分で組める作業タイマー、記録の集計をもとに寄り添うAIの相棒「バディ」、習慣トラッキング、匿名掲示板「みんなの今日」を搭載。",
       "アカウント登録・広告なしで、記録は端末の中に保存されます。"
     ],
-    "tech": ["React Native (Expo)", "TypeScript", "Cloudflare Workers", "Claude API"],
-    "links": [
-      { "label": "プライバシーポリシー", "url": "/privacy-policy.html#shivtool", "icon": "shield", "internal": true }
+    "tech": [
+      "React Native (Expo)",
+      "TypeScript",
+      "Cloudflare Workers",
+      "Claude API"
     ],
-    "videos": ["md3vPXNpTd4", "bXIJrm5TBOk"]
+    "links": [
+      {
+        "label": "Google Play で入手",
+        "url": "https://play.google.com/store/apps/details?id=jp.civildot.toolbox",
+        "icon": "play"
+      },
+      {
+        "label": "プライバシーポリシー",
+        "url": "/privacy-policy.html#shivtool",
+        "icon": "shield",
+        "internal": true
+      }
+    ],
+    "videos": [
+      "md3vPXNpTd4",
+      "bXIJrm5TBOk"
+    ]
   },
   {
     "slug": "kotoroku",
     "title": "議事録生成AI コトロク",
     "kind": "web",
     "kindLabel": "WEB",
-    "filters": ["web", "ai"],
+    "filters": [
+      "web",
+      "ai"
+    ],
     "year": "2026",
     "image": "/image/議事録生成AI.png",
     "summary": "Discordの会話がそのままライブな議事録になる。話者ごとに録音し、AIが文字起こし・要約・タスク抽出。",
@@ -52,9 +90,19 @@
       "Discordのボイスチャットを話者ごとに録音し、AIが文字起こし・要約・タスク抽出まで自動で行う議事録ツールです。",
       "会議中は「今の話題」「途中まとめ」「キーワード」「AIからの質問」などを載せたライブダッシュボードをURL一つで全員に共有でき、終わったときには議事録が完成しています。"
     ],
-    "tech": ["Node.js", "discord.js", "Claude API", "ElevenLabs Scribe", "Cloudflare Workers / D1 / R2"],
+    "tech": [
+      "Node.js",
+      "discord.js",
+      "Claude API",
+      "ElevenLabs Scribe",
+      "Cloudflare Workers / D1 / R2"
+    ],
     "links": [
-      { "label": "サイトを見る", "url": "https://kotoroku.com/", "icon": "link" }
+      {
+        "label": "サイトを見る",
+        "url": "https://kotoroku.com/",
+        "icon": "link"
+      }
     ],
     "videos": []
   },
@@ -63,7 +111,9 @@
     "title": "人生シミュレーター",
     "kind": "web",
     "kindLabel": "WEB",
-    "filters": ["web"],
+    "filters": [
+      "web"
+    ],
     "year": "2026",
     "image": "/image/人生シュミレーター.png",
     "summary": "公的統計データから「どこに住むと生涯いくら手元に残るか」を試算。47都道府県の手残りランキングも。",
@@ -71,9 +121,21 @@
       "年齢・年収・移住先などを入力すると、国税庁の賃金カーブや都道府県別の家賃・物価指数といった公的統計から、生涯の手残り額を1年ごとに積み上げてグラフで可視化します。",
       "47都道府県の手取りランキング、地図から都道府県を選ぶ画面、e-Stat由来の指標を5軸で集計した自治体総合ランキングも備えています。"
     ],
-    "tech": ["TypeScript", "Hono", "Cloudflare Workers", "Cloudflare D1", "e-Stat API", "Terraform", "GitHub Actions"],
+    "tech": [
+      "TypeScript",
+      "Hono",
+      "Cloudflare Workers",
+      "Cloudflare D1",
+      "e-Stat API",
+      "Terraform",
+      "GitHub Actions"
+    ],
     "links": [
-      { "label": "サイトを見る（限定公開）", "url": "https://jichitai-ranking-web.sinfuk1997.workers.dev/", "icon": "link" }
+      {
+        "label": "サイトを見る（限定公開）",
+        "url": "https://jichitai-ranking-web.sinfuk1997.workers.dev/",
+        "icon": "link"
+      }
     ],
     "videos": []
   },
@@ -82,7 +144,10 @@
     "title": "議事録分析プラットフォーム",
     "kind": "web",
     "kindLabel": "WEB",
-    "filters": ["web", "ai"],
+    "filters": [
+      "web",
+      "ai"
+    ],
     "year": "2026",
     "image": "/image/議事録分析.png",
     "summary": "政府の公開議事録をLLMで論点単位に構造化し、回をまたぐ変化を出典リンク付きで可視化。週次で自動更新。",
@@ -90,9 +155,21 @@
       "政府・自治体の公開議事録PDFを自動収集し、LLMで論点単位の構造化データに分解して時系列に蓄積します。",
       "会議体ごとの回をまたぐ変化（初出テーマ・新規発言者など）を検出し、必ず原本PDFへの出典リンク付きで可視化します。GitHub Actionsの週次パイプラインで自動更新。"
     ],
-    "tech": ["Python", "Gemini API", "TypeScript", "Hono", "Cloudflare Workers / D1 / R2", "GitHub Actions", "Terraform"],
+    "tech": [
+      "Python",
+      "Gemini API",
+      "TypeScript",
+      "Hono",
+      "Cloudflare Workers / D1 / R2",
+      "GitHub Actions",
+      "Terraform"
+    ],
     "links": [
-      { "label": "サイトを見る（限定公開）", "url": "https://gijiroku-web-prod.sinfuk1997.workers.dev/", "icon": "link" }
+      {
+        "label": "サイトを見る（限定公開）",
+        "url": "https://gijiroku-web-prod.sinfuk1997.workers.dev/",
+        "icon": "link"
+      }
     ],
     "videos": []
   },
@@ -101,7 +178,9 @@
     "title": "VRウェーブディフェンス",
     "kind": "vr",
     "kindLabel": "VR",
-    "filters": ["vr"],
+    "filters": [
+      "vr"
+    ],
     "year": "2026",
     "image": "/image/VRアプリ.png",
     "summary": "Meta Quest向け。迫る敵を銃で迎撃し、ウェーブ間には強化カードやタレットを「撃って」選ぶ一人称防衛ゲーム。",
@@ -109,16 +188,27 @@
       "VRヘッドセットで遊ぶ一人称のウェーブ防衛シューティングゲームです。迫りくる敵を拳銃・ライフル・ショットガンで迎撃し、拠点を守り抜きます。",
       "ウェーブ間の作戦フェーズでは、強化カードやタレット・バリケードを銃で撃って選択・設置し、防衛線を強化。味方AIやボス戦、無限ウェーブも実装しています。"
     ],
-    "tech": ["Unity 6", "C#", "OpenXR", "XR Interaction Toolkit", "Meta Quest"],
+    "tech": [
+      "Unity 6",
+      "C#",
+      "OpenXR",
+      "XR Interaction Toolkit",
+      "Meta Quest"
+    ],
     "links": [],
-    "videos": ["ICCoJxfq3q8"]
+    "videos": [
+      "ICCoJxfq3q8"
+    ]
   },
   {
     "slug": "cloud-llm-rag",
     "title": "クラウドLLM RAGアプリ",
     "kind": "web",
     "kindLabel": "WEB",
-    "filters": ["web", "ai"],
+    "filters": [
+      "web",
+      "ai"
+    ],
     "year": "2025",
     "image": "/image/クラウドLLM.png",
     "summary": "資料を事前に読み込ませてRAGで問い合わせできるデータ活用Webアプリ。ドキュメントに基づいた回答を返す。",
@@ -126,9 +216,18 @@
       "投入したい資料を事前に読み込ませることで、RAG（Retrieval-Augmented Generation）によるAI問い合わせやデータ活用ができるWebアプリケーションです。",
       "クラウドLLMを活用し、ドキュメントに基づいた高精度な回答を提供します。"
     ],
-    "tech": ["Python", "クラウドLLM", "RAG", "AWS"],
+    "tech": [
+      "Python",
+      "クラウドLLM",
+      "RAG",
+      "AWS"
+    ],
     "links": [
-      { "label": "サイトを見る", "url": "https://d3hpfue81sdxf8.cloudfront.net/", "icon": "link" }
+      {
+        "label": "サイトを見る",
+        "url": "https://d3hpfue81sdxf8.cloudfront.net/",
+        "icon": "link"
+      }
     ],
     "videos": []
   },
@@ -137,16 +236,26 @@
     "title": "作業トモ",
     "kind": "mobile",
     "kindLabel": "ANDROID",
-    "filters": ["mobile"],
+    "filters": [
+      "mobile"
+    ],
     "year": "2024",
     "image": "/image/モバイルアプリ画像1.png",
     "summary": "うるさい環境でも集中できるポモドーロタイマー。一緒に作業している感覚で集中を維持する。",
     "description": [
       "うるさい環境でも集中して作業できるポモドーロタイマーアプリです。一緒に作業している感覚を演出し、集中力を維持するための機能を搭載しています。"
     ],
-    "tech": ["JavaScript", "Python"],
+    "tech": [
+      "JavaScript",
+      "Python"
+    ],
     "links": [
-      { "label": "プライバシーポリシー", "url": "/privacy-policy.html", "icon": "shield", "internal": true }
+      {
+        "label": "プライバシーポリシー",
+        "url": "/privacy-policy.html",
+        "icon": "shield",
+        "internal": true
+      }
     ],
     "videos": []
   }
