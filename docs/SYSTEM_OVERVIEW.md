@@ -1,6 +1,6 @@
 # システム概要: シヴィルドット ポートフォリオサイト（webpage_main）
 
-最終更新: 2026-10-17
+最終更新: 2026-10-20
 
 ## 1. 概要（何のサイトか・誰向けか）
 
@@ -12,8 +12,12 @@
 - YouTube・X から流入してくる視聴者（動画で扱ったツール＝シヴツールへの導線）
 
 法務ページ2つは外部サービスに登録しているURLなので、パスを変えてはいけない:
-- `/privacy-policy.html`（Google Play のシヴツールに登録。`#shivtool` アンカーあり）
+- `/privacy-policy.html`（Google Play のシヴツール・作業ともだち、Stripe に登録。`#shivtool` アンカーあり）
 - `/tokushoho.html`（Stripe の特商法表記に登録）
+
+2026-10-20 時点の外部サービス登録URL:
+- Stripe「公開情報」: ウェブサイト `https://civildot.dev/`、プライバシーポリシー `https://civildot.dev/privacy-policy.html`、特商法 `https://civildot.dev/tokushoho.html`（利用規約は空欄。「事業情報」のウェブサイトは本人確認の再審査を避けるため旧URLのまま）
+- Play Console（シヴツール・作業ともだち）: ストアの設定のウェブサイト `https://civildot.dev/`（公開済み）。プライバシーポリシーURL `https://civildot.dev/privacy-policy.html` は保存済みで、**審査への送信は次のアプリ更新時にまとめて行う**
 
 ## 2. 公開先 URL・リポジトリ・ブランチ運用
 
@@ -23,7 +27,8 @@
 | 旧URL | https://fukashin.github.io/webpage_main/ → 新ドメインへ 301 転送（配下パスも維持） |
 | リポジトリ | https://github.com/fukashin/webpage_main （private） |
 | ブランチ | `main` のみが本番。`main` への push で GitHub Actions がビルド・配信する |
-| 作業ブランチ | 大きな改修は別ブランチ（例: `redesign`）で作り、`main` にマージして公開。GitHub Pages は `main` 以外を配信しない |
+| 作業ブランチ | 大きな改修は別ブランチ（例: `redesign`, `favicon`）で作り、`main` にマージして公開。GitHub Pages は `main` 以外を配信しない |
+| 公開の判断 | `main` への push＝本番公開なので、内容をユーザーに見せて OK をもらってから入れる（2026-10-17 の共通判断ルール） |
 
 ローマ字表記は **civildot**（シヴツールの Android パッケージ名 `jp.civildot.toolbox` に合わせた）。`sivildot` は使わない。
 
@@ -45,7 +50,8 @@ GitHub (main) --push--> GitHub Actions (npm ci && eleventy) --> GitHub Pages (�
   - `src/sitemap.njk` / `src/robots.njk` — sitemap.xml / robots.txt
   - `src/blog/` — ブログ（Markdown、`blog-base.njk` レイアウト）
   - `src/_includes/base.njk` — 共通レイアウト。meta description / OGP / canonical / JSON-LD（Person、別名 civildot・シビルドット等）/ GA4 タグ / Search Console 確認タグの差し込み口
-  - `src/css/site.css` — ダーク基調（サイバーパンク調）のスタイル。法務ページは `body.legal` で装飾を抑制
+  - `src/css/site.css` — ダーク基調のスタイル。配色はチャコール背景・生成り `#e9e6df`・安全黄 `#ffc53d`（`--accent`）・コーラル `#f07a52`（`--accent-2`）。法務ページは `body.legal` で装飾を抑制
+  - `src/favicon.svg` — ファビコンの元データ（「C＋点」、生成り×安全黄）。`favicon.ico` / `apple-touch-icon.png` / `icon-32.png` / `icon-512.png` はこの SVG から Chrome ヘッドレスで書き出したもの。形や色を変えたら作り直す
 - **ホスティング**: GitHub Pages（Source = GitHub Actions、`.github/workflows/pages.yml`）。カスタムドメイン `civildot.dev`、HTTPS 強制 ON
 - **ドメイン・DNS**: Cloudflare Registrar で取得、Cloudflare DNS
   - `@` A ×4 → GitHub Pages の IP（185.199.108〜111.153）、`www` CNAME → `fukashin.github.io`、いずれもプロキシ ON
@@ -61,7 +67,7 @@ GitHub (main) --push--> GitHub Actions (npm ci && eleventy) --> GitHub Pages (�
 | サービス | 用途 | 料金の目安 | 備考 |
 |---|---|---|---|
 | GitHub（Pages / Actions） | ソース管理・ビルド・配信 | 無料（private リポジトリの Actions は無料枠 2,000分/月。ビルドは1回1分未満） | — |
-| Cloudflare Registrar | ドメイン `civildot.dev` | 年 約 $12（原価販売、更新も同額） | 2026-10-16 取得。自動更新の設定は要確認 |
+| Cloudflare Registrar | ドメイン `civildot.dev` | 年 約 $12（原価販売、更新も同額） | 2026-10-16 取得。自動更新は ON（ユーザー回答） |
 | Cloudflare（DNS・プロキシ・Web Analytics） | DNS、CDN、訪問者計測 | 無料プラン | — |
 | Google Analytics 4 | アクセス解析 | 無料 | — |
 | Google Search Console | 検索状況の確認 | 無料 | — |
@@ -107,6 +113,8 @@ npm run build       # _site/ に出力
 | 2026-10-02 | 再構築版を `redesign` ブランチで作成（Eleventy 化、作品データ駆動、サイバーパンク調トップ、個別ページ、SEO 対応） |
 | 2026-10-12 | `redesign` を `main` にマージして本番切り替え。Pages の配信元を GitHub Actions に変更。旧URLの転送ページ追加。SEO（h1・表記ゆれ・JSON-LD）、GA4 導入、Search Console 登録・sitemap 送信。プライバシーポリシーにランニングメイト節を追加 |
 | 2026-10-16 | シヴツールの Google Play リンク追加（製品版公開）。独自ドメイン `civildot.dev` へ移行（Cloudflare DNS、GitHub Pages カスタムドメイン、HTTPS 強制、プロキシ ON、Web Analytics、Search Console ドメインプロパティ、GA4 ストリームURL更新） |
+| 2026-10-17 | システム概要（本書）を追加。YouTube のリンクを @ハンドル形式に変更 |
+| 2026-10-20 | Stripe・Play Console の登録URLを civildot.dev に更新（Play のプライバシーポリシーURLは審査送信待ち）。ファビコンを「C＋点」に刷新し、サイト全体の配色を蛍光シアン×マゼンタから「生成り×安全黄」に変更。プライバシーポリシーから実態のない「その他のアプリ」（GA/Firebase/Supabase）の節を削除 |
 
 ## 7. 運用（監視、更新のしかた、障害時の復旧手順）
 
@@ -132,6 +140,8 @@ npm run build       # _site/ に出力
 - **法務ページを先に整えた理由**: Stripe の利用と Google Play の審査に、特商法表記とプライバシーポリシーの公開URLが必要だったため（2026-09）。URLを登録しているので以後パスは固定
 - **Eleventy で作り直した理由（2026-10）**: 旧サイトは無料テンプレート由来で、FAQ・会社案内サンプル・関係ない画像など「何を作ったか」に関係ない部分が多く、作品が2クリック先にあった。さらにテンプレートの利用条件で「Design by / Template by」のPR枠を消せない制約があった。ゼロから作り直して、作品を JSON 1 ファイルで管理し、一覧と個別ページ（1作品1URL）を自動生成する形にした
 - **デザインをサイバーパンク調にした理由**: 「解説動画 → 作ってみた」というチャンネルの性格と動画サムネのダーク基調に合わせ、落ち着いた制作会社風より「個人がガリガリ作っている」ことが伝わる方向にした。ただし本文の可読性は守り、法務ページは審査担当者向けにプレーンにした
+- **配色を「生成り×安全黄」に変えた理由（2026-10-20）**: 蛍光シアン×マゼンタは補色同士でネオン・ゲーム寄りの派手な印象だった。「市民がつくる堅実な道具（civil＋dot）」というブランドに合わせ、工具や工事現場の安全黄と生成りの落ち着いた配色にした（civil には土木の意味もある）。動画サムネの配色とも近い。ファビコンはシヴツールのアイコンと同じ「C＋点」の形にして、サイトとアプリのつながりを持たせた
+- **プライバシーポリシーの「その他のアプリ」を削除した理由**: GA/Firebase/Supabase を使うアプリがあるという旧記載だったが、調査の結果どの公開・開発中アプリも使っていなかった（作業トモは端末内保存のみ、Supabase は将来の構想のみ）。実態と違う記載は審査上のリスクになるため削除
 - **CloudFront / Cloudflare Pages に移行しなかった理由**: ホスティング先は SEO に影響しない。アクセス計測はドメインを Cloudflare に置いてプロキシ経由にするだけで取れるため、GitHub Pages のまま独自ドメインを乗せる最小構成にした。管理者ログイン（Cloudflare Access）やブランチプレビューが必要になったら Cloudflare Pages に移す
 - **ドメイン名を civildot.dev にした理由**: `civildot.com` は取得できなかった。Play のパッケージ名 `jp.civildot.toolbox` が永久に変更できない識別子なので、ローマ字表記は civildot に統一。開発者のサイトなので `.dev`
 - **Search Console の所有権確認で Cloudflare 連携を使わなかった理由**: Google に Cloudflare アカウントへの OAuth 権限を渡す方式だったため、手動の DNS TXT 方式にした
@@ -139,8 +149,11 @@ npm run build       # _site/ に出力
 ## 9. 未解決の課題・次の候補
 
 - **外部リンクが無い**: X・YouTube（チャンネルの「リンク」欄と各動画の概要欄）・GitHub プロフィール・kotoroku.com のフッターから `https://civildot.dev/` へリンクする。「シヴィルドット」で検索されたときに出るための最重要作業
-- **Play Console / Stripe の登録URLを新ドメインに更新**: プライバシーポリシー `https://civildot.dev/privacy-policy.html`、ウェブサイト `https://civildot.dev/`、特商法 `https://civildot.dev/tokushoho.html`。旧URLは転送されるので壊れてはいないが、登録は新URLにしておくのが望ましい。Play の「ウェブサイト」欄は以前 `https://fukashin.github.io/`（ルート）が入っていてポートフォリオに届いていなかった
+- **Play のプライバシーポリシーURL変更の審査送信**: シヴツール・作業ともだちとも保存済み。次のアプリ更新時に「公開の概要」からまとめて審査に送る（シヴツールは「管理対象の公開」がオンなので、審査通過後に手動で公開が必要）
+- **YouTube 概要欄の旧URL**: youtubeyou リポジトリの各回 `description.md` と `docs/store/youtube-app-block.md` に `fukashin.github.io/webpage_main/` が残っている。実際の動画概要欄も同様なら `https://civildot.dev/` に差し替える（YouTube 担当の作業）
+- **Search Console でトップページの正規URLが旧URLのまま**: 2026-10-20 時点、Google がトップの正規URLに旧 `fukashin.github.io/webpage_main/` を選んでいて、新ドメインのトップは未登録（作品ページは新URLで登録済み）。インデックス登録リクエスト済みなので、数日〜2週間で入れ替わる見込み
 - **Cloudflare Web Analytics のスクリプト自動挿入の確認**: 登録直後の確認では未挿入だった。ページビューが出なければ手動でスクリプトを `base.njk` に入れる
+- **作業トモの扱い**: Play には内部テストのみで未公開（未完成）。作品ページにストアリンクは不要。将来クラウド同期（Supabase）を入れる場合は、プライバシーポリシーに作業ともだちの節を追加する
 - **人生シミュレーター・議事録分析プラットフォームが Basic 認証付き**: 作品ページから「限定公開」としてリンクしているが、訪問者は開けない。公開するか、スクリーンショット中心の紹介に割り切るか
 - **Search Console の旧プロパティの扱い**: URL プレフィックス型のため「アドレス変更」ツールが使えず、301 転送に任せている。インデックスが新ドメインに移ったら旧プロパティは削除してよい
 - **特商法ページの運営責任者**: 「フカワ」のまま。特商法上は本名が必要なので、Stripe 審査で指摘されたら本名に差し替える
@@ -149,9 +162,6 @@ npm run build       # _site/ に出力
 
 ## 10. 要確認
 
-- Cloudflare Registrar のドメイン自動更新が ON になっているか（取得はユーザーが行ったため未確認）
-- Play Console / Stripe の登録URLを新ドメインに更新したか（ユーザー作業。§9 参照）
-- 作業トモ（Android）が実際に Google Play に公開されているか、ストアURLは何か（作品ページのストアリンクが未設定）
-- 「その他のアプリ」としてプライバシーポリシーに残した Google Analytics / Firebase / Supabase の利用は、具体的にどのアプリか（旧ポリシーの記載を引き継いだもの。使っているアプリがあるとの回答は得たが、アプリ名は未確認）
-- YouTube チャンネルのリンク先は動画ページから特定したチャンネルID（UCg7QKK46s1yDoUg4fFXD3Aw）を使っている。ハンドル付きURL（@〜）に変えたい場合は要指定
 - 作品の年表記（works.json の `year`）は制作時期の推測。ユーザーから「大体合っているので可」との回答はあるが、正確な年は未確認
+
+解決済み（2026-10-20）: ドメイン自動更新は ON／Play・Stripe の登録URLは更新済み（Play のポリシーURLのみ審査送信待ち）／作業トモは Play 未公開でストアリンク不要／「その他のアプリ」は実態がなかったため削除／YouTube リンクは @ハンドル形式に変更済み
