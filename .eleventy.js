@@ -3,6 +3,7 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy("src/image");
   eleventyConfig.addPassthroughCopy("src/img");
   eleventyConfig.addPassthroughCopy("src/blog/css");
+  eleventyConfig.addPassthroughCopy({ "src/favicon.svg": "favicon.svg", "src/favicon.ico": "favicon.ico", "src/apple-touch-icon.png": "apple-touch-icon.png", "src/icon-32.png": "icon-32.png", "src/icon-512.png": "icon-512.png" });
 
   // ブログ記事（新しい順）
   eleventyConfig.addCollection("posts", function (collectionApi) {
