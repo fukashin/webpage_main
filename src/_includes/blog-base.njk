@@ -10,6 +10,9 @@
   <meta property="og:title" content="{{ title }} - シヴィルドット Blog">
   <meta property="og:description" content="{{ description or title }}">
   <meta property="og:url" content="{{ page.url | url | absolute(site.url) }}">
+  <link rel="icon" href="{{ '/favicon.ico' | url }}" sizes="32x32">
+  <link rel="icon" href="{{ '/favicon.svg' | url }}" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="{{ '/apple-touch-icon.png' | url }}">
   <link rel="stylesheet" href="{{ '/blog/css/blog.css' | url }}">
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=JetBrains+Mono&display=swap" rel="stylesheet">
 </head>
