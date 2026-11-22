@@ -183,3 +183,4 @@ img { max-width: 100%; }
   .brand .cursor { animation: none; }
   .card, .card .thumb img { transition: none; }
 }
+.link-note { margin: 10px 0 0; font-size: 13px; color: var(--muted); }

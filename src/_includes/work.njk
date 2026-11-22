@@ -40,6 +40,7 @@ ogType: article
         <a class="btn{% if l.icon == 'shield' %} sub{% endif %}" href="{{ l.url | url if l.internal else l.url }}"{% if not l.internal %} target="_blank" rel="noopener"{% endif %}>{{ l.label }}</a>
         {%- endfor %}
       </div>
+      {%- if work.linkNote %}<p class="link-note">{{ work.linkNote }}</p>{% endif %}
     </section>
     {%- endif %}
 
