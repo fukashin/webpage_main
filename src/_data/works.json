@@ -107,6 +107,43 @@
     "videos": []
   },
   {
+    "slug": "kotaberi",
+    "title": "こたべり（試作）",
+    "kind": "web",
+    "kindLabel": "WEB",
+    "filters": [
+      "web",
+      "ai"
+    ],
+    "year": "2026",
+    "image": "/image/こたべり.jpg",
+    "screenshot": "/image/こたべり_大鳥居.jpg",
+    "summary": "こたつを囲んで、友達としゃべって遊べるブラウザの3Dの小部屋。アプリを入れず、アドレスを開くだけで入れる（招待制の試作）。",
+    "description": [
+      "こたつを囲んで友達としゃべり、遊べるブラウザの3Dの小部屋です。アプリのインストールは不要で、PCのブラウザから入れます（スマホ・VRゴーグルはためし中）。声は近い人ほど大きく、位置のとおりの方向から聞こえます。",
+      "部屋にはAIの同居人「朝顔」がいて、話しかけるとClaudeが短く返事をします。じゃんけんや五目並べから、駒や塔が本当に崩れる将棋崩し・ジェンガまで、遊びは11種類。人が足りなければAIが席に座って相手をします。こたつごと飛んで、大鳥居や夜桜など9つの景色へ出かけることもできます。",
+      "企画から数日で、AI（Claude Code）と対話しながら作った試作です。人物・部屋・景色はほぼすべてコードで形を作り、こたつ・障子・縦書きの題など、画面の部品まで「和」の調子でそろえました。現在は招待制で、招待のアドレスがない方は入口の画面までになります。"
+    ],
+    "tech": [
+      "Three.js",
+      "JavaScript",
+      "WebRTC",
+      "WebXR",
+      "Cloudflare Workers",
+      "Durable Objects",
+      "Claude API",
+      "cannon-es"
+    ],
+    "links": [
+      {
+        "label": "入口を見る（招待制の試作）",
+        "url": "https://kotaberi.civildot.dev",
+        "icon": "link"
+      }
+    ],
+    "videos": []
+  },
+  {
     "slug": "life-simulator",
     "title": "人生シミュレーター",
     "kind": "web",
