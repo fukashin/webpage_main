@@ -276,6 +276,7 @@
     <div><ul class="dots" data-li="cam.points"></ul></div>
   </div>
   <div class="tablewrap" style="margin-top:12px"><table data-rows="cam.keys" data-head="cam.keysHead"></table></div>
+  <p data-t="cam.more"></p>
 </div></section>
 
 <section id="stream" data-stream><div class="wrap">
@@ -323,7 +324,10 @@
 <script>
 // ---------- このページの設定 ----------
 // stream: 「配信・動画のきまり」の節を出すか。連絡先が決まるまで、公開版（civildot.dev）では false にする
-const SITE = { stream: false, works: 'https://civildot.dev/works/kotaberi/', faqPage: 'https://kotaberi.civildot.dev/assets/help/faq' };
+// faqPage・camPage: こたべり本体の説明のページ（言語ごと）
+const SITE = { stream: false, works: 'https://civildot.dev/works/kotaberi/',
+  faqPage: { ja: 'https://kotaberi.civildot.dev/assets/help/faq', en: 'https://kotaberi.civildot.dev/assets/help/faq.en' },
+  camPage: { ja: 'https://kotaberi.civildot.dev/assets/help/camera', en: 'https://kotaberi.civildot.dev/assets/help/camera.en' } };
 
 // ---------- 言語ごとの文の表（ja / en）。HTML には文を書かず、ここから引く ----------
 // 用語は、こたべり本体とそろえる: こたつ=kotatsu、部屋=room、ロビー=Lobby、お題の板=Topic Board、カメラ係=Camera Crew、朝顔=Asagao
@@ -423,6 +427,7 @@ ja: {
     ['W A S D・なぞる', '自分で動かす。スペース・C で上下、ホイールで拡大'],
     ['パネル', 'お題の帯（いまの話を左上に出しっぱなし）、タイマーの板、カメラの音 入／切'],
   ],
+  'cam.more': '始めかた、OBS への入れかた、動画の説明に書くことは、<a href="{camPage}">カメラ係の使い方のページ</a>にくわしく書いてあります。',
   'st.h': '配信・動画のきまり',
   'st.lead': 'こたべりで遊んでいる様子は、配信や動画にしてかまいません。申しこみは要りません。',
   'st.draft': '下書き（まだ公開していません）。〔連絡先〕と、載せる時期は、これから決めます。',
@@ -570,6 +575,7 @@ en: {
     ['W A S D, drag', 'Move freely. Space and C for up and down, mouse wheel to zoom'],
     ['Panel', 'Topic banner (keeps the current topic in the top left), timer board, camera sound on/off'],
   ],
+  'cam.more': 'For how to start, how to add it to OBS, and what to write in your video description, see the <a href="{camPage}">Camera Crew guide</a>.',
   'st.h': 'Streaming and video rules',
   'st.lead': 'You are welcome to stream or post videos of Kotaberi. No application needed.',
   'st.draft': 'Draft (not published yet). The contact address and publishing date are still to be decided.',
@@ -693,7 +699,7 @@ let lang = pickLang(), cat = 0;
 const esc = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
 
 function render() {
-  const S = STR[lang], fill = s => String(s).replace('{n}', GAMES.length).replace('{faqPage}', SITE.faqPage);
+  const S = STR[lang], fill = s => String(s).replace('{n}', GAMES.length).replace('{faqPage}', SITE.faqPage[lang]).replace('{camPage}', SITE.camPage[lang]);
   document.documentElement.lang = lang;
   document.title = S['meta.title'];
   let md = document.querySelector('meta[name="description"]'); if (md) md.setAttribute('content', S['meta.desc']);
