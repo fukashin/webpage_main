@@ -181,11 +181,11 @@
     <div class="card"><div class="ic">映</div><h4>配信しやすい</h4><p>姿の出ない「カメラ係」で、こたつのまわりを番組のように映せます。</p></div>
   </div>
   <div class="reel">
-    <div class="clip"><video src="video/fly.mp4" poster="video/fly.jpg" autoplay muted loop playsinline></video><span class="lbl">水の上に浮かぶ畳</span></div>
-    <div class="clip"><video src="video/hero.mp4" poster="video/hero.jpg" autoplay muted loop playsinline></video><span class="lbl">天の川の下のこたつ</span></div>
-    <div class="clip"><video src="video/sky.mp4" poster="video/sky.jpg" autoplay muted loop playsinline></video><span class="lbl">見上げると天の川</span></div>
+    <div class="clip"><video src="video/g_hune.mp4" poster="video/g_hune.jpg" autoplay muted loop playsinline></video><span class="lbl">畳ごと水の上を進む</span></div>
+    <div class="clip"><video src="video/g_kotatsu.mp4" poster="video/g_kotatsu.jpg" autoplay muted loop playsinline></video><span class="lbl">天の川の下のこたつ</span></div>
+    <div class="clip"><video src="video/g_sora.mp4" poster="video/g_sora.jpg" autoplay muted loop playsinline></video><span class="lbl">見上げると天の川と星座</span></div>
   </div>
-  <p style="font-size:12px;color:var(--sub);margin:8px 0 0">上の3本は星の川原の見本の景色です（人物は見本用のかんたんな形）。下の節の動画は、ゲームの画面です。</p>
+  <p style="font-size:12px;color:var(--sub);margin:8px 0 0">動画と写真は、どれもゲームの実際の画面です（星の川原）。</p>
   <div class="row2" style="margin-top:36px">
     <figure class="shot" style="margin:0"><div class="clip" style="border:0;border-radius:0"><video src="video/chibi5.mp4" poster="video/chibi5.jpg" autoplay muted loop playsinline aria-label="いつもの部屋で、こたつを囲む5人が笑ったり驚いたりする"></video></div><figcaption>いつもの部屋で5人がこたつを囲む</figcaption></figure>
     <div>
@@ -451,13 +451,13 @@ document.querySelectorAll('[data-count]').forEach(e => e.textContent = GAMES.len
 const WORLDS = [
   ['家', 'いつもの部屋', 'おかえりなさい。障子と行灯の和室。花壇もここに。', 'v_01_heya_4nin.jpg'],
   ['星', '星の川原', '星の川のほとり。天の川と星座、川に映る星。', 'v_02_hoshi_b.jpg'],
-  ['雲', '雲海の山々', '雲の上の夜明け。朝までしゃべった日に。', '11_kumo.jpg'],
-  ['朱', '大鳥居の夜', '水の上の大きな鳥居。少しあらたまって話す夜に。', '12_torii.jpg'],
-  ['灯', '夜の参道', '灯籠の灯りがつづく道。ゆっくり話したい夜に。', '13_sando.jpg'],
-  ['紅', '紅葉の谷', '色づいた谷の夕暮れ。のんびり話したい日に。', '14_momiji.jpg'],
+  ['雲', '雲海の山々', '雲の上の夜明け。朝までしゃべった日に。', 'w_kumo.jpg'],
+  ['朱', '大鳥居の夜', '水の上の大きな鳥居。少しあらたまって話す夜に。', 'w_torii.jpg'],
+  ['灯', '夜の参道', '灯籠の灯りがつづく道。ゆっくり話したい夜に。', 'w_sando.jpg'],
+  ['紅', '紅葉の谷', '色づいた谷の夕暮れ。のんびり話したい日に。', 'w_momiji.jpg'],
   ['華', '花火の夜', '目の前で花火が開く。全員の画面で同じタイミング。', 'v_03_hanabi_a.jpg'],
-  ['雪', '雪見の夜', 'しんしんと雪がふる。こたつがいちばん似合う夜に。', '16_yuki.jpg'],
-  ['桜', '夜桜', '満開の桜の上で。はじめての人と話す日に。', '17_sakura.jpg'],
+  ['雪', '雪見の夜', 'しんしんと雪がふる。こたつがいちばん似合う夜に。', 'w_yuki.jpg'],
+  ['桜', '夜桜', '満開の桜の上で。はじめての人と話す日に。', 'w_sakura.jpg'],
 ];
 const wb = document.getElementById('worlds');
 for (const [h, n, d, img] of WORLDS) { const el = document.createElement('div'); el.className = 'w'; el.innerHTML = `<img src="img/${img}" alt="${n}" loading="lazy"><div class="t"><span class="han">${h}</span><b>${n}</b><p>${d}</p></div>`; wb.append(el); }
