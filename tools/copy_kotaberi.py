@@ -60,8 +60,14 @@ page = f"""<!doctype html>
 open(os.path.join(DST, "index.html"), "w", encoding="utf-8", newline="\n").write(page)
 
 # 使っている画像・動画だけを写す
-used = set(re.findall(r'(img/[\w\-]+\.jpg|video/[\w\-]+\.(?:mp4|jpg))', page))
+used = set(re.findall(r'(img/[\w\-]+\.(?:jpg|png|webp)|video/[\w\-]+\.(?:mp4|jpg))', page))
 used |= {"img/" + m for m in re.findall(r"'([\w\-]+\.jpg)'\]", page)}
+# JavaScript で名前を組み立てて読む絵（img/av/v${i}.webp）は、名前を探しても見つからないのでフォルダごと写す
+for d in ["img/av"]:
+    if os.path.isdir(os.path.join(SRC, d)):
+        for f in os.listdir(os.path.join(SRC, d)):
+            used.add(f"{d}/{f}")
+os.makedirs(os.path.join(DST, "img", "av"), exist_ok=True)
 for u in sorted(used):
     shutil.copy2(os.path.join(SRC, u.replace("/", os.sep)), os.path.join(DST, u.replace("/", os.sep)))
 print(len(used), "files:", sorted(used))
