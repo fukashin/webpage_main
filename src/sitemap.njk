@@ -7,4 +7,5 @@ eleventyExcludeFromCollections: true
 {%- for p in collections.all %}
   <url><loc>{{ p.url | url | absolute(site.url) }}</loc></url>
 {%- endfor %}
+  <url><loc>{{ '/kotaberi/' | url | absolute(site.url) }}</loc></url>
 </urlset>

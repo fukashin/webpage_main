@@ -22,6 +22,19 @@ permalink: /index.html
 </section>
 
 <main class="wrap" id="works">
+  <a class="pickup" href="{{ '/kotaberi/' | url }}">
+    <img src="{{ '/image/こたべり.jpg' | url }}" alt="こたつを囲んでしゃべる、こたべりの部屋" loading="lazy">
+    <div class="pickup-body">
+      <div class="mono pickup-tag">NEW · 招待制の試作</div>
+      <h2>こたべり</h2>
+      <p>こたつを囲んで、しゃべって、遊んで、こたつごと出かける。ブラウザで入れる3Dの小部屋。</p>
+      <div class="pickup-btns">
+        <span class="pickup-btn">こたべりとは →</span>
+        <object><a class="pickup-btn sub" href="{{ '/kotaberi/#join' | url }}">遊ぶには →</a></object>
+      </div>
+    </div>
+  </a>
+
   <div class="section-head">
     <h2>works — 作ったもの（力を入れている順）</h2>
     <div class="filters">
@@ -35,7 +48,7 @@ permalink: /index.html
 
   <div class="grid">
     {%- for w in works %}
-    <a class="card" href="{{ ('/works/' + w.slug + '/') | url }}" data-k="{{ w.filters | join(' ') }}">
+    <a class="card" href="{{ (w.href or ('/works/' + w.slug + '/')) | url }}" data-k="{{ w.filters | join(' ') }}">
       <div class="thumb"><img src="{{ w.image | url }}" alt="{{ w.title }}" loading="lazy"><span class="kind {{ w.kind }}">{{ w.kindLabel }}</span></div>
       <div class="body">
         <div class="year">{{ w.year }}</div>
