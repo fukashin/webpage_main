@@ -19,6 +19,12 @@ html = html.replace('<p>はい。<a href="#stream">配信・動画のきまり</
                     '<p>はい。くわしいきまりは準備中です。同じ部屋の人に、先に断ってからにしてください。</p>')
 assert "#stream" not in html and "〔連絡先〕" not in html
 
+# 上の帯（目次）が細い画面で重ならないように: 項目は縮めず、横にスクロールさせる
+# （.wrap > * { min-width: 0 } で項目が縮み、文字どうしが重なっていた。元のページで直ったら何もしない）
+if "nav.top .wrap > * { flex-shrink: 0; }" not in html:
+    html = html.replace("  nav.top a.n:hover {", "  nav.top .wrap > * { flex-shrink: 0; }\n  nav.top a.n:hover {", 1)
+    assert "nav.top .wrap > * { flex-shrink: 0; }" in html
+
 # 「遊ぶには」の飛び先
 html = html.replace('<h3 style="margin-top:0">いまは「招待制の試作」です</h3>', '<h3 id="join" style="margin-top:0;scroll-margin-top:72px">いまは「招待制の試作」です</h3>')
 assert 'id="join"' in html
