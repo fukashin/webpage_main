@@ -136,6 +136,12 @@
     ],
     "links": [
       {
+        "label": "特設サイトを見る",
+        "url": "/kotaberi/",
+        "icon": "link",
+        "internal": true
+      },
+      {
         "label": "入口を見る（招待制の試作）",
         "url": "https://kotaberi.civildot.dev",
         "icon": "link"

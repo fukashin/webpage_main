@@ -1,0 +1,438 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>こたべり特設サイト</title>
+<meta name="description" content="こたつを囲んで、しゃべって、遊んで、こたつごと出かける。ブラウザで入れる 3D の小部屋「こたべり」の説明のページです。">
+<meta name="robots" content="noindex">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@600;800&family=Zen+Maru+Gothic:wght@500;700;900&display=swap" rel="stylesheet">
+<style>
+  /* 夜の和室だけの1つの見た目（暗い面だけで作る）。色はゲームの見た目の方針と同じ */
+  :root {
+    color-scheme: dark;
+    --night: #1b2140; --night2: #141933; --deep: #0e1226; --line: #2e3560;
+    --paper: #f4efe2; --paper2: #e9e1cc; --ink: #26242e; --sub: #b9bfdc;
+    --shu: #d9482b; --andon: #ffb866; --futon: #2f7f80; --futon2: #3f9a98; --mikan: #f08a24; --wood: #6b4636;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 64px; }
+  body { margin: 0; background: var(--night2); color: var(--paper); font-family: 'Zen Maru Gothic', 'Hiragino Maru Gothic ProN', 'Yu Gothic UI', sans-serif; font-weight: 500; line-height: 1.8; font-size: 16px; }
+  a { color: var(--andon); }
+  img { max-width: 100%; display: block; }
+  .min { font-family: 'Shippori Mincho', serif; font-weight: 800; }
+  .wrap { max-width: 1080px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+  .wrap > * { min-width: 0; }
+  body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--deep); }
+
+  /* 上の帯（目次） */
+  nav.top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 10; background: rgba(14, 18, 38, .92); backdrop-filter: blur(6px); border-bottom: 1px solid var(--line); }
+  nav.top .wrap { display: flex; align-items: center; gap: 10px; height: 54px; overflow-x: auto; scrollbar-width: none; }
+  nav.top .wrap::-webkit-scrollbar { display: none; }
+  nav.top .logo { font-weight: 900; color: var(--andon); text-decoration: none; font-size: 19px; white-space: nowrap; margin-right: 6px; }
+  nav.top a.n { color: var(--sub); text-decoration: none; font-size: 14px; white-space: nowrap; padding: 4px 10px; border-radius: 99px; }
+  nav.top a.n:hover { color: var(--paper); background: var(--line); }
+
+  /* いちばん上 */
+  header.hero { position: relative; min-height: min(78vh, 720px); display: flex; align-items: flex-end; background: var(--deep); overflow: hidden; }
+  header.hero video, .clip video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  header.hero img.kb { position: absolute; inset: 0; width: 100%; height: 100%; max-width: none; object-fit: cover; object-position: center 70%; animation: kb 26s ease-in-out infinite alternate; }
+  @keyframes kb { from { transform: scale(1.02); } to { transform: scale(1.12) translate(-1.5%, 1%); } }
+  @media (prefers-reduced-motion: reduce) { header.hero img.kb { animation: none; } }
+  header.hero::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(14,18,38,.0) 30%, rgba(14,18,38,.55) 70%, var(--night2) 100%); }
+  header.hero .wrap { position: relative; z-index: 1; padding-bottom: 56px; width: 100%; }
+  .badge { display: inline-block; background: var(--shu); color: var(--paper); font-weight: 900; font-size: 13px; padding: 2px 12px; border-radius: 99px; letter-spacing: .05em; }
+  .badge.wait { background: var(--line); color: var(--sub); }
+  .badge.try { background: var(--futon); }
+  header.hero h1 { font-size: clamp(40px, 8vw, 84px); line-height: 1.15; margin: 14px 0 6px; text-shadow: 0 4px 24px rgba(5,8,30,.8); }
+  .nb { display: inline-block; }
+  header.hero .lead { font-size: clamp(17px, 2.4vw, 22px); margin: 0 0 22px; text-shadow: 0 2px 12px rgba(5,8,30,.9); }
+  .btns { display: flex; flex-wrap: wrap; gap: 10px; }
+  .btn { display: inline-block; text-decoration: none; font-weight: 900; padding: 10px 22px; border-radius: 12px; background: var(--paper); color: var(--ink); box-shadow: 0 4px 0 #0a0d1e; }
+  .btn.shu { background: var(--shu); color: var(--paper); }
+  .cap { position: absolute; right: 16px; bottom: 10px; z-index: 1; font-size: 11px; color: var(--sub); opacity: .8; }
+
+  section { padding: 72px 0 24px; }
+  h2 { font-family: 'Shippori Mincho', serif; font-weight: 800; font-size: clamp(28px, 4.4vw, 40px); margin: 0 0 6px; line-height: 1.3; }
+  h2 .no { color: var(--shu); margin-right: 10px; }
+  .sec-lead { color: var(--sub); margin: 0 0 28px; }
+  h3 { font-size: 20px; margin: 32px 0 10px; font-weight: 900; }
+
+  /* 3つの特長 */
+  .three { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
+  .card { background: var(--night); border: 1px solid var(--line); border-radius: 16px; padding: 20px; }
+  .card h4 { margin: 10px 0 4px; font-size: 18px; font-weight: 900; }
+  .card p { margin: 0; color: var(--sub); font-size: 15px; }
+
+  /* 写真と文の段 */
+  .row2 { display: grid; grid-template-columns: 1.2fr 1fr; gap: 28px; align-items: center; margin: 24px 0; }
+  .row2.rev { grid-template-columns: 1fr 1.2fr; }
+  .row2.rev > .shot { order: 2; }
+  .shot { border-radius: 14px; overflow: hidden; border: 1px solid var(--line); background: var(--deep); }
+  .shot figcaption { font-size: 12px; color: var(--sub); padding: 6px 10px; }
+  @media (max-width: 760px) { .row2, .row2.rev { grid-template-columns: 1fr; } .row2.rev > .shot { order: 0; } }
+
+  /* くり返し再生の短い動画 */
+  .clip { position: relative; aspect-ratio: 16 / 9; max-width: 100%; border-radius: 14px; overflow: hidden; border: 1px solid var(--line); background: var(--deep); }
+  .clip .lbl { position: absolute; left: 10px; bottom: 8px; font-size: 12px; font-weight: 900; color: var(--paper); background: rgba(14,18,38,.72); padding: 1px 10px; border-radius: 99px; }
+  .reel { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 28px; }
+  @media (max-width: 760px) { .reel { grid-template-columns: 1fr; } }
+  .card .ic { display: inline-flex; width: 34px; height: 34px; align-items: center; justify-content: center; border-radius: 8px; background: var(--shu); color: var(--paper); font-family: 'Shippori Mincho', serif; font-weight: 800; font-size: 19px; }
+
+  ul.dots { margin: 0; padding-left: 1.2em; }
+  ul.dots li { margin: 4px 0; }
+  .kbd { display: inline-block; min-width: 1.8em; text-align: center; font-size: 13px; font-weight: 900; background: var(--paper); color: var(--ink); border-radius: 6px; padding: 0 6px; box-shadow: 0 2px 0 #0a0d1e; margin: 0 2px; }
+
+  /* 遊びの一覧 */
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 18px; }
+  .chip { font: inherit; font-weight: 900; font-size: 14px; border: 1px solid var(--line); background: var(--night); color: var(--sub); padding: 6px 14px; border-radius: 99px; cursor: pointer; }
+  .chip.on { background: var(--shu); border-color: var(--shu); color: var(--paper); }
+  .games { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 12px; }
+  .g { background: var(--paper); color: var(--ink); border-radius: 14px; padding: 14px 16px 12px; position: relative; box-shadow: 0 4px 0 #0a0d1e; }
+  .g .nm { font-weight: 900; font-size: 17px; }
+  .g .ic { margin-right: 6px; }
+  .g .ppl { display: inline-block; font-size: 12px; font-weight: 900; color: var(--futon); background: #dfeeed; border-radius: 99px; padding: 0 8px; margin-top: 4px; }
+  .g p { margin: 6px 0 0; font-size: 14px; line-height: 1.65; color: #4a4652; }
+  .g .st { position: absolute; top: 10px; right: 10px; font-size: 11px; }
+  .count { color: var(--andon); font-weight: 900; }
+
+  /* ワールド */
+  .worlds { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; }
+  .w { border-radius: 14px; overflow: hidden; background: var(--night); border: 1px solid var(--line); }
+  .w img { aspect-ratio: 16/10; object-fit: cover; width: 100%; }
+  .w .t { padding: 8px 12px 10px; }
+  .w .t b { font-family: 'Shippori Mincho', serif; font-size: 18px; }
+  .w .t .han { display: inline-block; background: var(--shu); color: var(--paper); font-family: 'Shippori Mincho', serif; font-weight: 800; font-size: 13px; width: 22px; height: 22px; line-height: 22px; text-align: center; border-radius: 4px; margin-right: 6px; vertical-align: 2px; }
+  .w .t p { margin: 2px 0 0; color: var(--sub); font-size: 13px; line-height: 1.6; }
+
+  /* 表 */
+  table { width: 100%; border-collapse: collapse; font-size: 15px; }
+  th, td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  th { color: var(--andon); font-weight: 900; white-space: nowrap; }
+  .tablewrap { overflow-x: auto; background: var(--night); border: 1px solid var(--line); border-radius: 14px; padding: 6px 8px; }
+
+  /* 決まりの紙 */
+  .paper { background: var(--paper); color: var(--ink); border-radius: 16px; padding: 24px 26px; box-shadow: 0 6px 0 #0a0d1e; }
+  .paper h3 { margin-top: 18px; }
+  .paper h3:first-child { margin-top: 0; }
+  .paper code { background: var(--paper2); padding: 2px 8px; border-radius: 6px; font-size: 14px; display: inline-block; }
+  .note { border-left: 4px solid var(--andon); background: rgba(255,184,102,.08); padding: 10px 14px; border-radius: 0 10px 10px 0; color: var(--paper); font-size: 15px; margin: 16px 0; }
+  .draft { border: 2px dashed var(--shu); border-radius: 12px; padding: 8px 14px; color: var(--shu); font-weight: 900; font-size: 14px; margin-bottom: 14px; background: #fff3ee; }
+
+  /* よくある質問 */
+  details { background: var(--night); border: 1px solid var(--line); border-radius: 12px; padding: 12px 16px; margin: 8px 0; }
+  summary { cursor: pointer; font-weight: 900; }
+  details p { margin: 8px 0 0; color: var(--sub); }
+
+  footer { margin-top: 72px; padding: 32px 0 48px; background: var(--deep); color: var(--sub); font-size: 13px; }
+  footer h4 { color: var(--paper); margin: 0 0 6px; font-size: 15px; }
+  footer ul { margin: 0 0 16px; padding-left: 1.2em; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  a:focus-visible, button:focus-visible, summary:focus-visible { outline: 3px solid var(--andon); outline-offset: 2px; }
+</style>
+</head>
+<body>
+<nav class="top"><div class="wrap">
+  <a class="logo" href="#top">こたべり</a>
+  <a class="n" href="#about">こたべりって？</a>
+  <a class="n" href="#talk">しゃべる</a>
+  <a class="n" href="#play">遊ぶ</a>
+  <a class="n" href="#go">出かける</a>
+  <a class="n" href="#avatar">アバター</a>
+  <a class="n" href="#asagao">朝顔</a>
+  <a class="n" href="#camera">カメラ係</a>
+  <a class="n" href="#device">端末と操作</a>
+  <a class="n" href="#room">部屋</a>
+  <a class="n" href="#next">これから</a>
+  <a class="n" href="#faq">質問</a>
+</div></nav>
+
+<header class="hero" id="top">
+  <img class="kb" src="img/v_02_hoshi_e.jpg" alt="" aria-hidden="true">
+  <div class="wrap">
+    <span class="badge">招待制の試作</span>
+    <h1 class="min"><span class="nb">こたつから</span><span class="nb">出ずに、</span><br><span class="nb">どこへでも。</span></h1>
+    <p class="lead">こたつを囲んで、しゃべって、遊んで、こたつごと出かける。<br>ブラウザで入れる、みんなのこたつ空間「こたべり」。</p>
+    <div class="btns"><a class="btn shu" href="#play">遊べることを見る</a><a class="btn" href="https://civildot.dev/works/kotaberi/">作品の紹介（シヴィルドット）</a></div>
+  </div>
+  <div class="cap">画面: 星の川原。アプリに入っている試しの VRM で撮影</div>
+</header>
+
+<!-- 1 こたべりって？ -->
+<section id="about"><div class="wrap">
+  <h2><span class="no">一</span>こたべりって？</h2>
+  <p class="sec-lead">名前は「こたつ」と「おしゃべり」。こたつは一度入ると出られない。だから、こたつのほうが動くことにしました。</p>
+  <div class="three">
+    <div class="card"><div class="ic">入</div><h4>アドレスを開くだけ</h4><p>アプリを入れなくていい。ブラウザで開いて、名前と見た目を選んで「入る」。</p></div>
+    <div class="card"><div class="ic">同</div><h4>PC・スマホ・VR が同じ部屋に</h4><p>パソコンの人、スマホの人、VR ゴーグルの人が、同じこたつを囲めます。</p></div>
+    <div class="card"><div class="ic">和</div><h4>和の夜の小部屋</h4><p>障子、行灯、みかん。ボタンや知らせまで、和の調子でそろえました。</p></div>
+    <div class="card"><div class="ic">遊</div><h4>遊びが <span class="count" data-count>たくさん</span></h4><p>じゃんけんから、本当に崩れるジェンガまで。人が足りなければ AI が相手をします。</p></div>
+    <div class="card"><div class="ic">旅</div><h4>こたつごと出かける</h4><p>星の川原、雲海、花火の夜……。畳ごと空を飛んで、景色ががらりと変わります。</p></div>
+    <div class="card"><div class="ic">映</div><h4>配信しやすい</h4><p>姿の出ない「カメラ係」で、こたつのまわりを番組のように映せます。</p></div>
+  </div>
+  <div class="reel">
+    <div class="clip"><video src="video/fly.mp4" poster="video/fly.jpg" autoplay muted loop playsinline></video><span class="lbl">水の上に浮かぶ畳</span></div>
+    <div class="clip"><video src="video/hero.mp4" poster="video/hero.jpg" autoplay muted loop playsinline></video><span class="lbl">天の川の下のこたつ</span></div>
+    <div class="clip"><video src="video/sky.mp4" poster="video/sky.jpg" autoplay muted loop playsinline></video><span class="lbl">見上げると天の川</span></div>
+  </div>
+  <p style="font-size:12px;color:var(--sub);margin:8px 0 0">動画は星の川原の見本の景色です（人物は見本用のかんたんな形）。ゲームの場面の動画は、これから足します。</p>
+  <div class="row2" style="margin-top:36px">
+    <figure class="shot" style="margin:0"><img src="img/v_01_heya_4nin_b.jpg" alt="いつもの部屋で、こたつを囲む4人" loading="lazy"><figcaption>いつもの部屋で4人がこたつを囲む（試しの VRM で撮影）</figcaption></figure>
+    <div>
+      <h3 style="margin-top:0">いまは「招待制の試作」です</h3>
+      <ul class="dots">
+        <li>部屋を開けられるのは、管理している人だけです。</li>
+        <li>入れるのは、招待のアドレスをもらった人です。招待された人は、さらに友だちを招待できます。</li>
+        <li>だれでも入れる部屋は、これから作る予定です（<a href="#next">これから</a>）。</li>
+        <li>スマホと VR は、確かめきれていない所があります。</li>
+      </ul>
+    </div>
+  </div>
+</div></section>
+
+<!-- 2 しゃべる -->
+<section id="talk"><div class="wrap">
+  <h2><span class="no">二</span>しゃべる・動く</h2>
+  <p class="sec-lead">声でも、文字でも。近くの人の声は大きく、相手のいる方向から聞こえます。</p>
+  <div class="row2">
+    <figure class="shot" style="margin:0"><img src="img/v_05_odai_to_heya.jpg" alt="お題の板と、こたつを囲む4人" loading="lazy"><figcaption>お題の板に「いまの話」を出したところ</figcaption></figure>
+    <div class="tablewrap"><table>
+      <tr><th>声</th><td>「声 オン／オフ」で切りかえ。遠いと小さく、相手の方向から聞こえる。人ごとの音量を 0〜150% で変えられる</td></tr>
+      <tr><th>文字</th><td>60文字まで。左上に履歴が出る</td></tr>
+      <tr><th>表情</th><td>リアクション 😆 笑う・😲 驚く・😥 困る</td></tr>
+      <tr><th>顔のカメラ</th><td>カメラで顔を読んで、アバターの表情と頭の向きに映す（使うかは自分で決める）</td></tr>
+      <tr><th>動く</th><td>歩く・すわる・走る・ジャンプ（着地の「タッ」つき）・しゃがむ</td></tr>
+      <tr><th>視点</th><td>「自分」と「机の上」を切りかえ</td></tr>
+      <tr><th>みかん</th><td>皿をタップすると食べる。3個食べたら、おかわりが出る</td></tr>
+      <tr><th>お題の板</th><td>「いまの話」を大きく出す板。話したいことを「お便り」で入れておける（名前を出さずにも）</td></tr>
+      <tr><th>離席</th><td>別のタブを見ている人の名札に 💤</td></tr>
+    </table></div>
+  </div>
+</div></section>
+
+<!-- 3 遊ぶ -->
+<section id="play"><div class="wrap">
+  <h2><span class="no">三</span>遊ぶ</h2>
+  <p class="sec-lead">「🎲 あそぶ」から選びます。いま <span class="count" data-count>―</span>。人が足りないときは AI が席に座って相手をします。</p>
+  <div class="chips" id="chips"></div>
+  <div class="games" id="games"></div>
+  <div class="row2 rev" style="margin-top:40px">
+    <figure class="shot" style="margin:0"><img src="img/v_04_jenga_naname.jpg" alt="こたつの上のジェンガ" loading="lazy"><figcaption>ジェンガ。塔は本当に倒れる</figcaption></figure>
+    <div>
+      <h3 style="margin-top:0">本当に崩れる</h3>
+      <p>おはじき・将棋崩し・ジェンガ・ドミノ倒しは、駒や塔が本物のようにぶつかって崩れます。全員の画面で同じ動きになります。</p>
+      <h3>参加のしかた</h3>
+      <p>多くの遊びは「参加しますか？」に「参加する」を押した人で始まります。押さなかった人は見物です。自分の番が来ると、画面のまん中に「あなたの番です」と出ます。</p>
+    </div>
+  </div>
+</div></section>
+
+<!-- 4 出かける -->
+<section id="go"><div class="wrap">
+  <h2><span class="no">四</span>こたつごと出かける</h2>
+  <p class="sec-lead">灯りが消えて、こたつが飛び立ち、着くと縦書きの題が出ます。行き先を決めるのはルーム主です。</p>
+  <div class="worlds" id="worlds"></div>
+  <div class="row2" style="margin-top:36px">
+    <figure class="shot" style="margin:0"><img src="img/soujuu.jpg" alt="操縦機のつまみとレバー" loading="lazy"><figcaption>こたつの手前の操縦機</figcaption></figure>
+    <div>
+      <h3 style="margin-top:0">畳ごと動かす「操縦機」</h3>
+      <p>出かけた先では、手前の操縦機のレバーをたおすと、畳ごとその向きへ進みます。つまみで速さを3段階に。動かせるのはルーム主です。</p>
+      <h3>星の川原の星座</h3>
+      <p>天の川と、夏・冬の大三角、北斗七星、カシオペヤ、さそり。線と名前は「星座を見る」で出し入れできます。PC では川に星が映ります。</p>
+      <h3>釣り</h3>
+      <p>外のワールドでは釣りができます。8か所で全部 79 種。めずらしさは★3段階で、図鑑に残ります。</p>
+    </div>
+  </div>
+</div></section>
+
+<!-- 5 アバター -->
+<section id="avatar"><div class="wrap">
+  <h2><span class="no">五</span>アバター</h2>
+  <p class="sec-lead">入口で選びます。見本がその場でくるくる回ります。</p>
+  <div class="row2 rev">
+    <figure class="shot" style="margin:0"><img src="img/v_09_hanten_yori.jpg" alt="はんてんのアバターと、VRM の4人" loading="lazy"><figcaption>まん中が、はんてんのアバター。まわりの4人は試しの VRM</figcaption></figure>
+    <div class="tablewrap"><table>
+      <tr><th>はんてん</th><td>いちばん軽い。はんてん8色・髪6色・かぶり物5種（なし・はちまき・みかん・ねこ耳・毛糸の帽子）</td></tr>
+      <tr><th>キャラクター</th><td>朝顔、ピンクの朝顔、銀髪メガネ、黒髪に赤い上着の4人</td></tr>
+      <tr><th>人型・ちび <span class="badge try">試し</span></th><td>なす・猫又・包子の侍・千駄ヶ谷 渋・AvatarSample A／B／C の7体。部屋に入ってから読みこむ</td></tr>
+      <tr><th>自分の VRM <span class="badge try">試し</span></th><td>自分の .vrm（15MB まで）を着られる。ファイルは自分の端末の中だけに置く。ルーム主が許すと、同じ部屋の人にも見える（部屋を出ると消える）</td></tr>
+      <tr><th>座り方</th><td>人型のアバターは、ふつう・前かがみ・ごろ寝</td></tr>
+    </table></div>
+  </div>
+  <div class="note">自分の VRM を使うときは、そのアバターの利用条件（使ってよい人・商用など）を守ってください。入口で、ファイルに書かれた条件を見せて、約束にチェックしてもらいます。</div>
+</div></section>
+
+<!-- 6 朝顔 -->
+<section id="asagao"><div class="wrap">
+  <h2><span class="no">六</span>朝顔（AI の同居人）</h2>
+  <p class="sec-lead">部屋にいる案内役です。話しかけると、短く返事をして、声でも答えます。</p>
+  <div class="three">
+    <div class="card"><div class="ic">話</div><h4>話しかける</h4><p>文字か「朝顔に話す」ボタンで。1人のときは毎回、2人以上のときは「朝顔」と呼んだときに答えます。</p></div>
+    <div class="card"><div class="ic">席</div><h4>席をゆずる</h4><p>人が2人以上になると、行灯のそばに立って、席をあけます。</p></div>
+    <div class="card"><div class="ic">相</div><h4>AI の相手を呼ぶ</h4><p>ルーム主が「AI を呼ぶ」で3人まで。じゃんけん・チンチロ・盤の遊び・うそつき札などに入ります。</p></div>
+  </div>
+</div></section>
+
+<!-- 7 カメラ係 -->
+<section id="camera"><div class="wrap">
+  <h2><span class="no">七</span>カメラ係（撮影用）</h2>
+  <p class="sec-lead">姿の出ないカメラで、こたつのまわりを番組のように映せます。OBS で取りこんで配信・録画に。</p>
+  <div class="row2">
+    <figure class="shot" style="margin:0"><div style="display:grid;grid-template-columns:repeat(3,1fr);gap:2px"><img src="img/v_06_kao_hidari.jpg" alt="左の席の人の顔" loading="lazy"><img src="img/v_06_kao_oku.jpg" alt="奥の席の人の顔" loading="lazy"><img src="img/v_06_kao_migi.jpg" alt="右の席の人の顔" loading="lazy"></div><figcaption>数字キー 4・6・5 で、席の人の顔を映す</figcaption></figure>
+    <div>
+      <ul class="dots">
+        <li>入口の「カメラ係を、別のウィンドウで開く」から。「【カメラ】こたべり 撮影用」という 1280×720 のウィンドウが開きます。</li>
+        <li>姿は部屋に出ず、席も使わず、遊びの人数にも入りません。入ったことは、部屋の全員に知らされます。</li>
+        <li>カメラの音は、初めは「切」。録るときは OBS で「デスクトップ音声＋マイク」を取るのがおすすめです。</li>
+      </ul>
+    </div>
+  </div>
+  <div class="tablewrap" style="margin-top:12px"><table>
+    <tr><th>キー</th><th>はたらき</th></tr>
+    <tr><td><span class="kbd">1</span>〜<span class="kbd">8</span></td><td>決まった位置へ（1 横から・2 机の真上・3 ななめ上・4 左の席・5 右の席・6 奥の席・7 手前の席・8 お題の板）。なめらかに動く。<span class="kbd">Shift</span> を足すとパッと切りかわる</td></tr>
+    <tr><td><span class="kbd">T</span></td><td>話している人の顔へ、自動で向く（6秒だれも話さないと全体へ戻る）</td></tr>
+    <tr><td><span class="kbd">Y</span></td><td>話している人の目の位置から映す</td></tr>
+    <tr><td><span class="kbd">V</span> <span class="kbd">X</span> <span class="kbd">Z</span></td><td>競争の遊びの盤を「全員を並べる → 見どころを自動で → 1人ずつ」。X・Z で次の人・前の人</td></tr>
+    <tr><td><span class="kbd">H</span></td><td>文字をかくす（場面が変わる演出と、結果の帯は残る）</td></tr>
+    <tr><td>W A S D・なぞる</td><td>自分で動かす。スペース・C で上下、ホイールで拡大</td></tr>
+    <tr><td>パネル</td><td>お題の帯（いまの話を左上に出しっぱなし）、タイマーの板、カメラの音 入／切</td></tr>
+  </table></div>
+</div></section>
+
+<!-- 9 端末と操作 -->
+<section id="device"><div class="wrap">
+  <h2><span class="no">九</span>端末と操作</h2>
+  <p class="sec-lead">重いと感じたら「軽い表示」に。重いときは自動で切りかわります。</p>
+  <div class="three">
+    <div class="card"><div class="ic">机</div><h4>PC</h4><p><span class="kbd">W</span><span class="kbd">A</span><span class="kbd">S</span><span class="kbd">D</span> 歩く・<span class="kbd">E</span> すわる・<span class="kbd">Shift</span> 走る・<span class="kbd">Space</span> ジャンプ・<span class="kbd">C</span> しゃがむ・<span class="kbd">Enter</span> 文字。<span class="kbd">M</span> メニュー・<span class="kbd">G</span> あそぶ・<span class="kbd">V</span> 視点・<span class="kbd">O</span> 出かける・<span class="kbd">R</span> リアクション・<span class="kbd">T</span> 設定。キーは設定で変えられます。</p></div>
+    <div class="card"><div class="ic">手</div><h4>スマホ</h4><p>なぞって見回す。2回続けてタップで歩く・すわる。2本指で拡大。ホーム画面に置くと「前に入った部屋へ」が出ます。</p></div>
+    <div class="card"><div class="ic">眼</div><h4>VR <span class="badge try">試し</span></h4><p>Quest の内蔵ブラウザなどで「VR で入る（ためし）」。左スティックで歩く、引き金で押す、A・X で札のメニュー。</p></div>
+  </div>
+  <h3>設定の画面でできること</h3>
+  <div class="tablewrap"><table>
+    <tr><th>音</th><td>全体の音量、効果音の大きさ、朝顔の声（端末の声／VOICEVOX）、人ごとの声の大きさ</td></tr>
+    <tr><th>画面</th><td>軽い表示、画質（あらめ・ふつう・きれい）、全画面、速さの表示、星座の表示、持ちこみの体を出す</td></tr>
+    <tr><th>キー</th><td>割り当てを変える、元に戻す</td></tr>
+  </table></div>
+</div></section>
+
+<!-- 10 部屋 -->
+<section id="room"><div class="wrap">
+  <h2><span class="no">十</span>部屋のしくみ</h2>
+  <div class="tablewrap"><table>
+    <tr><th>人数</th><td>1部屋8人まで（ルーム主が2〜8人で変えられる）。席は8つ。辺の4つが遊ぶ席、角の4つは見物の席</td></tr>
+    <tr><th>ルーム主 👑</th><td>最初に部屋を開けた人。抜けると、いちばん長くいる人に移る。「主を譲る」でゆずれる</td></tr>
+    <tr><th>部屋の設定</th><td>人数の上限、鍵をかける（新しい人を入れない）、合言葉、遊びを始められる人、朝顔を置くか、持ちこみの体を見せるか、AI を入れる・帰す、遊びを止める</td></tr>
+    <tr><th>困った人への手当て</th><td>ルーム主は、いる人の一覧から追い出す・入れなくする</td></tr>
+    <tr><th>残る物</th><td>全員が抜けると部屋は閉じる。花壇・みかんむき・パズルの進み具合・お題の板は、部屋ごとに残る</td></tr>
+    <tr><th>自動</th><td>切れたらつなぎ直す。60分動きがないと切れる</td></tr>
+  </table></div>
+</div></section>
+
+<!-- 11 これから -->
+<section id="next"><div class="wrap">
+  <h2><span class="no">十一</span>これから</h2>
+  <p class="sec-lead">作る予定の物と、考えている物です。順番や形は変わることがあります。</p>
+  <div class="three">
+    <div class="card"><span class="badge wait">予定</span><h4>だれでも入れる部屋</h4><p>ロビーから、空いている部屋に入れる形。時間がたつと部屋がリセットされます。</p></div>
+    <div class="card"><span class="badge wait">案</span><h4>遊びを増やす</h4><p>あっち向いてホイ、神経衰弱、だるま落とし、〇×クイズ、みんなで分担する料理や本棚の整理。</p></div>
+    <div class="card"><span class="badge wait">案</span><h4>大きいこたつ</h4><p>5〜8人で囲める、大きいこたつ。</p></div>
+    <div class="card"><span class="badge wait">案</span><h4>配信と連動</h4><p>配信のコメントに部屋が反応する。「録画中」の表示。</p></div>
+    <div class="card"><span class="badge try">試し</span><h4>降りて歩けるワールド</h4><p>「古い書庫」。こたつから降りて、本を棚に整理する。</p></div>
+    <div class="card"><span class="badge wait">案</span><h4>釣りの続き</h4><p>釣った大物を部屋に飾る、料理する。</p></div>
+  </div>
+</div></section>
+
+<!-- 12 質問 -->
+<section id="faq"><div class="wrap">
+  <h2><span class="no">十二</span>よくある質問</h2>
+  <details><summary>お金はかかりますか？</summary><p>かかりません。登録もいりません（いまは招待制の試作です）。</p></details>
+  <details><summary>アプリを入れる必要はありますか？</summary><p>いりません。ブラウザでアドレスを開くだけです。ホーム画面に置くこともできます。</p></details>
+  <details><summary>何人で遊べますか？</summary><p>1部屋8人までです。遊びは1人からできる物もあります。人が足りないときは AI が相手をします。</p></details>
+  <details><summary>カメラやマイクは必要ですか？</summary><p>なくても遊べます。マイクは声で話すとき、カメラは顔の動きをアバターに映すときだけ使います。どちらも自分で入・切できます。</p></details>
+  <details><summary>配信・動画にしてもいいですか？</summary><p>はい。くわしいきまりは準備中です。同じ部屋の人に、先に断ってからにしてください。</p></details>
+  <details><summary>重いときは？</summary><p>設定の「軽い表示」か、画質を「あらめ」に。重いときは自動で軽い表示になります。</p></details>
+</div></section>
+
+<footer><div class="wrap">
+  <h4>クレジット</h4>
+  <ul>
+    <li>効果音: 効果音ラボ、OtoLogic（CC BY 4.0）</li>
+    <li>朝顔の声（選んだとき）: VOICEVOX:四国めたん</li>
+    <li>試しのアバター: 100Avatars（Polygonal Mind、CC0）、VRoid のサンプル（pixiv Inc.）</li>
+    <li>書体: Shippori Mincho（FONTDASU）、Zen Maru Gothic（Yoshimichi Ohira）、SIL Open Font License 1.1</li>
+    <li>部品: three.js、three-vrm、cannon-es（MIT）、顔の読み取り MediaPipe（Google、Apache License 2.0）</li>
+    <li>朝顔の返事: Claude（Anthropic）</li>
+  </ul>
+  <p>こたべり（試作）。画面の写真は開発中のものです。</p>
+  <p>作った人: <a href="https://civildot.dev/">シヴィルドット</a>（<a href="https://civildot.dev/works/kotaberi/">作品の紹介</a>）</p>
+</div></footer>
+
+<script>
+// 遊びの一覧（種類は、アプリの「あそぶ」の分け方に合わせた。1つの遊びが2つの種類に入ることがある）
+const GAMES = [
+  ['✊', 'じゃんけん', '座っている人', '10秒で手を選んで、せーので出す。キー 1・2・3 でも出せる。', ['さっと']],
+  ['💡', '話のお題', '何人でも', 'お題を1つ引くと、全員に同じお題が出て、朝顔が読み上げる。', ['さっと', 'ことば']],
+  ['🎲', 'チンチロ', '1人から', 'さいころを順番に振る。1人20秒、3回まで。', ['さっと']],
+  ['⏱', 'チキンタイマー', '1人から', '見えないタイマーに順番に秒数を足す。10秒を超えさせた人の負け。', ['さっと']],
+  ['⏱', '10秒ぴったり', '1人から', '10秒だと思ったところで止める。', ['さっと']],
+  ['🏁', 'ひとふで競争', '2人から', '同じ一筆書きを同時に解いて、早さをくらべる。3回の合計。', ['さっと', '盤と札']],
+  ['🏁', 'みちあけ競争', '2人から', '同じ板ずらしの面を同時に解いて、早さをくらべる。', ['さっと', '盤と札']],
+  ['🏁', 'いがぐり競争', '2人から', '同じ盤をだれが早く開けきるか。いがをふむと5秒休み。', ['さっと', '盤と札']],
+  ['◩', 'かどつなぎ', '2〜4人', '自分の駒を角だけでつないでいく陣取り。', ['盤と札']],
+  ['☗', '福と鬼', '2人', '駒の中身（福か鬼か）は自分にしか見えない。読み合いの盤の遊び。', ['盤と札']],
+  ['◐', 'リバーシ', '2人', 'はさんで返す。相手がいなければ AI。', ['盤と札']],
+  ['⚫', '五目並べ', '2人', '13×13 の盤で、先に5つ並べたら勝ち。相手がいなければ AI。', ['盤と札']],
+  ['🍂', 'いがぐり', 'みんなで', '数字をたよりに、いがをよけて盤を開けていく。', ['盤と札', 'のんびり']],
+  ['🖌', 'ひとふで', 'みんなで', '一筆書きのパズル。進み具合は部屋に残る。', ['盤と札', 'のんびり']],
+  ['🧱', 'みちあけ', 'みんなで', '板をずらして、朱色の板を出口へ通す。進み具合は部屋に残る。', ['盤と札', 'のんびり']],
+  ['🔍', 'さがしもの', 'みんなで', '散らかった小物から、お題の物をさがす。早い者勝ち。', ['盤と札', 'のんびり']],
+  ['🃏', 'うそつき札', '2〜5人', '札を伏せて出し、「うそ！」で見破る。負けたらシュークリームを1個（わさび入りかも）。', ['盤と札']],
+  ['🔴', 'おはじき', '1〜8人', 'おはじきをはじいて当てる。本当にぶつかって動く。', ['手先']],
+  ['☗', '将棋崩し', '1〜8人', '駒の山から1つずつ引きぬく。山が本当に崩れる。', ['手先']],
+  ['▤', 'ジェンガ', '1〜8人', '明るいときにたたいて抜く。塔が本当に倒れる。', ['手先']],
+  ['🁢', 'ドミノ倒し', '何人でも', 'みんなで1個ずつ置いて、最後に「たおす」。', ['手先', 'のんびり']],
+  ['🤝', '一致ゲーム', '2人から', 'お題の答えを手書きのフリップで見せ合う。そろったかはみんなで決める。', ['ことば']],
+  ['🤐', 'NGワード', '2人から', '自分の頭の上の言葉だけが見えない。言わされたら負け。', ['ことば']],
+  ['🍊', 'みかんむき', '何人でも', 'ひたすらみかんをむく。手伝いを増やすと、いない間もむける。', ['のんびり']],
+  ['🎣', '釣り', '何人でも', '外のワールドで。当たりが来たら「ひく！」。8か所で79種、図鑑つき。', ['のんびり']],
+  ['🌱', '花壇', '何人でも', 'いつもの部屋の奥の8か所に種をまく。12時間で咲く。花は12種、図鑑つき。', ['のんびり']],
+];
+const CATS = ['ぜんぶ', 'さっと', '盤と札', '手先', 'ことば', 'のんびり'];
+const chips = document.getElementById('chips'), box = document.getElementById('games');
+let cat = 'ぜんぶ';
+function draw() {
+  box.innerHTML = '';
+  for (const [ic, nm, ppl, d, c] of GAMES) {
+    if (cat !== 'ぜんぶ' && !c.includes(cat)) continue;
+    const el = document.createElement('div'); el.className = 'g';
+    el.innerHTML = `<div class="nm"><span class="ic">${ic}</span>${nm}</div><span class="ppl">${ppl}</span><p>${d}</p>`;
+    box.append(el);
+  }
+  chips.querySelectorAll('.chip').forEach(b => b.classList.toggle('on', b.dataset.c === cat));
+}
+for (const c of CATS) { const b = document.createElement('button'); b.className = 'chip'; b.dataset.c = c; b.textContent = c; b.onclick = () => { cat = c; draw(); }; chips.append(b); }
+draw();
+document.querySelectorAll('[data-count]').forEach(e => e.textContent = GAMES.length + ' 種');
+
+// ワールド
+const WORLDS = [
+  ['家', 'いつもの部屋', 'おかえりなさい。障子と行灯の和室。花壇もここに。', 'v_01_heya_4nin.jpg'],
+  ['星', '星の川原', '星の川のほとり。天の川と星座、川に映る星。', 'v_02_hoshi_b.jpg'],
+  ['雲', '雲海の山々', '雲の上の夜明け。朝までしゃべった日に。', '11_kumo.jpg'],
+  ['朱', '大鳥居の夜', '水の上の大きな鳥居。少しあらたまって話す夜に。', '12_torii.jpg'],
+  ['灯', '夜の参道', '灯籠の灯りがつづく道。ゆっくり話したい夜に。', '13_sando.jpg'],
+  ['紅', '紅葉の谷', '色づいた谷の夕暮れ。のんびり話したい日に。', '14_momiji.jpg'],
+  ['華', '花火の夜', '目の前で花火が開く。全員の画面で同じタイミング。', 'v_03_hanabi_a.jpg'],
+  ['雪', '雪見の夜', 'しんしんと雪がふる。こたつがいちばん似合う夜に。', '16_yuki.jpg'],
+  ['桜', '夜桜', '満開の桜の上で。はじめての人と話す日に。', '17_sakura.jpg'],
+];
+const wb = document.getElementById('worlds');
+for (const [h, n, d, img] of WORLDS) { const el = document.createElement('div'); el.className = 'w'; el.innerHTML = `<img src="img/${img}" alt="${n}" loading="lazy"><div class="t"><span class="han">${h}</span><b>${n}</b><p>${d}</p></div>`; wb.append(el); }
+
+// 動きを減らす設定の人には、動画を止めて最初のコマだけ見せる
+if (matchMedia('(prefers-reduced-motion: reduce)').matches) document.querySelectorAll('video').forEach(v => { v.removeAttribute('autoplay'); v.pause(); });
+</script>
+</body>
+</html>
