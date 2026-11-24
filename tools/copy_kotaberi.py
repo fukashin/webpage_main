@@ -23,10 +23,9 @@ html = open(os.path.join(SRC, "index.html"), encoding="utf-8").read()
 assert "const SITE = { stream: true" in html
 html = html.replace("const SITE = { stream: true", "const SITE = { stream: false", 1)
 
-# 上の帯（目次）が細い画面で重ならないように（元のページで直っていれば何もしない）
-if "nav.top .wrap > * { flex-shrink: 0; }" not in html:
-    html = html.replace("  nav.top a.n:hover {", "  nav.top .wrap > * { flex-shrink: 0; }\n  nav.top a.n:hover {", 1)
-    assert "nav.top .wrap > * { flex-shrink: 0; }" in html
+# 上の帯（目次）が細い画面で重ならない直しは、元のページに入っている（目次の項目を縮めない）。
+# 抜けていたら公開しない（以前、携帯の縦画面で文字が重なった）
+assert "flex-shrink: 0" in html.split("</style>")[0], "上の帯の重なりの直し（flex-shrink: 0）が元のページに無い"
 
 # 画像・動画のパスを /kotaberi/ からにそろえる（HTML の中と、JavaScript で組み立てる所の両方）
 html = re.sub(r'(src|poster)="(img|video)/', r'\1="/kotaberi/\2/', html)

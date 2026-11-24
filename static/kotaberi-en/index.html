@@ -31,9 +31,11 @@
 
   /* 上の帯（目次） */
   nav.top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 10; background: rgba(14, 18, 38, .92); backdrop-filter: blur(6px); border-bottom: 1px solid var(--line); }
-  nav.top .wrap { display: flex; align-items: center; gap: 10px; height: 54px; overflow-x: auto; scrollbar-width: none; }
-  nav.top .wrap::-webkit-scrollbar { display: none; }
-  nav.top .wrap > * { flex-shrink: 0; }  /* 目次の項目は縮めず、横にスクロール（携帯の縦画面で文字が重なった） */
+  /* 上の帯: ロゴと言語の切りかえは動かさず、間の目次だけを横にスクロール（携帯の縦画面でも切りかえが見える） */
+  nav.top .wrap { display: flex; align-items: center; gap: 8px; height: 54px; }
+  nav.top .navlinks { flex: 1 1 auto; min-width: 0; display: flex; align-items: center; gap: 10px; overflow-x: auto; scrollbar-width: none; height: 100%; }
+  nav.top .navlinks::-webkit-scrollbar { display: none; }
+  nav.top .navlinks > *, nav.top .logo, nav.top .langsw { flex-shrink: 0; }  /* 項目は縮めない（携帯の縦画面で文字が重なった） */
   nav.top .logo { font-weight: 900; color: var(--andon); text-decoration: none; font-size: 19px; white-space: nowrap; margin-right: 6px; }
   nav.top a.n { color: var(--sub); text-decoration: none; font-size: 14px; white-space: nowrap; padding: 4px 10px; border-radius: 99px; }
   nav.top a.n:hover { color: var(--paper); background: var(--line); }
@@ -160,6 +162,7 @@
 <div class="enhint" id="enhint" lang="en" hidden><div class="wrap">English version is available. <a href="#top">Read in English</a><button type="button" aria-label="Close">×</button></div></div>
 <nav class="top"><div class="wrap">
   <a class="logo" href="#top" data-t="logo"></a>
+  <div class="navlinks">
   <a class="n" href="#about" data-t="nav.about"></a>
   <a class="n" href="#talk" data-t="nav.talk"></a>
   <a class="n" href="#play" data-t="nav.play"></a>
@@ -172,6 +175,7 @@
   <a class="n" href="#room" data-t="nav.room"></a>
   <a class="n" href="#next" data-t="nav.next"></a>
   <a class="n" href="#faq" data-t="nav.faq"></a>
+  </div>
   <span class="langsw" role="group" aria-label="Language"><button type="button" id="lang-ja" data-lang="ja">日本語</button><button type="button" id="lang-en" data-lang="en">English</button></span>
 </div></nav>
 
