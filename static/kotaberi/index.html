@@ -5,6 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>こたべり特設サイト</title>
 <meta name="description" content="こたつを囲んで、しゃべって、遊んで、こたつごと出かける。ブラウザで入れる 3D の小部屋「こたべり」の説明のページです。">
+<link rel="canonical" href="https://civildot.dev/kotaberi/">
+<link rel="alternate" hreflang="ja" href="https://civildot.dev/kotaberi/">
+<link rel="alternate" hreflang="en" href="https://civildot.dev/en/kotaberi/">
+<link rel="alternate" hreflang="x-default" href="https://civildot.dev/kotaberi/">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@600;800&family=Zen+Maru+Gothic:wght@500;700;900&display=swap" rel="stylesheet">
 <style>
@@ -29,9 +33,9 @@
   nav.top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 10; background: rgba(14, 18, 38, .92); backdrop-filter: blur(6px); border-bottom: 1px solid var(--line); }
   nav.top .wrap { display: flex; align-items: center; gap: 10px; height: 54px; overflow-x: auto; scrollbar-width: none; }
   nav.top .wrap::-webkit-scrollbar { display: none; }
+  nav.top .wrap > * { flex-shrink: 0; }  /* 目次の項目は縮めず、横にスクロール（携帯の縦画面で文字が重なった） */
   nav.top .logo { font-weight: 900; color: var(--andon); text-decoration: none; font-size: 19px; white-space: nowrap; margin-right: 6px; }
   nav.top a.n { color: var(--sub); text-decoration: none; font-size: 14px; white-space: nowrap; padding: 4px 10px; border-radius: 99px; }
-  nav.top .wrap > * { flex-shrink: 0; }
   nav.top a.n:hover { color: var(--paper); background: var(--line); }
 
   /* いちばん上 */
@@ -140,332 +144,601 @@
   footer ul { margin: 0 0 16px; padding-left: 1.2em; }
   @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
   a:focus-visible, button:focus-visible, summary:focus-visible { outline: 3px solid var(--andon); outline-offset: 2px; }
+  .clip.flat { border: 0; border-radius: 0; }
+  .faces { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
+  .small { font-size: 12px; color: var(--sub); margin: 8px 0 0; }
+  .enhint { background: var(--andon); color: var(--ink); font-size: 13px; font-weight: 700; }
+  .enhint .wrap { display: flex; align-items: center; gap: 8px; padding-block: 6px; }
+  .enhint a { color: var(--ink); }
+  .enhint button { margin-left: auto; font: inherit; font-size: 16px; line-height: 1; border: 0; background: transparent; color: var(--ink); cursor: pointer; padding: 2px 6px; }
+  .langsw { margin-left: auto; display: inline-flex; border: 1px solid var(--line); border-radius: 99px; overflow: hidden; flex: none; }
+  .langsw button { font: inherit; font-size: 13px; font-weight: 700; border: 0; background: transparent; color: var(--sub); padding: 4px 12px; cursor: pointer; }
+  .langsw button.on { background: var(--paper); color: var(--ink); }
 </style>
 </head>
 <body>
+<div class="enhint" id="enhint" lang="en" hidden><div class="wrap">English version is available. <a href="#top">Read in English</a><button type="button" aria-label="Close">×</button></div></div>
 <nav class="top"><div class="wrap">
-  <a class="logo" href="#top">こたべり</a>
-  <a class="n" href="#about">こたべりって？</a>
-  <a class="n" href="#talk">しゃべる</a>
-  <a class="n" href="#play">遊ぶ</a>
-  <a class="n" href="#go">出かける</a>
-  <a class="n" href="#avatar">アバター</a>
-  <a class="n" href="#asagao">朝顔</a>
-  <a class="n" href="#camera">カメラ係</a>
-  <a class="n" href="#device">端末と操作</a>
-  <a class="n" href="#room">部屋</a>
-  <a class="n" href="#next">これから</a>
-  <a class="n" href="#faq">質問</a>
+  <a class="logo" href="#top" data-t="logo"></a>
+  <a class="n" href="#about" data-t="nav.about"></a>
+  <a class="n" href="#talk" data-t="nav.talk"></a>
+  <a class="n" href="#play" data-t="nav.play"></a>
+  <a class="n" href="#go" data-t="nav.go"></a>
+  <a class="n" href="#avatar" data-t="nav.avatar"></a>
+  <a class="n" href="#asagao" data-t="nav.asagao"></a>
+  <a class="n" href="#camera" data-t="nav.camera"></a>
+  <a class="n" href="#stream" data-t="nav.stream" data-stream></a>
+  <a class="n" href="#device" data-t="nav.device"></a>
+  <a class="n" href="#room" data-t="nav.room"></a>
+  <a class="n" href="#next" data-t="nav.next"></a>
+  <a class="n" href="#faq" data-t="nav.faq"></a>
+  <span class="langsw" role="group" aria-label="Language"><button type="button" id="lang-ja" data-lang="ja">日本語</button><button type="button" id="lang-en" data-lang="en">English</button></span>
 </div></nav>
 
 <header class="hero" id="top">
-  <img class="kb" src="img/v_02_hoshi_e.jpg" alt="" aria-hidden="true">
+  <img class="kb" src="/kotaberi/img/v_02_hoshi_e.jpg" alt="" aria-hidden="true">
   <div class="wrap">
-    <span class="badge">招待制の試作</span>
-    <h1 class="min"><span class="nb">こたつから</span><span class="nb">出ずに、</span><br><span class="nb">どこへでも。</span></h1>
-    <p class="lead">こたつを囲んで、しゃべって、遊んで、こたつごと出かける。<br>ブラウザで入れる、みんなのこたつ空間「こたべり」。</p>
-    <div class="btns"><a class="btn shu" href="#play">遊べることを見る</a><a class="btn" href="https://civildot.dev/works/kotaberi/">作品の紹介（シヴィルドット）</a></div>
+    <span class="badge" data-t="badge.invite"></span>
+    <h1 class="min" data-t="hero.title"></h1>
+    <p class="lead" data-t="hero.lead"></p>
+    <div class="btns"><a class="btn shu" href="#play" data-t="hero.btnPlay"></a><a class="btn" id="btn2" href="#stream" data-t="hero.btnStream"></a></div>
   </div>
-  <div class="cap">画面: 星の川原。入口で選べる VRM のアバターで撮影</div>
+  <div class="cap" data-t="hero.cap"></div>
 </header>
 
-<!-- 1 こたべりって？ -->
 <section id="about"><div class="wrap">
-  <h2><span class="no">一</span>こたべりって？</h2>
-  <p class="sec-lead">名前は「こたつ」と「おしゃべり」。こたつは一度入ると出られない。だから、こたつのほうが動くことにしました。</p>
-  <div class="three">
-    <div class="card"><div class="ic">入</div><h4>アドレスを開くだけ</h4><p>アプリを入れなくていい。ブラウザで開いて、名前と見た目を選んで「入る」。</p></div>
-    <div class="card"><div class="ic">同</div><h4>PC・スマホ・VR が同じ部屋に</h4><p>パソコンの人、スマホの人、VR ゴーグルの人が、同じこたつを囲めます。</p></div>
-    <div class="card"><div class="ic">和</div><h4>和の夜の小部屋</h4><p>障子、行灯、みかん。ボタンや知らせまで、和の調子でそろえました。</p></div>
-    <div class="card"><div class="ic">遊</div><h4>遊びが <span class="count" data-count>たくさん</span></h4><p>じゃんけんから、本当に崩れるジェンガまで。人が足りなければ AI が相手をします。</p></div>
-    <div class="card"><div class="ic">旅</div><h4>こたつごと出かける</h4><p>星の川原、雲海、花火の夜……。畳ごと空を飛んで、景色ががらりと変わります。</p></div>
-    <div class="card"><div class="ic">映</div><h4>配信しやすい</h4><p>姿の出ない「カメラ係」で、こたつのまわりを番組のように映せます。</p></div>
-  </div>
+  <h2><span class="no" data-t="no.1"></span><span data-t="about.h"></span></h2>
+  <p class="sec-lead" data-t="about.lead"></p>
+  <div class="three" data-cards="about.cards"></div>
   <div class="reel">
-    <div class="clip"><video src="video/g_hune.mp4" poster="video/g_hune.jpg" autoplay muted loop playsinline></video><span class="lbl">畳ごと水の上を進む</span></div>
-    <div class="clip"><video src="video/g_kotatsu.mp4" poster="video/g_kotatsu.jpg" autoplay muted loop playsinline></video><span class="lbl">天の川の下のこたつ</span></div>
-    <div class="clip"><video src="video/g_sora.mp4" poster="video/g_sora.jpg" autoplay muted loop playsinline></video><span class="lbl">見上げると天の川と星座</span></div>
+    <div class="clip"><video src="/kotaberi/video/g_hune.mp4" poster="/kotaberi/video/g_hune.jpg" autoplay muted loop playsinline></video><span class="lbl" data-t="reel.1"></span></div>
+    <div class="clip"><video src="/kotaberi/video/g_kotatsu.mp4" poster="/kotaberi/video/g_kotatsu.jpg" autoplay muted loop playsinline></video><span class="lbl" data-t="reel.2"></span></div>
+    <div class="clip"><video src="/kotaberi/video/g_sora.mp4" poster="/kotaberi/video/g_sora.jpg" autoplay muted loop playsinline></video><span class="lbl" data-t="reel.3"></span></div>
   </div>
-  <p style="font-size:12px;color:var(--sub);margin:8px 0 0">動画と写真は、どれもゲームの実際の画面です（星の川原）。</p>
+  <p class="small" data-t="reel.note"></p>
   <div class="row2" style="margin-top:36px">
-    <figure class="shot" style="margin:0"><div class="clip" style="border:0;border-radius:0"><video src="video/chibi5.mp4" poster="video/chibi5.jpg" autoplay muted loop playsinline aria-label="いつもの部屋で、こたつを囲む5人が笑ったり驚いたりする"></video></div><figcaption>いつもの部屋で5人がこたつを囲む</figcaption></figure>
+    <figure class="shot" style="margin:0"><div class="clip flat"><video src="/kotaberi/video/chibi5.mp4" poster="/kotaberi/video/chibi5.jpg" autoplay muted loop playsinline data-aria="about.vidAria"></video></div><figcaption data-t="about.vidCap"></figcaption></figure>
     <div>
-      <h3 id="join" style="margin-top:0;scroll-margin-top:72px">いまは「招待制の試作」です</h3>
-      <ul class="dots">
-        <li>部屋を開けられるのは、管理している人だけです。</li>
-        <li>入れるのは、招待のアドレスをもらった人です。招待された人は、さらに友だちを招待できます。</li>
-        <li>だれでも入れる部屋は、これから作る予定です（<a href="#next">これから</a>）。</li>
-        <li>スマホと VR は、確かめきれていない所があります。</li>
-      </ul>
+      <h3 id="join" style="margin-top:0;scroll-margin-top:72px" data-t="about.inviteH"></h3>
+      <ul class="dots" data-li="about.invite"></ul>
     </div>
   </div>
 </div></section>
 
-<!-- 2 しゃべる -->
 <section id="talk"><div class="wrap">
-  <h2><span class="no">二</span>しゃべる・動く</h2>
-  <p class="sec-lead">声でも、文字でも。近くの人の声は大きく、相手のいる方向から聞こえます。</p>
+  <h2><span class="no" data-t="no.2"></span><span data-t="talk.h"></span></h2>
+  <p class="sec-lead" data-t="talk.lead"></p>
   <div class="row2">
-    <figure class="shot" style="margin:0"><div class="clip" style="border:0;border-radius:0"><video src="video/kao.mp4" poster="video/kao.jpg" autoplay muted loop playsinline aria-label="リアクションで、笑う・驚く・困るの表情に変わる"></video></div><figcaption>リアクションで表情が変わる（笑う → 驚く → 困る）</figcaption></figure>
-    <div class="tablewrap"><table>
-      <tr><th>声</th><td>「声 オン／オフ」で切りかえ。遠いと小さく、相手の方向から聞こえる。人ごとの音量を 0〜150% で変えられる</td></tr>
-      <tr><th>文字</th><td>60文字まで。左上に履歴が出る</td></tr>
-      <tr><th>表情</th><td>リアクション 😆 笑う・😲 驚く・😥 困る</td></tr>
-      <tr><th>顔のカメラ</th><td>カメラで顔を読んで、アバターの表情と頭の向きに映す（使うかは自分で決める）</td></tr>
-      <tr><th>動く</th><td>歩く・すわる・走る・ジャンプ（着地の「タッ」つき）・しゃがむ</td></tr>
-      <tr><th>視点</th><td>「自分」と「机の上」を切りかえ</td></tr>
-      <tr><th>みかん</th><td>皿をタップすると食べる。3個食べたら、おかわりが出る</td></tr>
-      <tr><th>お題の板</th><td>「いまの話」を大きく出す板。話したいことを「お便り」で入れておける（名前を出さずにも）</td></tr>
-      <tr><th>離席</th><td>別のタブを見ている人の名札に 💤</td></tr>
-    </table></div>
+    <figure class="shot" style="margin:0"><div class="clip flat"><video src="/kotaberi/video/kao.mp4" poster="/kotaberi/video/kao.jpg" autoplay muted loop playsinline data-aria="talk.vidAria"></video></div><figcaption data-t="talk.vidCap"></figcaption></figure>
+    <div class="tablewrap"><table data-rows="talk.rows"></table></div>
   </div>
   <div class="row2 rev">
-    <figure class="shot" style="margin:0"><img src="img/v_05_odai_to_heya.jpg" alt="お題の板と、こたつを囲む4人" loading="lazy"><figcaption>お題の板に「いまの話」を出したところ</figcaption></figure>
-    <div>
-      <h3 style="margin-top:0">お題の板</h3>
-      <p>部屋の奥に立つ板に、いまの話を大きく出せます。出した瞬間、全員の画面に「いまの話」の帯が出ます。</p>
-      <p>話したいことは「お便り」として30通までためておけます。名前を出さずに入れることもできます。板の中身は部屋に残るので、前もってお便りを集めておけます。</p>
-    </div>
+    <figure class="shot" style="margin:0"><img src="/kotaberi/img/v_05_odai_to_heya.jpg" data-alt="board.alt" loading="lazy"><figcaption data-t="board.cap"></figcaption></figure>
+    <div><h3 style="margin-top:0" data-t="board.h"></h3><div data-t="board.body"></div></div>
   </div>
 </div></section>
 
-<!-- 3 遊ぶ -->
 <section id="play"><div class="wrap">
-  <h2><span class="no">三</span>遊ぶ</h2>
-  <p class="sec-lead">「🎲 あそぶ」から選びます。いま <span class="count" data-count>―</span>。人が足りないときは AI が席に座って相手をします。</p>
+  <h2><span class="no" data-t="no.3"></span><span data-t="play.h"></span></h2>
+  <p class="sec-lead" data-t="play.lead"></p>
   <div class="chips" id="chips"></div>
   <div class="games" id="games"></div>
   <div class="row2 rev" style="margin-top:40px">
-    <figure class="shot" style="margin:0"><div class="clip" style="border:0;border-radius:0"><video src="video/jenga.mp4" poster="video/jenga.jpg" autoplay muted loop playsinline aria-label="ジェンガの塔が崩れて、4人が驚く"></video></div><figcaption>ジェンガ。塔は本当に崩れる</figcaption></figure>
-    <div>
-      <h3 style="margin-top:0">本当に崩れる</h3>
-      <p>おはじき・将棋崩し・ジェンガ・ドミノ倒しは、駒や塔が本物のようにぶつかって崩れます。全員の画面で同じ動きになります。</p>
-      <h3>参加のしかた</h3>
-      <p>多くの遊びは「参加しますか？」に「参加する」を押した人で始まります。押さなかった人は見物です。自分の番が来ると、画面のまん中に「あなたの番です」と出ます。</p>
-    </div>
+    <figure class="shot" style="margin:0"><div class="clip flat"><video src="/kotaberi/video/jenga.mp4" poster="/kotaberi/video/jenga.jpg" autoplay muted loop playsinline data-aria="play.vidAria"></video></div><figcaption data-t="play.vidCap"></figcaption></figure>
+    <div data-t="play.body"></div>
   </div>
 </div></section>
 
-<!-- 4 出かける -->
 <section id="go"><div class="wrap">
-  <h2><span class="no">四</span>こたつごと出かける</h2>
-  <p class="sec-lead">灯りが消えて、こたつが飛び立ち、着くと縦書きの題が出ます。行き先を決めるのはルーム主です。</p>
+  <h2><span class="no" data-t="no.4"></span><span data-t="go.h"></span></h2>
+  <p class="sec-lead" data-t="go.lead"></p>
   <div class="row2" style="margin-top:0">
-    <figure class="shot" style="margin:0"><div class="clip" style="border:0;border-radius:0"><video src="video/dekakeru.mp4" poster="video/dekakeru.jpg" autoplay muted loop playsinline aria-label="灯りが消えて、星の川原に着き、縦書きの題が出る"></video></div><figcaption>いつもの部屋から星の川原へ</figcaption></figure>
-    <div>
-      <h3 style="margin-top:0">灯りが消えて、景色が開く</h3>
-      <p>ルーム主が行き先を選ぶと、部屋の灯りが消え、行灯だけが残ります。暗い間にこたつは空へ。景色が開くと、右上に縦書きの題が出ます。</p>
-      <p>部屋にいる全員が、いっしょに同じ場所へ着きます。</p>
-    </div>
+    <figure class="shot" style="margin:0"><div class="clip flat"><video src="/kotaberi/video/dekakeru.mp4" poster="/kotaberi/video/dekakeru.jpg" autoplay muted loop playsinline data-aria="go.vidAria"></video></div><figcaption data-t="go.vidCap"></figcaption></figure>
+    <div data-t="go.body1"></div>
   </div>
   <div class="worlds" id="worlds"></div>
   <div class="row2" style="margin-top:36px">
-    <figure class="shot" style="margin:0"><img src="img/soujuu.jpg" alt="操縦機のつまみとレバー" loading="lazy"><figcaption>こたつの手前の操縦機</figcaption></figure>
-    <div>
-      <h3 style="margin-top:0">畳ごと動かす「操縦機」</h3>
-      <p>出かけた先では、手前の操縦機のレバーをたおすと、畳ごとその向きへ進みます。つまみで速さを3段階に。動かせるのはルーム主です。</p>
-      <h3>星の川原の星座</h3>
-      <p>天の川と、夏・冬の大三角、北斗七星、カシオペヤ、さそり。線と名前は「星座を見る」で出し入れできます。PC では川に星が映ります。</p>
-      <h3>釣り</h3>
-      <p>外のワールドでは釣りができます。8か所で全部 79 種。めずらしさは★3段階で、図鑑に残ります。</p>
-    </div>
+    <figure class="shot" style="margin:0"><img src="/kotaberi/img/soujuu.jpg" data-alt="go.helmAlt" loading="lazy"><figcaption data-t="go.helmCap"></figcaption></figure>
+    <div data-t="go.body2"></div>
   </div>
 </div></section>
 
-<!-- 5 アバター -->
 <section id="avatar"><div class="wrap">
-  <h2><span class="no">五</span>アバター</h2>
-  <p class="sec-lead">入口で、7人の中から選びます。自分の VRM を持ちこむこともできます。</p>
+  <h2><span class="no" data-t="no.5"></span><span data-t="av.h"></span></h2>
+  <p class="sec-lead" data-t="av.lead"></p>
   <div class="avs" id="avs"></div>
   <div class="row2 rev">
-    <figure class="shot" style="margin:0"><div class="clip" style="border:0;border-radius:0"><video src="video/chibi3.mp4" poster="video/chibi3.jpg" autoplay muted loop playsinline aria-label="なす・包子の侍・猫又が、順に笑う・驚く・困る"></video></div><figcaption>ちびの VRM（なす・包子の侍・猫又）。人型と同じ部屋にいられる</figcaption></figure>
-    <div class="tablewrap"><table>
-      <tr><th>ちび</th><td>なす・猫又・包子の侍の3人</td></tr>
-      <tr><th>人型</th><td>千駄ヶ谷 渋・朝顔・すみれ・蓮の4人。朝顔は、部屋にいる案内役の朝顔と同じ姿</td></tr>
-      <tr><th>読みこみ</th><td>部屋に入ってから読みこむ。読みこむ間は「読みこみ中…」と出る</td></tr>
-      <tr><th>自分の VRM <span class="badge try">試し</span></th><td>自分の .vrm（15MB まで）を着られる。ファイルは自分の端末の中だけに置く。ルーム主が許すと、同じ部屋の人にも見える（部屋を出ると消える）</td></tr>
-      <tr><th>座り方</th><td>人型のアバターは、ふつう・前かがみ・ごろ寝</td></tr>
-    </table></div>
+    <figure class="shot" style="margin:0"><div class="clip flat"><video src="/kotaberi/video/chibi3.mp4" poster="/kotaberi/video/chibi3.jpg" autoplay muted loop playsinline data-aria="av.vidAria"></video></div><figcaption data-t="av.vidCap"></figcaption></figure>
+    <div class="tablewrap"><table data-rows="av.rows"></table></div>
   </div>
   <div class="pair">
-    <figure class="shot" style="margin:0"><img src="img/v_chibi_5nin.jpg" alt="人型2人とちび3人が、こたつを囲む" loading="lazy"><figcaption>人型とちびが、同じこたつに</figcaption></figure>
-    <figure class="shot" style="margin:0"><img src="img/v_chibi_neko.jpg" alt="こたつに座る猫又" loading="lazy"><figcaption>猫又</figcaption></figure>
+    <figure class="shot" style="margin:0"><img src="/kotaberi/img/v_chibi_5nin.jpg" data-alt="av.pic1Alt" loading="lazy"><figcaption data-t="av.pic1Cap"></figcaption></figure>
+    <figure class="shot" style="margin:0"><img src="/kotaberi/img/v_chibi_neko.jpg" data-alt="av.pic2Alt" loading="lazy"><figcaption data-t="av.pic2Cap"></figcaption></figure>
   </div>
-  <div class="note">自分の VRM を使うときは、そのアバターの利用条件（使ってよい人・商用など）を守ってください。入口で、ファイルに書かれた条件を見せて、約束にチェックしてもらいます。</div>
+  <div class="note" data-t="av.note"></div>
 </div></section>
 
-<!-- 6 朝顔 -->
 <section id="asagao"><div class="wrap">
-  <h2><span class="no">六</span>朝顔（AI の同居人）</h2>
-  <p class="sec-lead">部屋にいる案内役です。話しかけると、短く返事をして、声でも答えます。</p>
-  <div class="three">
-    <div class="card"><div class="ic">話</div><h4>話しかける</h4><p>文字か「朝顔に話す」ボタンで。1人のときは毎回、2人以上のときは「朝顔」と呼んだときに答えます。</p></div>
-    <div class="card"><div class="ic">席</div><h4>席をゆずる</h4><p>人が2人以上になると、行灯のそばに立って、席をあけます。</p></div>
-    <div class="card"><div class="ic">相</div><h4>AI の相手を呼ぶ</h4><p>ルーム主が「AI を呼ぶ」で3人まで。じゃんけん・チンチロ・盤の遊び・うそつき札などに入ります。</p></div>
-  </div>
+  <h2><span class="no" data-t="no.6"></span><span data-t="asa.h"></span></h2>
+  <p class="sec-lead" data-t="asa.lead"></p>
+  <div class="three" data-cards="asa.cards"></div>
 </div></section>
 
-<!-- 7 カメラ係 -->
 <section id="camera"><div class="wrap">
-  <h2><span class="no">七</span>カメラ係（撮影用）</h2>
-  <p class="sec-lead">姿の出ないカメラで、こたつのまわりを番組のように映せます。OBS で取りこんで配信・録画に。</p>
+  <h2><span class="no" data-t="no.7"></span><span data-t="cam.h"></span></h2>
+  <p class="sec-lead" data-t="cam.lead"></p>
   <div class="row2">
-    <figure class="shot" style="margin:0"><div style="display:grid;grid-template-columns:repeat(3,1fr);gap:2px"><img src="img/v_06_kao_hidari.jpg" alt="左の席の人の顔" loading="lazy"><img src="img/v_06_kao_oku.jpg" alt="奥の席の人の顔" loading="lazy"><img src="img/v_06_kao_migi.jpg" alt="右の席の人の顔" loading="lazy"></div><figcaption>数字キー 4・6・5 で、席の人の顔を映す</figcaption></figure>
-    <div>
-      <ul class="dots">
-        <li>入口の「カメラ係を、別のウィンドウで開く」から。「【カメラ】こたべり 撮影用」という 1280×720 のウィンドウが開きます。</li>
-        <li>姿は部屋に出ず、席も使わず、遊びの人数にも入りません。入ったことは、部屋の全員に知らされます。</li>
-        <li>カメラの音は、初めは「切」。録るときは OBS で「デスクトップ音声＋マイク」を取るのがおすすめです。</li>
-      </ul>
-    </div>
+    <figure class="shot" style="margin:0"><div class="faces"><img src="/kotaberi/img/v_06_kao_hidari.jpg" data-alt="cam.f1" loading="lazy"><img src="/kotaberi/img/v_06_kao_oku.jpg" data-alt="cam.f2" loading="lazy"><img src="/kotaberi/img/v_06_kao_migi.jpg" data-alt="cam.f3" loading="lazy"></div><figcaption data-t="cam.facesCap"></figcaption></figure>
+    <div><ul class="dots" data-li="cam.points"></ul></div>
   </div>
-  <div class="tablewrap" style="margin-top:12px"><table>
-    <tr><th>キー</th><th>はたらき</th></tr>
-    <tr><td><span class="kbd">1</span>〜<span class="kbd">8</span></td><td>決まった位置へ（1 横から・2 机の真上・3 ななめ上・4 左の席・5 右の席・6 奥の席・7 手前の席・8 お題の板）。なめらかに動く。<span class="kbd">Shift</span> を足すとパッと切りかわる</td></tr>
-    <tr><td><span class="kbd">T</span></td><td>話している人の顔へ、自動で向く（6秒だれも話さないと全体へ戻る）</td></tr>
-    <tr><td><span class="kbd">Y</span></td><td>話している人の目の位置から映す</td></tr>
-    <tr><td><span class="kbd">V</span> <span class="kbd">X</span> <span class="kbd">Z</span></td><td>競争の遊びの盤を「全員を並べる → 見どころを自動で → 1人ずつ」。X・Z で次の人・前の人</td></tr>
-    <tr><td><span class="kbd">H</span></td><td>文字をかくす（場面が変わる演出と、結果の帯は残る）</td></tr>
-    <tr><td>W A S D・なぞる</td><td>自分で動かす。スペース・C で上下、ホイールで拡大</td></tr>
-    <tr><td>パネル</td><td>お題の帯（いまの話を左上に出しっぱなし）、タイマーの板、カメラの音 入／切</td></tr>
-  </table></div>
+  <div class="tablewrap" style="margin-top:12px"><table data-rows="cam.keys" data-head="cam.keysHead"></table></div>
 </div></section>
 
-<!-- 9 端末と操作 -->
+<section id="stream" data-stream><div class="wrap">
+  <h2><span class="no" data-t="no.8"></span><span data-t="st.h"></span></h2>
+  <p class="sec-lead" data-t="st.lead"></p>
+  <div class="paper">
+    <div class="draft" data-t="st.draft"></div>
+    <h3 data-t="st.askH"></h3><ol data-li="st.ask"></ol>
+    <h3 data-t="st.ngH"></h3><ul data-li="st.ng"></ul>
+    <h3 data-t="st.etcH"></h3><ul data-li="st.etc"></ul>
+  </div>
+</div></section>
+
 <section id="device"><div class="wrap">
-  <h2><span class="no">九</span>端末と操作</h2>
-  <p class="sec-lead">重いと感じたら「軽い表示」に。重いときは自動で切りかわります。</p>
-  <div class="three">
-    <div class="card"><div class="ic">机</div><h4>PC</h4><p><span class="kbd">W</span><span class="kbd">A</span><span class="kbd">S</span><span class="kbd">D</span> 歩く・<span class="kbd">E</span> すわる・<span class="kbd">Shift</span> 走る・<span class="kbd">Space</span> ジャンプ・<span class="kbd">C</span> しゃがむ・<span class="kbd">Enter</span> 文字。<span class="kbd">M</span> メニュー・<span class="kbd">G</span> あそぶ・<span class="kbd">V</span> 視点・<span class="kbd">O</span> 出かける・<span class="kbd">R</span> リアクション・<span class="kbd">T</span> 設定。キーは設定で変えられます。</p></div>
-    <div class="card"><div class="ic">手</div><h4>スマホ</h4><p>なぞって見回す。2回続けてタップで歩く・すわる。2本指で拡大。ホーム画面に置くと「前に入った部屋へ」が出ます。</p></div>
-    <div class="card"><div class="ic">眼</div><h4>VR <span class="badge try">試し</span></h4><p>Quest の内蔵ブラウザなどで「VR で入る（ためし）」。左スティックで歩く、引き金で押す、A・X で札のメニュー。</p></div>
-  </div>
-  <h3>設定の画面でできること</h3>
-  <div class="tablewrap"><table>
-    <tr><th>音</th><td>全体の音量、効果音の大きさ、朝顔の声（端末の声／VOICEVOX）、人ごとの声の大きさ</td></tr>
-    <tr><th>画面</th><td>軽い表示、画質（あらめ・ふつう・きれい）、全画面、速さの表示、星座の表示、持ちこみの体を出す</td></tr>
-    <tr><th>キー</th><td>割り当てを変える、元に戻す</td></tr>
-  </table></div>
+  <h2><span class="no" data-t="no.9"></span><span data-t="dev.h"></span></h2>
+  <p class="sec-lead" data-t="dev.lead"></p>
+  <div class="three" data-cards="dev.cards"></div>
+  <h3 data-t="dev.setH"></h3>
+  <div class="tablewrap"><table data-rows="dev.set"></table></div>
 </div></section>
 
-<!-- 10 部屋 -->
 <section id="room"><div class="wrap">
-  <h2><span class="no">十</span>部屋のしくみ</h2>
-  <div class="tablewrap"><table>
-    <tr><th>人数</th><td>1部屋8人まで（ルーム主が2〜8人で変えられる）。席は8つ。辺の4つが遊ぶ席、角の4つは見物の席</td></tr>
-    <tr><th>ルーム主 👑</th><td>最初に部屋を開けた人。抜けると、いちばん長くいる人に移る。「主を譲る」でゆずれる</td></tr>
-    <tr><th>部屋の設定</th><td>人数の上限、鍵をかける（新しい人を入れない）、合言葉、遊びを始められる人、朝顔を置くか、持ちこみの体を見せるか、AI を入れる・帰す、遊びを止める</td></tr>
-    <tr><th>困った人への手当て</th><td>ルーム主は、いる人の一覧から追い出す・入れなくする</td></tr>
-    <tr><th>残る物</th><td>全員が抜けると部屋は閉じる。花壇・みかんむき・パズルの進み具合・お題の板は、部屋ごとに残る</td></tr>
-    <tr><th>自動</th><td>切れたらつなぎ直す。60分動きがないと切れる</td></tr>
-  </table></div>
+  <h2><span class="no" data-t="no.10"></span><span data-t="room.h"></span></h2>
+  <div class="tablewrap"><table data-rows="room.rows"></table></div>
 </div></section>
 
-<!-- 11 これから -->
 <section id="next"><div class="wrap">
-  <h2><span class="no">十一</span>これから</h2>
-  <p class="sec-lead">作る予定の物と、考えている物です。順番や形は変わることがあります。</p>
-  <div class="three">
-    <div class="card"><span class="badge wait">予定</span><h4>だれでも入れる部屋</h4><p>ロビーから、空いている部屋に入れる形。時間がたつと部屋がリセットされます。</p></div>
-    <div class="card"><span class="badge wait">案</span><h4>遊びを増やす</h4><p>あっち向いてホイ、神経衰弱、だるま落とし、〇×クイズ、みんなで分担する料理や本棚の整理。</p></div>
-    <div class="card"><span class="badge wait">案</span><h4>大きいこたつ</h4><p>5〜8人で囲める、大きいこたつ。</p></div>
-    <div class="card"><span class="badge wait">案</span><h4>配信と連動</h4><p>配信のコメントに部屋が反応する。「録画中」の表示。</p></div>
-    <div class="card"><span class="badge try">試し</span><h4>降りて歩けるワールド</h4><p>「古い書庫」。こたつから降りて、本を棚に整理する。</p></div>
-    <div class="card"><span class="badge wait">案</span><h4>釣りの続き</h4><p>釣った大物を部屋に飾る、料理する。</p></div>
-  </div>
+  <h2><span class="no" data-t="no.11"></span><span data-t="next.h"></span></h2>
+  <p class="sec-lead" data-t="next.lead"></p>
+  <div class="three" data-cards="next.cards"></div>
 </div></section>
 
-<!-- 12 質問 -->
 <section id="faq"><div class="wrap">
-  <h2><span class="no">十二</span>よくある質問</h2>
-  <p>アバターの持ちこみ、ファイルを取られないか、IP アドレス、部屋、録画については、<a href="https://kotaberi.civildot.dev/assets/help/faq">こたべりのよくある質問のページ</a>にくわしく書いてあります。</p>
-  <details><summary>お金はかかりますか？</summary><p>かかりません。登録もいりません（いまは招待制の試作です）。</p></details>
-  <details><summary>アプリを入れる必要はありますか？</summary><p>いりません。ブラウザでアドレスを開くだけです。ホーム画面に置くこともできます。</p></details>
-  <details><summary>何人で遊べますか？</summary><p>1部屋8人までです。遊びは1人からできる物もあります。人が足りないときは AI が相手をします。</p></details>
-  <details><summary>カメラやマイクは必要ですか？</summary><p>なくても遊べます。マイクは声で話すとき、カメラは顔の動きをアバターに映すときだけ使います。どちらも自分で入・切できます。</p></details>
-  <details><summary>配信・動画にしてもいいですか？</summary><p>はい。くわしいきまりは準備中です。同じ部屋の人に、先に断ってからにしてください。</p></details>
-  <details><summary>重いときは？</summary><p>設定の「軽い表示」か、画質を「あらめ」に。重いときは自動で軽い表示になります。</p></details>
+  <h2><span class="no" data-t="no.12"></span><span data-t="faq.h"></span></h2>
+  <p data-t="faq.more"></p>
+  <div id="faqlist"></div>
 </div></section>
 
 <footer><div class="wrap">
-  <h4>クレジット</h4>
-  <ul>
-    <li>効果音: 効果音ラボ、OtoLogic（CC BY 4.0）</li>
-    <li>朝顔の声（選んだとき）: VOICEVOX:四国めたん</li>
-    <li>アバター: 100Avatars（Polygonal Mind、CC0）、VRoid のサンプルモデル（pixiv Inc.）</li>
-    <li>書体: Shippori Mincho（FONTDASU）、Zen Maru Gothic（Yoshimichi Ohira）、SIL Open Font License 1.1</li>
-    <li>部品: three.js、three-vrm、cannon-es（MIT）、顔の読み取り MediaPipe（Google、Apache License 2.0）</li>
-    <li>朝顔の返事: Claude（Anthropic）</li>
-  </ul>
-  <p>こたべり（試作）。画面の写真は開発中のものです。</p>
-  <p>作った人: <a href="https://civildot.dev/">シヴィルドット</a>（<a href="https://civildot.dev/works/kotaberi/">作品の紹介</a>）</p>
+  <h4 data-t="foot.h"></h4>
+  <ul data-li="foot.credits"></ul>
+  <p data-t="foot.note"></p>
 </div></footer>
 
 <script>
-// 遊びの一覧（種類は、アプリの「あそぶ」の分け方に合わせた。1つの遊びが2つの種類に入ることがある）
+// ---------- このページの設定 ----------
+// stream: 「配信・動画のきまり」の節を出すか。連絡先が決まるまで、公開版（civildot.dev）では false にする
+const SITE = { stream: false, works: 'https://civildot.dev/works/kotaberi/', faqPage: 'https://kotaberi.civildot.dev/assets/help/faq' };
+
+// ---------- 言語ごとの文の表（ja / en）。HTML には文を書かず、ここから引く ----------
+// 用語は、こたべり本体とそろえる: こたつ=kotatsu、部屋=room、ロビー=Lobby、お題の板=Topic Board、カメラ係=Camera Crew、朝顔=Asagao
+const STR = {
+ja: {
+  'meta.title': 'こたべり特設サイト',
+  'meta.desc': 'こたつを囲んで、しゃべって、遊んで、こたつごと出かける。ブラウザで入れる 3D の小部屋「こたべり」の説明のページです。',
+  logo: 'こたべり',
+  'nav.about': 'こたべりって？', 'nav.talk': 'しゃべる', 'nav.play': '遊ぶ', 'nav.go': '出かける', 'nav.avatar': 'アバター', 'nav.asagao': '朝顔', 'nav.camera': 'カメラ係', 'nav.stream': '配信のきまり', 'nav.device': '端末と操作', 'nav.room': '部屋', 'nav.next': 'これから', 'nav.faq': '質問',
+  'badge.invite': '招待制の試作',
+  'hero.title': '<span class="nb">こたつから</span><span class="nb">出ずに、</span><br><span class="nb">どこへでも。</span>',
+  'hero.lead': 'こたつを囲んで、しゃべって、遊んで、こたつごと出かける。<br>ブラウザで入れる、みんなのこたつ空間「こたべり」。',
+  'hero.btnPlay': '遊べることを見る', 'hero.btnStream': '配信・動画のきまり', 'hero.btnWorks': '作品の紹介（シヴィルドット）',
+  'hero.cap': '画面: 星の川原。入口で選べる VRM のアバターで撮影',
+  'no.1': '一', 'no.2': '二', 'no.3': '三', 'no.4': '四', 'no.5': '五', 'no.6': '六', 'no.7': '七', 'no.8': '八', 'no.9': '九', 'no.10': '十', 'no.11': '十一', 'no.12': '十二',
+  'about.h': 'こたべりって？',
+  'about.lead': '名前は「こたつ」と「おしゃべり」。こたつは一度入ると出られない。だから、こたつのほうが動くことにしました。',
+  'about.cards': [
+    { ic: '入', h: 'アドレスを開くだけ', p: 'アプリを入れなくていい。ブラウザで開いて、名前と見た目を選んで「入る」。' },
+    { ic: '同', h: 'PC・スマホ・VR が同じ部屋に', p: 'パソコンの人、スマホの人、VR ゴーグルの人が、同じこたつを囲めます。' },
+    { ic: '和', h: '和の夜の小部屋', p: '障子、行灯、みかん。ボタンや知らせまで、和の調子でそろえました。' },
+    { ic: '遊', h: '遊びが <span class="count">{n} 種</span>', p: 'じゃんけんから、本当に崩れるジェンガまで。人が足りなければ AI が相手をします。' },
+    { ic: '旅', h: 'こたつごと出かける', p: '星の川原、雲海、花火の夜……。畳ごと空を飛んで、景色ががらりと変わります。' },
+    { ic: '映', h: '配信しやすい', p: '姿の出ない「カメラ係」で、こたつのまわりを番組のように映せます。' },
+  ],
+  'reel.1': '畳ごと水の上を進む', 'reel.2': '天の川の下のこたつ', 'reel.3': '見上げると天の川と星座',
+  'reel.note': '動画と写真は、どれもゲームの実際の画面です（星の川原）。',
+  'about.vidAria': 'いつもの部屋で、こたつを囲む5人が笑ったり驚いたりする',
+  'about.vidCap': 'いつもの部屋で5人がこたつを囲む',
+  'about.inviteH': 'いまは「招待制の試作」です',
+  'about.invite': ['部屋を開けられるのは、管理している人だけです。', '入れるのは、招待のアドレスをもらった人です。招待された人は、さらに友だちを招待できます。', 'だれでも入れる部屋は、これから作る予定です（<a href="#next">これから</a>）。', 'スマホと VR は、確かめきれていない所があります。'],
+  'talk.h': 'しゃべる・動く',
+  'talk.lead': '声でも、文字でも。近くの人の声は大きく、相手のいる方向から聞こえます。',
+  'talk.vidAria': 'リアクションで、笑う・驚く・困るの表情に変わる',
+  'talk.vidCap': 'リアクションで表情が変わる（笑う → 驚く → 困る）',
+  'talk.rows': [
+    ['声', '「声 オン／オフ」で切りかえ。遠いと小さく、相手の方向から聞こえる。人ごとの音量を 0〜150% で変えられる'],
+    ['文字', '60文字まで。左上に履歴が出る'],
+    ['表情', 'リアクション 😆 笑う・😲 驚く・😥 困る'],
+    ['顔のカメラ', 'カメラで顔を読んで、アバターの表情と頭の向きに映す（使うかは自分で決める）'],
+    ['動く', '歩く・すわる・走る・ジャンプ（着地の「タッ」つき）・しゃがむ'],
+    ['視点', '「自分」と「机の上」を切りかえ'],
+    ['みかん', '皿をタップすると食べる。3個食べたら、おかわりが出る'],
+    ['お題の板', '「いまの話」を大きく出す板。話したいことを「お便り」で入れておける（名前を出さずにも）'],
+    ['離席', '別のタブを見ている人の名札に 💤'],
+  ],
+  'board.alt': 'お題の板と、こたつを囲む4人',
+  'board.cap': 'お題の板に「いまの話」を出したところ',
+  'board.h': 'お題の板',
+  'board.body': '<p>部屋の奥に立つ板に、いまの話を大きく出せます。出した瞬間、全員の画面に「いまの話」の帯が出ます。</p><p>話したいことは「お便り」として30通までためておけます。名前を出さずに入れることもできます。板の中身は部屋に残るので、前もってお便りを集めておけます。</p>',
+  'play.h': '遊ぶ',
+  'play.lead': '「🎲 あそぶ」から選びます。いま <span class="count">{n} 種</span>。人が足りないときは AI が席に座って相手をします。',
+  'play.vidAria': 'ジェンガの塔が崩れて、4人が驚く',
+  'play.vidCap': 'ジェンガ。塔は本当に崩れる',
+  'play.body': '<h3 style="margin-top:0">本当に崩れる</h3><p>おはじき・将棋崩し・ジェンガ・ドミノ倒しは、駒や塔が本物のようにぶつかって崩れます。全員の画面で同じ動きになります。</p><h3>参加のしかた</h3><p>多くの遊びは「参加しますか？」に「参加する」を押した人で始まります。押さなかった人は見物です。自分の番が来ると、画面のまん中に「あなたの番です」と出ます。</p>',
+  'go.h': 'こたつごと出かける',
+  'go.lead': '灯りが消えて、こたつが飛び立ち、着くと縦書きの題が出ます。行き先を決めるのはルーム主です。',
+  'go.vidAria': '灯りが消えて、星の川原に着き、縦書きの題が出る',
+  'go.vidCap': 'いつもの部屋から星の川原へ',
+  'go.body1': '<h3 style="margin-top:0">灯りが消えて、景色が開く</h3><p>ルーム主が行き先を選ぶと、部屋の灯りが消え、行灯だけが残ります。暗い間にこたつは空へ。景色が開くと、右上に縦書きの題が出ます。</p><p>部屋にいる全員が、いっしょに同じ場所へ着きます。</p>',
+  'go.helmAlt': '操縦機のつまみとレバー', 'go.helmCap': 'こたつの手前の操縦機',
+  'go.body2': '<h3 style="margin-top:0">畳ごと動かす「操縦機」</h3><p>出かけた先では、手前の操縦機のレバーをたおすと、畳ごとその向きへ進みます。つまみで速さを3段階に。動かせるのはルーム主です。</p><h3>星の川原の星座</h3><p>天の川と、夏・冬の大三角、北斗七星、カシオペヤ、さそり。線と名前は「星座を見る」で出し入れできます。PC では川に星が映ります。</p><h3>釣り</h3><p>外のワールドでは釣りができます。8か所で全部 79 種。めずらしさは★3段階で、図鑑に残ります。</p>',
+  'av.h': 'アバター',
+  'av.lead': '入口で、7人の中から選びます。自分の VRM を持ちこむこともできます。',
+  'av.vidAria': 'なす・包子の侍・猫又が、順に笑う・驚く・困る',
+  'av.vidCap': 'ちびの VRM（なす・包子の侍・猫又）。人型と同じ部屋にいられる',
+  'av.rows': [
+    ['ちび', 'なす・猫又・包子の侍の3人'],
+    ['人型', '千駄ヶ谷 渋・朝顔・すみれ・蓮の4人。朝顔は、部屋にいる案内役の朝顔と同じ姿'],
+    ['読みこみ', '部屋に入ってから読みこむ。読みこむ間は「読みこみ中…」と出る'],
+    ['自分の VRM <span class="badge try">試し</span>', '自分の .vrm（15MB まで）を着られる。ファイルは自分の端末の中だけに置く。ルーム主が許すと、同じ部屋の人にも見える（部屋を出ると消える）'],
+    ['座り方', '人型のアバターは、ふつう・前かがみ・ごろ寝'],
+  ],
+  'av.pic1Alt': '人型2人とちび3人が、こたつを囲む', 'av.pic1Cap': '人型とちびが、同じこたつに',
+  'av.pic2Alt': 'こたつに座る猫又', 'av.pic2Cap': '猫又',
+  'av.note': '自分の VRM を使うときは、そのアバターの利用条件（使ってよい人・商用など）を守ってください。入口で、ファイルに書かれた条件を見せて、約束にチェックしてもらいます。',
+  'av.kind.chibi': 'ちび', 'av.kind.human': '人型',
+  'asa.h': '朝顔（AI の同居人）',
+  'asa.lead': '部屋にいる案内役です。話しかけると、短く返事をして、声でも答えます。',
+  'asa.cards': [
+    { ic: '話', h: '話しかける', p: '文字か「朝顔に話す」ボタンで。1人のときは毎回、2人以上のときは「朝顔」と呼んだときに答えます。' },
+    { ic: '席', h: '席をゆずる', p: '人が2人以上になると、行灯のそばに立って、席をあけます。' },
+    { ic: '相', h: 'AI の相手を呼ぶ', p: 'ルーム主が「AI を呼ぶ」で3人まで。じゃんけん・チンチロ・盤の遊び・うそつき札などに入ります。' },
+  ],
+  'cam.h': 'カメラ係（撮影用）',
+  'cam.lead': '姿の出ないカメラで、こたつのまわりを番組のように映せます。OBS で取りこんで配信・録画に。',
+  'cam.f1': '左の席の人の顔', 'cam.f2': '奥の席の人の顔', 'cam.f3': '右の席の人の顔',
+  'cam.facesCap': '数字キー 4・6・5 で、席の人の顔を映す',
+  'cam.points': ['入口の「カメラ係を、別のウィンドウで開く」から。「【カメラ】こたべり 撮影用」という 1280×720 のウィンドウが開きます。', '姿は部屋に出ず、席も使わず、遊びの人数にも入りません。入ったことは、部屋の全員に知らされます。', 'カメラの音は、初めは「切」。録るときは OBS で「デスクトップ音声＋マイク」を取るのがおすすめです。'],
+  'cam.keysHead': ['キー', 'はたらき'],
+  'cam.keys': [
+    ['<span class="kbd">1</span>〜<span class="kbd">8</span>', '決まった位置へ（1 横から・2 机の真上・3 ななめ上・4 左の席・5 右の席・6 奥の席・7 手前の席・8 お題の板）。なめらかに動く。<span class="kbd">Shift</span> を足すとパッと切りかわる'],
+    ['<span class="kbd">T</span>', '話している人の顔へ、自動で向く（6秒だれも話さないと全体へ戻る）'],
+    ['<span class="kbd">Y</span>', '話している人の目の位置から映す'],
+    ['<span class="kbd">V</span> <span class="kbd">X</span> <span class="kbd">Z</span>', '競争の遊びの盤を「全員を並べる → 見どころを自動で → 1人ずつ」。X・Z で次の人・前の人'],
+    ['<span class="kbd">H</span>', '文字をかくす（場面が変わる演出と、結果の帯は残る）'],
+    ['W A S D・なぞる', '自分で動かす。スペース・C で上下、ホイールで拡大'],
+    ['パネル', 'お題の帯（いまの話を左上に出しっぱなし）、タイマーの板、カメラの音 入／切'],
+  ],
+  'st.h': '配信・動画のきまり',
+  'st.lead': 'こたべりで遊んでいる様子は、配信や動画にしてかまいません。申しこみは要りません。',
+  'st.draft': '下書き（まだ公開していません）。〔連絡先〕と、載せる時期は、これから決めます。',
+  'st.askH': 'お願い',
+  'st.ask': ['概要欄に、次の2行を書いてください。<br><code>こたべり https://kotaberi.civildot.dev</code><br><code>効果音: 効果音ラボ、OtoLogic（CC BY 4.0）</code>', '朝顔の声を VOICEVOX にしているときは、<code>VOICEVOX:四国めたん</code> も書いてください。', '同じ部屋にいる人には、始める前に「配信します」「録画します」と伝えて、よいと言われてから始めてください。'],
+  'st.ngH': 'してはいけないこと',
+  'st.ng': ['同じ部屋の人に断らずに、録画・配信すること。', 'こたべりの効果音だけを集めた動画や、効果音の紹介が目的の動画。', 'こたべりの音や絵のファイルを取り出して、配ること。', '人をおとしめる内容、法律に反する内容、成人向けの内容。', 'こたべりの作者が作った・支援していると、見る人が思いちがいをする見せ方。'],
+  'st.etcH': 'そのほか',
+  'st.etc': ['収益化（広告、投げ銭、メンバーシップなど）もかまいません。個人でも、会社でも、申しこみは要りません。', '部屋を開けるアドレス（鍵）は、画面に映さないでください。ブラウザのアドレスの行が入らないように、ウィンドウの中身だけを録るのがおすすめです。', 'このきまりは、予告なく変わることがあります。困ったことがあれば、〔連絡先〕へ。'],
+  'dev.h': '端末と操作',
+  'dev.lead': '重いと感じたら「軽い表示」に。重いときは自動で切りかわります。',
+  'dev.cards': [
+    { ic: '机', h: 'PC', p: '<span class="kbd">W</span><span class="kbd">A</span><span class="kbd">S</span><span class="kbd">D</span> 歩く・<span class="kbd">E</span> すわる・<span class="kbd">Shift</span> 走る・<span class="kbd">Space</span> ジャンプ・<span class="kbd">C</span> しゃがむ・<span class="kbd">Enter</span> 文字。<span class="kbd">M</span> メニュー・<span class="kbd">G</span> あそぶ・<span class="kbd">V</span> 視点・<span class="kbd">O</span> 出かける・<span class="kbd">R</span> リアクション・<span class="kbd">T</span> 設定。キーは設定で変えられます。' },
+    { ic: '手', h: 'スマホ', p: 'なぞって見回す。2回続けてタップで歩く・すわる。2本指で拡大。ホーム画面に置くと「前に入った部屋へ」が出ます。' },
+    { ic: '眼', h: 'VR <span class="badge try">試し</span>', p: 'Quest の内蔵ブラウザなどで「VR で入る（ためし）」。左スティックで歩く、引き金で押す、A・X で札のメニュー。' },
+  ],
+  'dev.setH': '設定の画面でできること',
+  'dev.set': [['音', '全体の音量、効果音の大きさ、朝顔の声（端末の声／VOICEVOX）、人ごとの声の大きさ'], ['画面', '軽い表示、画質（あらめ・ふつう・きれい）、全画面、速さの表示、星座の表示、持ちこみの体を出す'], ['キー', '割り当てを変える、元に戻す']],
+  'room.h': '部屋のしくみ',
+  'room.rows': [
+    ['人数', '1部屋8人まで（ルーム主が2〜8人で変えられる）。席は8つ。辺の4つが遊ぶ席、角の4つは見物の席'],
+    ['ルーム主 👑', '最初に部屋を開けた人。抜けると、いちばん長くいる人に移る。「主を譲る」でゆずれる'],
+    ['部屋の設定', '人数の上限、鍵をかける（新しい人を入れない）、合言葉、遊びを始められる人、朝顔を置くか、持ちこみの体を見せるか、AI を入れる・帰す、遊びを止める'],
+    ['困った人への手当て', 'ルーム主は、いる人の一覧から追い出す・入れなくする'],
+    ['残る物', '全員が抜けると部屋は閉じる。花壇・みかんむき・パズルの進み具合・お題の板は、部屋ごとに残る'],
+    ['自動', '切れたらつなぎ直す。60分動きがないと切れる'],
+  ],
+  'next.h': 'これから',
+  'next.lead': '作る予定の物と、考えている物です。順番や形は変わることがあります。',
+  'next.cards': [
+    { badge: ['wait', '予定'], h: 'だれでも入れる部屋', p: 'ロビーから、空いている部屋に入れる形。時間がたつと部屋がリセットされます。' },
+    { badge: ['wait', '案'], h: '遊びを増やす', p: 'あっち向いてホイ、神経衰弱、だるま落とし、〇×クイズ、みんなで分担する料理や本棚の整理。' },
+    { badge: ['wait', '案'], h: '大きいこたつ', p: '5〜8人で囲める、大きいこたつ。' },
+    { badge: ['wait', '案'], h: '配信と連動', p: '配信のコメントに部屋が反応する。「録画中」の表示。' },
+    { badge: ['try', '試し'], h: '降りて歩けるワールド', p: '「古い書庫」。こたつから降りて、本を棚に整理する。' },
+    { badge: ['wait', '案'], h: '釣りの続き', p: '釣った大物を部屋に飾る、料理する。' },
+  ],
+  'faq.h': 'よくある質問',
+  'faq.more': 'アバターの持ちこみ、ファイルを取られないか、IP アドレス、部屋、録画については、<a data-ext href="{faqPage}">こたべりのよくある質問のページ</a>にくわしく書いてあります。',
+  'faq.list': [
+    ['お金はかかりますか？', 'かかりません。登録もいりません（いまは招待制の試作です）。'],
+    ['アプリを入れる必要はありますか？', 'いりません。ブラウザでアドレスを開くだけです。ホーム画面に置くこともできます。'],
+    ['何人で遊べますか？', '1部屋8人までです。遊びは1人からできる物もあります。人が足りないときは AI が相手をします。'],
+    ['カメラやマイクは必要ですか？', 'なくても遊べます。マイクは声で話すとき、カメラは顔の動きをアバターに映すときだけ使います。どちらも自分で入・切できます。'],
+    ['配信・動画にしてもいいですか？', 'はい。<a href="#stream">配信・動画のきまり</a>を見てください。同じ部屋の人に、先に断ってからにしてください。', 'はい。同じ部屋の人に、先に断ってからにしてください。くわしいきまりは、これから載せます。'],
+    ['重いときは？', '設定の「軽い表示」か、画質を「あらめ」に。重いときは自動で軽い表示になります。'],
+  ],
+  'foot.h': 'クレジット',
+  'foot.credits': ['効果音: 効果音ラボ、OtoLogic（CC BY 4.0）', '朝顔の声（選んだとき）: VOICEVOX:四国めたん', 'アバター: 100Avatars（Polygonal Mind、CC0）、VRoid のサンプルモデル（pixiv Inc.）', '書体: Shippori Mincho（FONTDASU）、Zen Maru Gothic（Yoshimichi Ohira）、SIL Open Font License 1.1', '部品: three.js、three-vrm、cannon-es（MIT）、顔の読み取り MediaPipe（Google、Apache License 2.0）', '朝顔の返事: Claude（Anthropic）'],
+  'foot.note': 'こたべり（試作）。画面の写真は開発中のものです。',
+  'cats': ['ぜんぶ', 'さっと', '盤と札', '手先', 'ことば', 'のんびり'],
+},
+en: {
+  'meta.title': 'Kotaberi',
+  'meta.desc': 'Gather around a kotatsu, chat, play games, and travel together, kotatsu and all. Kotaberi is a small 3D room you can join from your browser.',
+  logo: 'Kotaberi',
+  'nav.about': 'About', 'nav.talk': 'Chat', 'nav.play': 'Play', 'nav.go': 'Travel', 'nav.avatar': 'Avatars', 'nav.asagao': 'Asagao', 'nav.camera': 'Camera Crew', 'nav.stream': 'Streaming rules', 'nav.device': 'Devices', 'nav.room': 'Rooms', 'nav.next': 'Coming next', 'nav.faq': 'FAQ',
+  'badge.invite': 'Invite-only prototype',
+  'hero.title': '<span class="nb">Stay in the kotatsu.</span><br><span class="nb">Go anywhere.</span>',
+  'hero.lead': 'Gather around a kotatsu, chat, play, and travel together without ever getting out.<br>Kotaberi is a cozy 3D room you join from your browser.',
+  'hero.btnPlay': 'See what you can play', 'hero.btnStream': 'Streaming & video rules', 'hero.btnWorks': 'Project page (Civildot)',
+  'hero.cap': 'Screenshot: Starry Riverbank, with VRM avatars you can pick at the entrance',
+  'no.1': '1', 'no.2': '2', 'no.3': '3', 'no.4': '4', 'no.5': '5', 'no.6': '6', 'no.7': '7', 'no.8': '8', 'no.9': '9', 'no.10': '10', 'no.11': '11', 'no.12': '12',
+  'about.h': 'What is Kotaberi?',
+  'about.lead': 'The name comes from "kotatsu" (a heated table with a blanket) and "oshaberi" (chatting). Once you get into a kotatsu, you never want to leave. So we made the kotatsu do the moving.',
+  'about.cards': [
+    { ic: '入', h: 'Just open a link', p: 'Nothing to install. Open it in your browser, pick a name and an avatar, and press "Enter".' },
+    { ic: '同', h: 'PC, phone and VR together', p: 'People on PCs, phones and VR headsets can sit around the same kotatsu.' },
+    { ic: '和', h: 'A small Japanese room at night', p: 'Shoji screens, a paper lantern, mandarin oranges. Even the buttons and notices share the same Japanese style.' },
+    { ic: '遊', h: '<span class="count">{n}</span> games', p: 'From rock-paper-scissors to a block tower that really collapses. When you are short of players, AI joins in.' },
+    { ic: '旅', h: 'Travel with the kotatsu', p: 'Starry Riverbank, a sea of clouds, a fireworks night... The whole tatami floor flies off and the scenery changes.' },
+    { ic: '映', h: 'Made for streaming', p: 'An invisible "Camera Crew" lets you film the kotatsu like a TV show.' },
+  ],
+  'reel.1': 'Sailing across the water, tatami and all', 'reel.2': 'A kotatsu under the Milky Way', 'reel.3': 'Look up: the Milky Way and constellations',
+  'reel.note': 'All videos and screenshots are real in-game footage (Starry Riverbank).',
+  'about.vidAria': 'Five people around a kotatsu in the home room, laughing and looking surprised',
+  'about.vidCap': 'Five friends around the kotatsu in the home room',
+  'about.inviteH': 'Kotaberi is an invite-only prototype for now',
+  'about.invite': ['Only the people who run Kotaberi can open a room.', 'You can join if someone sends you an invite link. Invited guests can invite their own friends.', 'Rooms anyone can join are planned (see <a href="#next">Coming next</a>).', 'Phones and VR headsets have not been fully tested yet.'],
+  'talk.h': 'Chat and move',
+  'talk.lead': 'Talk by voice or by text. People nearby sound louder, and voices come from where each person sits.',
+  'talk.vidAria': 'An avatar laughing, then surprised, then troubled',
+  'talk.vidCap': 'Reactions change your face (laugh, surprise, trouble)',
+  'talk.rows': [
+    ['Voice', 'Turn it on or off with "Voice". Distant voices are quieter and come from the speaker\'s direction. Set each person\'s volume from 0 to 150%'],
+    ['Text', 'Up to 60 characters. Your chat history appears in the top left'],
+    ['Reactions', '😆 Laugh, 😲 Surprise, 😥 Trouble'],
+    ['Face camera', 'Your camera reads your face and moves your avatar\'s expression and head (optional)'],
+    ['Movement', 'Walk, sit, run, jump (with a soft landing sound) and crouch'],
+    ['View', 'Switch between your own eyes and a view of the table'],
+    ['Mandarins', 'Tap the plate to eat one. After three, a fresh batch appears'],
+    ['Topic Board', 'A board that shows the current topic in big letters. Leave topic suggestions in advance, even anonymously'],
+    ['Away', 'A 💤 appears on the name tag of anyone looking at another tab'],
+  ],
+  'board.alt': 'The Topic Board, with four people at the kotatsu',
+  'board.cap': 'The Topic Board showing the current topic',
+  'board.h': 'Topic Board',
+  'board.body': '<p>A board at the back of the room shows what you are talking about in big letters. The moment you set a topic, a banner appears on everyone\'s screen.</p><p>You can collect up to 30 topic suggestions, with or without your name. The board stays with the room, so you can gather suggestions before you meet.</p>',
+  'play.h': 'Play',
+  'play.lead': 'Pick a game from "🎲 Play". There are <span class="count">{n} games</span> right now. When you are short of players, AI takes a seat.',
+  'play.vidAria': 'A block tower collapses and four people look surprised',
+  'play.vidCap': 'The block tower really falls',
+  'play.body': '<h3 style="margin-top:0">It really collapses</h3><p>In Ohajiki, Shogi Kuzushi, Block Tower and Dominoes, the pieces really bump into each other and fall. Everyone sees exactly the same motion.</p><h3>How to join a game</h3><p>Most games start with the players who press "Join". Everyone else watches. When it is your turn, "Your turn" appears in the middle of the screen.</p>',
+  'go.h': 'Travel with the kotatsu',
+  'go.lead': 'The lights go out, the kotatsu takes off, and the name of the place appears in vertical writing when you arrive. The room host picks the destination.',
+  'go.vidAria': 'The lights go out, the room arrives at Starry Riverbank, and the title appears',
+  'go.vidCap': 'From the home room to Starry Riverbank',
+  'go.body1': '<h3 style="margin-top:0">Lights out, then a new view</h3><p>When the room host picks a destination, the room goes dark except for the paper lantern. While it is dark, the kotatsu flies off. When the scenery opens up, the name of the place appears in the top right.</p><p>Everyone in the room arrives together.</p>',
+  'go.helmAlt': 'The control box with a dial and a lever', 'go.helmCap': 'The control box in front of the kotatsu',
+  'go.body2': '<h3 style="margin-top:0">Steer the whole floor</h3><p>At your destination, push the lever on the control box and the whole tatami floor moves that way. The dial sets one of three speeds. Only the room host can steer.</p><h3>Constellations at Starry Riverbank</h3><p>The Milky Way, the Summer and Winter Triangles, the Big Dipper, Cassiopeia and Scorpius. Show or hide the lines and names with "Constellations". On PC, the stars reflect in the river.</p><h3>Fishing</h3><p>You can fish in every destination. There are 79 kinds across 8 places, rated with up to three stars, and they are saved in your field guide.</p>',
+  'av.h': 'Avatars',
+  'av.lead': 'Pick one of seven avatars at the entrance, or bring your own VRM.',
+  'av.vidAria': 'Eggplant, Bao Samurai and Nekomata laugh, look surprised, then troubled',
+  'av.vidCap': 'Chibi VRMs (Eggplant, Bao Samurai, Nekomata) sit in the same room as full-size ones',
+  'av.rows': [
+    ['Chibi', 'Eggplant, Nekomata and Bao Samurai'],
+    ['Full-size', 'Sendagaya Shibu, Asagao, Sumire and Ren. Asagao looks the same as the room guide Asagao'],
+    ['Loading', 'Avatars load after you enter the room. "Loading..." shows until they are ready'],
+    ['Your own VRM <span class="badge try">Beta</span>', 'Wear your own .vrm file (up to 15 MB). The file stays on your device. If the room host allows it, others in the room see it too, and it disappears when you leave'],
+    ['Sitting', 'Full-size avatars can sit normally, lean forward, or lie down'],
+  ],
+  'av.pic1Alt': 'Two full-size and three chibi avatars around a kotatsu', 'av.pic1Cap': 'Full-size and chibi avatars at the same kotatsu',
+  'av.pic2Alt': 'Nekomata sitting at the kotatsu', 'av.pic2Cap': 'Nekomata',
+  'av.note': 'If you use your own VRM, follow that avatar\'s license (who may use it, commercial use, and so on). At the entrance we show the terms written in the file and ask you to confirm them.',
+  'av.kind.chibi': 'Chibi', 'av.kind.human': 'Full-size',
+  'asa.h': 'Asagao, your AI roommate',
+  'asa.lead': 'Asagao lives in the room as a guide. Talk to her and she replies briefly, out loud as well.',
+  'asa.cards': [
+    { ic: '話', h: 'Talk to her', p: 'Type, or use the "Talk to Asagao" button. When you are alone she always answers. With two or more people, she answers when you call her name.' },
+    { ic: '席', h: 'She gives up her seat', p: 'When two or more people are in the room, she stands by the lantern and leaves her seat free.' },
+    { ic: '相', h: 'Call AI players', p: 'The room host can call up to three AI players. They join rock-paper-scissors, Chinchiro, board games, Liar Cards and more.' },
+  ],
+  'cam.h': 'Camera Crew (for filming)',
+  'cam.lead': 'An invisible camera that films the kotatsu like a TV show. Capture it in OBS to stream or record.',
+  'cam.f1': 'Face of the person in the left seat', 'cam.f2': 'Face of the person in the back seat', 'cam.f3': 'Face of the person in the right seat',
+  'cam.facesCap': 'Number keys 4, 6 and 5 show the faces of seated players',
+  'cam.points': ['Open it from "Open Camera Crew in a new window" at the entrance. A 1280×720 window titled "[Camera] Kotaberi" opens.', 'The Camera Crew has no avatar, takes no seat, and does not count as a player. Everyone in the room is told when it joins.', 'Camera sound starts off. For recording, we recommend capturing "Desktop Audio + Mic" in OBS.'],
+  'cam.keysHead': ['Key', 'What it does'],
+  'cam.keys': [
+    ['<span class="kbd">1</span>–<span class="kbd">8</span>', 'Preset shots (1 side, 2 straight above the table, 3 high angle, 4 left seat, 5 right seat, 6 back seat, 7 front seat, 8 Topic Board). The camera glides there. Add <span class="kbd">Shift</span> to cut instantly'],
+    ['<span class="kbd">T</span>', 'Automatically turn to whoever is talking (back to the wide shot after 6 seconds of silence)'],
+    ['<span class="kbd">Y</span>', 'Film from the eyes of whoever is talking'],
+    ['<span class="kbd">V</span> <span class="kbd">X</span> <span class="kbd">Z</span>', 'For race games: all boards side by side, then auto highlights, then one player at a time. X and Z move to the next or previous player'],
+    ['<span class="kbd">H</span>', 'Hide text (scene transitions and result banners stay)'],
+    ['W A S D, drag', 'Move freely. Space and C for up and down, mouse wheel to zoom'],
+    ['Panel', 'Topic banner (keeps the current topic in the top left), timer board, camera sound on/off'],
+  ],
+  'st.h': 'Streaming and video rules',
+  'st.lead': 'You are welcome to stream or post videos of Kotaberi. No application needed.',
+  'st.draft': 'Draft (not published yet). The contact address and publishing date are still to be decided.',
+  'st.askH': 'Please',
+  'st.ask': ['Put these two lines in your video description.<br><code>Kotaberi https://kotaberi.civildot.dev</code><br><code>Sound effects: Koukaon Lab, OtoLogic (CC BY 4.0)</code>', 'If Asagao\'s voice is set to VOICEVOX, also add <code>VOICEVOX:四国めたん</code>.', 'Tell everyone in the room that you are going to stream or record, and start only after they agree.'],
+  'st.ngH': 'Please don\'t',
+  'st.ng': ['Record or stream without asking the people in your room.', 'Make videos that only collect or showcase Kotaberi\'s sound effects.', 'Extract and share Kotaberi\'s sound or image files.', 'Post content that demeans people, breaks the law, or is for adults only.', 'Present your content in a way that makes viewers think it was made or endorsed by the creators of Kotaberi.'],
+  'st.etcH': 'Also',
+  'st.etc': ['Monetization (ads, tips, memberships) is fine, for individuals and companies alike. No application needed.', 'Never show a room\'s link (its key) on screen. Capture only the window contents so the browser address bar stays out of view.', 'These rules may change without notice. If you have a problem, contact [contact].'],
+  'dev.h': 'Devices and controls',
+  'dev.lead': 'If things feel slow, turn on "Lite mode". It also switches on automatically when needed.',
+  'dev.cards': [
+    { ic: '机', h: 'PC', p: '<span class="kbd">W</span><span class="kbd">A</span><span class="kbd">S</span><span class="kbd">D</span> walk, <span class="kbd">E</span> sit, <span class="kbd">Shift</span> run, <span class="kbd">Space</span> jump, <span class="kbd">C</span> crouch, <span class="kbd">Enter</span> chat. <span class="kbd">M</span> menu, <span class="kbd">G</span> play, <span class="kbd">V</span> view, <span class="kbd">O</span> travel, <span class="kbd">R</span> reactions, <span class="kbd">T</span> settings. You can remap keys in Settings.' },
+    { ic: '手', h: 'Phone', p: 'Drag to look around. Double-tap to walk or sit. Pinch to zoom. Add it to your home screen to get a "Back to my last room" shortcut.' },
+    { ic: '眼', h: 'VR <span class="badge try">Beta</span>', p: 'In a headset browser such as Quest\'s, choose "Enter in VR (beta)". Left stick to walk, trigger to press, A or X for the card menu.' },
+  ],
+  'dev.setH': 'What you can change in Settings',
+  'dev.set': [['Sound', 'Master volume, sound effect volume, Asagao\'s voice (device voice or VOICEVOX), each person\'s voice volume'], ['Display', 'Lite mode, quality (low, normal, high), full screen, frame rate display, constellations, show brought-in avatars'], ['Keys', 'Remap keys, reset to default']],
+  'room.h': 'How rooms work',
+  'room.rows': [
+    ['People', 'Up to 8 per room (the host can set 2 to 8). There are 8 seats: 4 playing seats on the sides and 4 watching seats on the corners'],
+    ['Room host 👑', 'The person who opened the room. If they leave, the person who has been there longest takes over. You can also hand it over with "Make host"'],
+    ['Room settings', 'Maximum people, lock the room (no new guests), passphrase, who can start games, whether Asagao is present, whether brought-in avatars are shown, add or dismiss AI players, stop a game'],
+    ['Handling trouble', 'The host can kick or block people from the member list'],
+    ['What stays', 'The room closes when everyone leaves. The flower bed, mandarin peeling, puzzle progress and Topic Board are saved per room'],
+    ['Automatic', 'Reconnects if you drop. Disconnects after 60 minutes with no activity'],
+  ],
+  'next.h': 'Coming next',
+  'next.lead': 'Things we plan to build and ideas we are thinking about. Order and details may change.',
+  'next.cards': [
+    { badge: ['wait', 'Planned'], h: 'Rooms anyone can join', p: 'Enter a free room from the Lobby. Rooms reset after a while.' },
+    { badge: ['wait', 'Idea'], h: 'More games', p: 'Look-this-way, memory cards, daruma otoshi, a true-or-false quiz, and team tasks like cooking or tidying a bookshelf.' },
+    { badge: ['wait', 'Idea'], h: 'A bigger kotatsu', p: 'A large kotatsu for 5 to 8 people.' },
+    { badge: ['wait', 'Idea'], h: 'Stream integration', p: 'The room reacts to live chat comments. A "Recording" indicator.' },
+    { badge: ['try', 'Beta'], h: 'Worlds you can walk around', p: '"The Old Library": step off the kotatsu and sort books onto the shelves.' },
+    { badge: ['wait', 'Idea'], h: 'More fishing', p: 'Display your big catches in the room, or cook them.' },
+  ],
+  'faq.h': 'FAQ',
+  'faq.more': 'For bringing your own avatar, keeping your files safe, IP addresses, rooms and recording, see the <a data-ext href="{faqPage}">Kotaberi FAQ page</a>.',
+  'faq.list': [
+    ['Does it cost anything?', 'No. No sign-up either (it is an invite-only prototype for now).'],
+    ['Do I need to install an app?', 'No. Just open the link in your browser. You can also add it to your home screen.'],
+    ['How many people can play?', 'Up to 8 per room. Some games work with just one player, and AI joins when you are short of players.'],
+    ['Do I need a camera or microphone?', 'No. The microphone is only for voice chat, and the camera only for moving your avatar\'s face. You can turn both on and off yourself.'],
+    ['Can I stream or make videos?', 'Yes. See <a href="#stream">Streaming and video rules</a>, and ask the people in your room first.', 'Yes. Please ask the people in your room first. Detailed rules will be posted soon.'],
+    ['What if it runs slowly?', 'Turn on "Lite mode" in Settings or set quality to "low". Lite mode also turns on automatically when needed.'],
+  ],
+  'foot.h': 'Credits',
+  'foot.credits': ['Sound effects: Koukaon Lab, OtoLogic (CC BY 4.0)', 'Asagao\'s voice (when selected): VOICEVOX:四国めたん', 'Avatars: 100Avatars (Polygonal Mind, CC0), VRoid sample models (pixiv Inc.)', 'Fonts: Shippori Mincho (FONTDASU), Zen Maru Gothic (Yoshimichi Ohira), SIL Open Font License 1.1', 'Libraries: three.js, three-vrm, cannon-es (MIT), face tracking by MediaPipe (Google, Apache License 2.0)', 'Asagao\'s replies: Claude (Anthropic)'],
+  'foot.note': 'Kotaberi (prototype). Screenshots show a version still in development.',
+  'cats': ['All', 'Quick', 'Boards & cards', 'Dexterity', 'Words', 'Relaxed'],
+},
+};
+
+// 遊びの一覧。cat は種類の番号（cats の 1〜5）。名前と人数と説明は ja / en
 const GAMES = [
-  ['✊', 'じゃんけん', '座っている人', '10秒で手を選んで、せーので出す。キー 1・2・3 でも出せる。', ['さっと']],
-  ['💡', '話のお題', '何人でも', 'お題を1つ引くと、全員に同じお題が出て、朝顔が読み上げる。', ['さっと', 'ことば']],
-  ['🎲', 'チンチロ', '1人から', 'さいころを順番に振る。1人20秒、3回まで。', ['さっと']],
-  ['⏱', 'チキンタイマー', '1人から', '見えないタイマーに順番に秒数を足す。10秒を超えさせた人の負け。', ['さっと']],
-  ['⏱', '10秒ぴったり', '1人から', '10秒だと思ったところで止める。', ['さっと']],
-  ['🏁', 'ひとふで競争', '2人から', '同じ一筆書きを同時に解いて、早さをくらべる。3回の合計。', ['さっと', '盤と札']],
-  ['🏁', 'みちあけ競争', '2人から', '同じ板ずらしの面を同時に解いて、早さをくらべる。', ['さっと', '盤と札']],
-  ['🏁', 'いがぐり競争', '2人から', '同じ盤をだれが早く開けきるか。いがをふむと5秒休み。', ['さっと', '盤と札']],
-  ['◩', 'かどつなぎ', '2〜4人', '自分の駒を角だけでつないでいく陣取り。', ['盤と札']],
-  ['☗', '福と鬼', '2人', '駒の中身（福か鬼か）は自分にしか見えない。読み合いの盤の遊び。', ['盤と札']],
-  ['◐', 'リバーシ', '2人', 'はさんで返す。相手がいなければ AI。', ['盤と札']],
-  ['⚫', '五目並べ', '2人', '13×13 の盤で、先に5つ並べたら勝ち。相手がいなければ AI。', ['盤と札']],
-  ['🍂', 'いがぐり', 'みんなで', '数字をたよりに、いがをよけて盤を開けていく。', ['盤と札', 'のんびり']],
-  ['🖌', 'ひとふで', 'みんなで', '一筆書きのパズル。進み具合は部屋に残る。', ['盤と札', 'のんびり']],
-  ['🧱', 'みちあけ', 'みんなで', '板をずらして、朱色の板を出口へ通す。進み具合は部屋に残る。', ['盤と札', 'のんびり']],
-  ['🔍', 'さがしもの', 'みんなで', '散らかった小物から、お題の物をさがす。早い者勝ち。', ['盤と札', 'のんびり']],
-  ['🃏', 'うそつき札', '2〜5人', '札を伏せて出し、「うそ！」で見破る。負けたらシュークリームを1個（わさび入りかも）。', ['盤と札']],
-  ['🔴', 'おはじき', '1〜8人', 'おはじきをはじいて当てる。本当にぶつかって動く。', ['手先']],
-  ['☗', '将棋崩し', '1〜8人', '駒の山から1つずつ引きぬく。山が本当に崩れる。', ['手先']],
-  ['▤', 'ジェンガ', '1〜8人', '明るいときにたたいて抜く。塔が本当に倒れる。', ['手先']],
-  ['🁢', 'ドミノ倒し', '何人でも', 'みんなで1個ずつ置いて、最後に「たおす」。', ['手先', 'のんびり']],
-  ['🤝', '一致ゲーム', '2人から', 'お題の答えを手書きのフリップで見せ合う。そろったかはみんなで決める。', ['ことば']],
-  ['🤐', 'NGワード', '2人から', '自分の頭の上の言葉だけが見えない。言わされたら負け。', ['ことば']],
-  ['🍊', 'みかんむき', '何人でも', 'ひたすらみかんをむく。手伝いを増やすと、いない間もむける。', ['のんびり']],
-  ['🎣', '釣り', '何人でも', '外のワールドで。当たりが来たら「ひく！」。8か所で79種、図鑑つき。', ['のんびり']],
-  ['🌱', '花壇', '何人でも', 'いつもの部屋の奥の8か所に種をまく。12時間で咲く。花は12種、図鑑つき。', ['のんびり']],
+  ['✊', [1], 'じゃんけん', 'Rock-Paper-Scissors', '座っている人', 'Seated players', '10秒で手を選んで、せーので出す。キー 1・2・3 でも出せる。', 'Pick your hand within 10 seconds and show it together. Keys 1, 2 and 3 work too.'],
+  ['💡', [1, 4], '話のお題', 'Talk Topics', '何人でも', 'Any number', 'お題を1つ引くと、全員に同じお題が出て、朝顔が読み上げる。', 'Draw a topic. Everyone sees the same one, and Asagao reads it out.'],
+  ['🎲', [1], 'チンチロ', 'Chinchiro', '1人から', '1+', 'さいころを順番に振る。1人20秒、3回まで。', 'Take turns rolling three dice. 20 seconds and up to 3 rolls each.'],
+  ['⏱', [1], 'チキンタイマー', 'Chicken Timer', '1人から', '1+', '見えないタイマーに順番に秒数を足す。10秒を超えさせた人の負け。', 'Take turns adding seconds to a hidden timer. Whoever pushes it past 10 seconds loses.'],
+  ['⏱', [1], '10秒ぴったり', 'Exactly 10 Seconds', '1人から', '1+', '10秒だと思ったところで止める。', 'Stop the timer when you think 10 seconds have passed.'],
+  ['🏁', [1, 2], 'ひとふで競争', 'One-Stroke Race', '2人から', '2+', '同じ一筆書きを同時に解いて、早さをくらべる。3回の合計。', 'Solve the same one-stroke puzzle at once and compare times. Best total over 3 rounds.'],
+  ['🏁', [1, 2], 'みちあけ競争', 'Clear the Path Race', '2人から', '2+', '同じ板ずらしの面を同時に解いて、早さをくらべる。', 'Solve the same sliding-block puzzle at once and compare times.'],
+  ['🏁', [1, 2], 'いがぐり競争', 'Chestnut Burr Race', '2人から', '2+', '同じ盤をだれが早く開けきるか。いがをふむと5秒休み。', 'Who clears the same board first? Step on a burr and you sit out 5 seconds.'],
+  ['◩', [2], 'かどつなぎ', 'Corner Link', '2〜4人', '2–4', '自分の駒を角だけでつないでいく陣取り。', 'A territory game where your pieces may only touch at the corners.'],
+  ['☗', [2], '福と鬼', 'Fortune & Oni', '2人', '2', '駒の中身（福か鬼か）は自分にしか見えない。読み合いの盤の遊び。', 'Only you can see whether each of your pieces is Fortune or Oni. A board game of bluffing.'],
+  ['◐', [2], 'リバーシ', 'Reversi', '2人', '2', 'はさんで返す。相手がいなければ AI。', 'Flank and flip. AI plays if you have no opponent.'],
+  ['⚫', [2], '五目並べ', 'Gomoku', '2人', '2', '13×13 の盤で、先に5つ並べたら勝ち。相手がいなければ AI。', 'Get five in a row on a 13×13 board. AI plays if you have no opponent.'],
+  ['🍂', [2, 5], 'いがぐり', 'Chestnut Burrs', 'みんなで', 'Together', '数字をたよりに、いがをよけて盤を開けていく。', 'Use the numbers to avoid the burrs and clear the board.'],
+  ['🖌', [2, 5], 'ひとふで', 'One Stroke', 'みんなで', 'Together', '一筆書きのパズル。進み具合は部屋に残る。', 'One-stroke drawing puzzles. Progress is saved in the room.'],
+  ['🧱', [2, 5], 'みちあけ', 'Clear the Path', 'みんなで', 'Together', '板をずらして、朱色の板を出口へ通す。進み具合は部屋に残る。', 'Slide the blocks to get the red block to the exit. Progress is saved in the room.'],
+  ['🔍', [2, 5], 'さがしもの', 'Find It', 'みんなで', 'Together', '散らかった小物から、お題の物をさがす。早い者勝ち。', 'Find the named item in a messy pile. First to find it wins.'],
+  ['🃏', [2], 'うそつき札', 'Liar Cards', '2〜5人', '2–5', '札を伏せて出し、「うそ！」で見破る。負けたらシュークリームを1個（わさび入りかも）。', 'Play cards face down and call "Liar!" to catch a bluff. The loser eats a cream puff that might be full of wasabi.'],
+  ['🔴', [3], 'おはじき', 'Ohajiki', '1〜8人', '1–8', 'おはじきをはじいて当てる。本当にぶつかって動く。', 'Flick flat marbles to hit others. They really bounce off each other.'],
+  ['☗', [3], '将棋崩し', 'Shogi Kuzushi', '1〜8人', '1–8', '駒の山から1つずつ引きぬく。山が本当に崩れる。', 'Pull shogi pieces out of a pile one at a time. The pile really collapses.'],
+  ['▤', [3], 'ジェンガ', 'Block Tower', '1〜8人', '1–8', '明るいときにたたいて抜く。塔が本当に倒れる。', 'Tap a block out while it is lit. The tower really falls.'],
+  ['🁢', [3, 5], 'ドミノ倒し', 'Dominoes', '何人でも', 'Any number', 'みんなで1個ずつ置いて、最後に「たおす」。', 'Everyone places dominoes one by one, then press "Topple".'],
+  ['🤝', [4], '一致ゲーム', 'Match Game', '2人から', '2+', 'お題の答えを手書きのフリップで見せ合う。そろったかはみんなで決める。', 'Write your answer on a hand-drawn card and reveal together. Everyone decides whether you matched.'],
+  ['🤐', [4], 'NGワード', 'Forbidden Word', '2人から', '2+', '自分の頭の上の言葉だけが見えない。言わされたら負け。', 'Everyone sees the word above your head except you. Say it and you lose.'],
+  ['🍊', [5], 'みかんむき', 'Mandarin Peeling', '何人でも', 'Any number', 'ひたすらみかんをむく。手伝いを増やすと、いない間もむける。', 'Peel mandarins, endlessly. Hire helpers and they keep peeling while you are away.'],
+  ['🎣', [5], '釣り', 'Fishing', '何人でも', 'Any number', '外のワールドで。当たりが来たら「ひく！」。8か所で79種、図鑑つき。', 'Fish at any destination and hit "Reel!" when you get a bite. 79 kinds across 8 places, with a field guide.'],
+  ['🌱', [5], '花壇', 'Flower Bed', '何人でも', 'Any number', 'いつもの部屋の奥の8か所に種をまく。12時間で咲く。花は12種、図鑑つき。', 'Plant seeds in 8 spots at the back of the home room. They bloom in 12 hours. 12 kinds of flowers, with a field guide.'],
 ];
-const CATS = ['ぜんぶ', 'さっと', '盤と札', '手先', 'ことば', 'のんびり'];
-const chips = document.getElementById('chips'), box = document.getElementById('games');
-let cat = 'ぜんぶ';
-function draw() {
-  box.innerHTML = '';
-  for (const [ic, nm, ppl, d, c] of GAMES) {
-    if (cat !== 'ぜんぶ' && !c.includes(cat)) continue;
-    const el = document.createElement('div'); el.className = 'g';
-    el.innerHTML = `<div class="nm"><span class="ic">${ic}</span>${nm}</div><span class="ppl">${ppl}</span><p>${d}</p>`;
-    box.append(el);
-  }
-  chips.querySelectorAll('.chip').forEach(b => b.classList.toggle('on', b.dataset.c === cat));
-}
-for (const c of CATS) { const b = document.createElement('button'); b.className = 'chip'; b.dataset.c = c; b.textContent = c; b.onclick = () => { cat = c; draw(); }; chips.append(b); }
-draw();
-document.querySelectorAll('[data-count]').forEach(e => e.textContent = GAMES.length + ' 種');
 
-// ワールド
+// ワールド（英語の名前は仮。こたべり本体の英語の表ができたら合わせる）
 const WORLDS = [
-  ['家', 'いつもの部屋', 'おかえりなさい。障子と行灯の和室。花壇もここに。', 'v_01_heya_4nin.jpg'],
-  ['星', '星の川原', '星の川のほとり。天の川と星座、川に映る星。', 'v_02_hoshi_b.jpg'],
-  ['雲', '雲海の山々', '雲の上の夜明け。朝までしゃべった日に。', 'w_kumo.jpg'],
-  ['朱', '大鳥居の夜', '水の上の大きな鳥居。少しあらたまって話す夜に。', 'w_torii.jpg'],
-  ['灯', '夜の参道', '灯籠の灯りがつづく道。ゆっくり話したい夜に。', 'w_sando.jpg'],
-  ['紅', '紅葉の谷', '色づいた谷の夕暮れ。のんびり話したい日に。', 'w_momiji.jpg'],
-  ['華', '花火の夜', '目の前で花火が開く。全員の画面で同じタイミング。', 'v_03_hanabi_a.jpg'],
-  ['雪', '雪見の夜', 'しんしんと雪がふる。こたつがいちばん似合う夜に。', 'w_yuki.jpg'],
-  ['桜', '夜桜', '満開の桜の上で。はじめての人と話す日に。', 'w_sakura.jpg'],
+  ['家', 'いつもの部屋', 'Home Room', 'おかえりなさい。障子と行灯の和室。花壇もここに。', 'Welcome back. A Japanese room with shoji and a paper lantern. The flower bed is here too.', 'v_01_heya_4nin.jpg'],
+  ['星', '星の川原', 'Starry Riverbank', '星の川のほとり。天の川と星座、川に映る星。', 'A riverbank under the stars, with the Milky Way, constellations, and stars reflected in the water.', 'v_02_hoshi_b.jpg'],
+  ['雲', '雲海の山々', 'Sea of Clouds', '雲の上の夜明け。朝までしゃべった日に。', 'Dawn above the clouds. For nights you talked until morning.', 'w_kumo.jpg'],
+  ['朱', '大鳥居の夜', 'Night of the Great Torii', '水の上の大きな鳥居。少しあらたまって話す夜に。', 'A great torii gate standing in the water. For a slightly more serious talk.', 'w_torii.jpg'],
+  ['灯', '夜の参道', 'Lantern Path', '灯籠の灯りがつづく道。ゆっくり話したい夜に。', 'A path lit by stone lanterns. For a slow, unhurried talk.', 'w_sando.jpg'],
+  ['紅', '紅葉の谷', 'Autumn Valley', '色づいた谷の夕暮れ。のんびり話したい日に。', 'Sunset over a valley of autumn leaves. For a lazy afternoon chat.', 'w_momiji.jpg'],
+  ['華', '花火の夜', 'Fireworks Night', '目の前で花火が開く。全員の画面で同じタイミング。', 'Fireworks burst right in front of you, at the same moment on everyone\'s screen.', 'v_03_hanabi_a.jpg'],
+  ['雪', '雪見の夜', 'Snowy Night', 'しんしんと雪がふる。こたつがいちばん似合う夜に。', 'Snow falls quietly. The night a kotatsu suits best.', 'w_yuki.jpg'],
+  ['桜', '夜桜', 'Night Sakura', '満開の桜の上で。はじめての人と話す日に。', 'Above cherry trees in full bloom. For meeting someone new.', 'w_sakura.jpg'],
 ];
-const wb = document.getElementById('worlds');
-for (const [h, n, d, img] of WORLDS) { const el = document.createElement('div'); el.className = 'w'; el.innerHTML = `<img src="img/${img}" alt="${n}" loading="lazy"><div class="t"><span class="han">${h}</span><b>${n}</b><p>${d}</p></div>`; wb.append(el); }
 
-// 入口で選べるアバター（並びはアプリの入口と同じ）
-const AVS = [['なす', 'ちび'], ['猫又', 'ちび'], ['包子の侍', 'ちび'], ['千駄ヶ谷 渋', '人型'], ['朝顔', '人型'], ['すみれ', '人型'], ['蓮', '人型']];
-document.getElementById('avs').innerHTML = AVS.map(([n, k], i) => `<figure><img src="img/av/v${i}.webp" alt="${n}" loading="lazy"><figcaption>${n}<small>${k}</small></figcaption></figure>`).join('');
+// 入口で選べるアバター（並びはアプリの入口と同じ。絵は img/av/v0〜v6.webp）
+const AVS = [['なす', 'Eggplant', 'chibi'], ['猫又', 'Nekomata', 'chibi'], ['包子の侍', 'Bao Samurai', 'chibi'], ['千駄ヶ谷 渋', 'Sendagaya Shibu', 'human'], ['朝顔', 'Asagao', 'human'], ['すみれ', 'Sumire', 'human'], ['蓮', 'Ren', 'human']];
+
+// ---------- 言語を決める（上が強い）: ?lang= → アドレスが /en/ で始まる → 端末のおぼえ → 日本語 ----------
+// 公開先は2つ（同じ index.html）: 日本語 civildot.dev/kotaberi/ 、英語 civildot.dev/en/kotaberi/
+// ブラウザが日本語以外で、指定もおぼえも無いときは、自動では移さず「English version is available」の案内だけ出す
+const LANGS = ['ja', 'en'], KEY = 'kotaberi_lang';
+const ON_SITE = /(^|\.)civildot\.dev$/.test(location.hostname);
+let hinted = false;
+function pickLang() {
+  try { const q = new URLSearchParams(location.search).get('lang'); if (LANGS.includes(q)) { try { localStorage.setItem(KEY, q); } catch {} return q; } } catch {}
+  if (/^\/en\//.test(location.pathname)) return 'en';
+  try { const s = localStorage.getItem(KEY); if (LANGS.includes(s)) return s; } catch {}
+  if (!(navigator.language || '').toLowerCase().startsWith('ja')) hinted = true;
+  return 'ja';
+}
+// その言語のページのアドレス（公開先の上だけ。ほかでは null）
+function pageUrl(l) {
+  if (!ON_SITE) return null;
+  const u = new URL(location.href), p = u.pathname.replace(/^\/en(?=\/)/, '');
+  u.pathname = l === 'en' ? '/en' + p : p; u.searchParams.delete('lang'); return u.toString();
+}
+let lang = pickLang(), cat = 0;
+const esc = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
+
+function render() {
+  const S = STR[lang], fill = s => String(s).replace('{n}', GAMES.length).replace('{faqPage}', SITE.faqPage);
+  document.documentElement.lang = lang;
+  document.title = S['meta.title'];
+  let md = document.querySelector('meta[name="description"]'); if (md) md.setAttribute('content', S['meta.desc']);
+  document.querySelectorAll('[data-t]').forEach(el => { el.innerHTML = fill(S[el.dataset.t] ?? ''); });
+  document.querySelectorAll('[data-alt]').forEach(el => { el.alt = S[el.dataset.alt] ?? ''; });
+  document.querySelectorAll('[data-aria]').forEach(el => { el.setAttribute('aria-label', S[el.dataset.aria] ?? ''); });
+  document.querySelectorAll('[data-li]').forEach(el => { el.innerHTML = (S[el.dataset.li] || []).map(x => `<li>${fill(x)}</li>`).join(''); });
+  document.querySelectorAll('[data-rows]').forEach(el => {
+    const head = el.dataset.head ? `<tr>${S[el.dataset.head].map(h => `<th>${h}</th>`).join('')}</tr>` : '';
+    el.innerHTML = head + (S[el.dataset.rows] || []).map(([a, b]) => `<tr>${el.dataset.head ? `<td>${a}</td>` : `<th>${a}</th>`}<td>${b}</td></tr>`).join('');
+  });
+  document.querySelectorAll('[data-cards]').forEach(el => {
+    el.innerHTML = (S[el.dataset.cards] || []).map(c => `<div class="card">${c.ic ? `<div class="ic">${c.ic}</div>` : ''}${c.badge ? `<span class="badge ${c.badge[0]}">${c.badge[1]}</span>` : ''}<h4>${fill(c.h)}</h4><p>${fill(c.p)}</p></div>`).join('');
+  });
+  // よくある質問（配信の答えは、配信の節を出さないときは3つめの文）
+  document.getElementById('faqlist').innerHTML = S['faq.list'].map(([q, a, aOff]) => `<details><summary>${q}</summary><p>${!SITE.stream && aOff ? aOff : a}</p></details>`).join('');
+  // 遊び
+  const chips = document.getElementById('chips');
+  chips.innerHTML = S.cats.map((c, i) => `<button type="button" class="chip${i === cat ? ' on' : ''}" data-c="${i}">${c}</button>`).join('');
+  chips.querySelectorAll('.chip').forEach(b => b.onclick = () => { cat = +b.dataset.c; render(); });
+  const L = lang === 'ja' ? 0 : 1;
+  document.getElementById('games').innerHTML = GAMES.filter(g => cat === 0 || g[1].includes(cat)).map(g => `<div class="g"><div class="nm"><span class="ic">${g[0]}</span>${esc(g[2 + L])}</div><span class="ppl">${esc(g[4 + L])}</span><p>${esc(g[6 + L])}</p></div>`).join('');
+  // ワールド
+  document.getElementById('worlds').innerHTML = WORLDS.map(w => `<div class="w"><img src="/kotaberi/img/${w[5]}" alt="${esc(w[1 + L])}" loading="lazy"><div class="t"><span class="han">${w[0]}</span><b>${esc(w[1 + L])}</b><p>${esc(w[3 + L])}</p></div></div>`).join('');
+  // アバター
+  document.getElementById('avs').innerHTML = AVS.map((a, i) => `<figure><img src="/kotaberi/img/av/v${i}.webp" alt="${esc(a[L])}" loading="lazy"><figcaption>${esc(a[L])}<small>${S['av.kind.' + a[2]]}</small></figcaption></figure>`).join('');
+  // 配信の節を出さないとき: 節と目次をかくし、上の2つめのボタンを作品の紹介へ
+  document.querySelectorAll('[data-stream]').forEach(el => { el.hidden = !SITE.stream; });
+  const b2 = document.getElementById('btn2');
+  if (!SITE.stream) { b2.href = SITE.works; b2.textContent = S['hero.btnWorks']; }
+  // サイトをまたぐリンクに、いまの言語を付ける
+  document.querySelectorAll('a[href^="https://"]').forEach(a => { try { const u = new URL(a.href); if (/(^|\.)civildot\.dev$/.test(u.hostname)) { u.searchParams.set('lang', lang); a.href = u.toString(); } } catch {} });
+  // 切りかえのボタンと、英語版の案内
+  document.querySelectorAll('[data-lang]').forEach(b => { b.classList.toggle('on', b.dataset.lang === lang); b.setAttribute('aria-pressed', b.dataset.lang === lang); });
+  const hint = document.getElementById('enhint');
+  hint.hidden = !(hinted && lang === 'ja');
+  hint.querySelector('a').href = pageUrl('en') || '#top';
+}
+// 押したら: 公開先では、もう一方のアドレスへ移る。ほかでは、その場で切りかえる。どちらも端末におぼえる
+function setLang(l) {
+  try { localStorage.setItem(KEY, l); } catch {}
+  const url = pageUrl(l);
+  if (url) { location.href = url; return; }
+  lang = l; hinted = false; render();
+}
+document.querySelectorAll('[data-lang]').forEach(b => b.addEventListener('click', () => setLang(b.dataset.lang)));
+document.getElementById('enhint').querySelector('a').addEventListener('click', e => { e.preventDefault(); setLang('en'); });
+document.getElementById('enhint').querySelector('button').addEventListener('click', () => { hinted = false; render(); });
+render();
 
 // 動きを減らす設定の人には、動画を止めて最初のコマだけ見せる
 if (matchMedia('(prefers-reduced-motion: reduce)').matches) document.querySelectorAll('video').forEach(v => { v.removeAttribute('autoplay'); v.pause(); });

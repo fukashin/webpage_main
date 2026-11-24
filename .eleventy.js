@@ -5,6 +5,7 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy("src/blog/css");
   // こたべりの特設サイト（こたべりの担当が作った1枚のページ。テンプレートとして読まず、そのまま /kotaberi/ に写す）
   eleventyConfig.addPassthroughCopy({ "static/kotaberi": "kotaberi" });
+  eleventyConfig.addPassthroughCopy({ "static/kotaberi-en": "en/kotaberi" }); // 英語のページ（画像・動画は /kotaberi/ のを使う）
   eleventyConfig.addPassthroughCopy({ "src/favicon.svg": "favicon.svg", "src/favicon.ico": "favicon.ico", "src/apple-touch-icon.png": "apple-touch-icon.png", "src/icon-32.png": "icon-32.png", "src/icon-512.png": "icon-512.png" });
 
   // ブログ記事（新しい順）
